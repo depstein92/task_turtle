@@ -13,6 +13,13 @@ module.exports = {
         query: {
           presets: ['react', 'es2015', 'stage-1']
         }
+      },
+      {
+        test: /\.scss$/,
+        use: [{ loader: "style-loader" },
+              { loader: "css-loader" },
+              { loader: "sass-loader" }],
+        exclude: /flexboxgrid/
       }
     ]
   },
@@ -32,4 +39,4 @@ module.exports = {
       poll: 1000
     }
   }
-};
+}
