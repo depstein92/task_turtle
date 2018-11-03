@@ -1,11 +1,11 @@
-import axios from 'axios';
+//import axios from 'axios';
 
 
 
 
 
- export const evaluateText = (text) => {
-  return {
-    text
-  };
-}
+//  export const evaluateText = (text) => {
+//   return {
+//     text
+//   };
+// }

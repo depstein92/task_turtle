@@ -13,23 +13,23 @@ const defaultImages = [
   },
   {
     title: 'Is-This-A-Pigeon',
-    image_url: 'Is-This-A-Pigeon.jpg'
+    image_url: './style/images/Is-This-A-Pigeon.jpg'
   },
   {
     title: 'Left Exit Quickly',
-    image_url: 'Left-Exit-12-Off-Ramp.jpg'
+    image_url: './style/images/Left-Exit-12-Off-Ramp.jpg'
   },
   {
     title: 'Mocking Spongebob',
-    image_url: 'Mocking-Spongebob'
+    image_url: './style/images/Mocking-Spongebob'
   },
   {
     title: 'Roll Safe and Think About it',
-    image_url: 'Roll-Safe-and-Think-About-it.jpg'
+    image_url: './style/images/Roll-Safe-and-Think-About-it.jpg'
   },
   {
     title: 'Waiting Skeleton',
-    image_url: 'Waiting-Skeleton'
+    image_url: './style/images/Waiting-Skeleton'
   },
 ]
 

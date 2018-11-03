@@ -20,7 +20,16 @@ module.exports = {
               { loader: "css-loader" },
               { loader: "sass-loader" }],
         exclude: /flexboxgrid/
-      }
+      },
+      {
+      test: /\.(png|jpg|gif)$/,
+      use: [
+        {
+          loader: 'file-loader',
+          options: {}
+        }
+      ]
+    }
     ]
   },
   resolve: {
