@@ -3,18 +3,63 @@ import defaultImages from '../DefaultImages';
 import { StyleSheet, css } from "aphrodite";
 
 class Preview extends React.Component{
+
+  constructor(props){
+    super(props);
+    this.state = { imgIndex: 0 }
+    this.renderImages = this.renderImages.bind(this);
+    this.incrementSlider = this.incrementSlider.bind(this);
+    this.decrementSlider = this.decrementSlider.bind(this);
+  }
+
+  renderImages(){
+    let { imgIndex } = this.state,
+        imagesArr = new Array();
+
+    for(var i = 0; i < 3; i++){
+      imagesArr.push(
+         <div className={css(styles.preview_img)}>
+          <img src={ defaultImages[imgIndex + i].img_url } />
+          <div className={css(styles.preview_img_title)}>
+           { defaultImages[imgIndex + i].title }
+          </div>
+         </div>)
+     }
+     return imagesArr;
+  };
+  
+  incrementSlider(){
+    let { imgIndex } = this.state;
+    if(imgIndex === defaultImages.length - 1){
+      this.setState({ imgIndex: 0 })
+    } else {
+      this.setState({ imgIndex: imgIndex + 1 })
+    }
+  }
+
+  decrementSlider(){
+    let { imgIndex } = this.state;
+    if(imgIndex === 0){
+      return null;
+    } else {
+      this.setState({ imgIndex: imgIndex - 1 })
+    }
+  }
+
   render(){
     return(
       <div className={css(styles.preview_container)}>
-        <div className={css(styles.img_track)}>
-        { defaultImages.map((index, img) => {
-          return (
-            <div className={css(styles.preview_container__img)} key={index}>
-             <h3 className={css(styles.preview_container__img_title)}>{img.title}</h3>
-             <img src={img.image_url} />
-           </div>)
-        }) }
-        </div>
+      <button
+        onClick={() => { this.incrementSlider() }}
+        className={css(styles.preview_inc_button)}>
+       <i className="fa fa-arrow-circle-right" aria-hidden="true"></i>
+      </button>
+        {this.renderImages()}
+        <button
+         onClick={() => { this.decrementSlider() }}
+         className={css(styles.preview_dec_button)}>
+        <i className="fa fa-arrow-circle-left" aria-hidden="true"></i>
+        </button>
       </div>
     )
   }
@@ -27,28 +72,19 @@ const styles = StyleSheet.create({
     height: "30vh",
     display: "flex",
     flexDirection: "row",
-    margin: "0 auto"
+    margin: "0 auto",
+    position: "relative"
   },
-  img_track:{
-    marginTop: "22px",
-    height: "205px",
-    marginBottom: "5px",
-    backgroundColor: "blue",
-    width: "100vw",
-    display: "flex",
-    flexFlow: "wrap row",
-    justifyContent: "space-evenly",
-    zIndex: 0,
-    alignItems: "center",
-    overFlowY: "scroll"
+  preview_inc_button: {
+    position: "absolute",
+    right: "0",
+    height: "100%",
+    width: "5%"
   },
-  preview_container__img: {
-    backgroundColor: "red",
-    height: "30px",
-    borderStyle: "solid",
-    zIndex: 1,
-    width: "100px",
-    height: "100px"
+  preview_dec_button: {
+    position: "absolute",
+    height: "100%",
+    width: "5%"
   }
 });
 
