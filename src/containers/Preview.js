@@ -18,8 +18,8 @@ class Preview extends React.Component{
 
     for(var i = 0; i < 3; i++){
       imagesArr.push(
-         <div className={css(styles.preview_img)}>
-          <img src={ defaultImages[imgIndex + i].img_url } />
+         <div className={css(styles.preview_img)} key={imgIndex + i}>
+          <img className={css(styles.preview_img_img)} src={ defaultImages[imgIndex + i].img_url } />
           <div className={css(styles.preview_img_title)}>
            { defaultImages[imgIndex + i].title }
           </div>
@@ -27,7 +27,7 @@ class Preview extends React.Component{
      }
      return imagesArr;
   };
-  
+
   incrementSlider(){
     let { imgIndex } = this.state;
     if(imgIndex === defaultImages.length - 1){
@@ -73,7 +73,9 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     margin: "0 auto",
-    position: "relative"
+    position: "relative",
+    justifyContent: "space-evenly",
+    alignItems: ""
   },
   preview_inc_button: {
     position: "absolute",
@@ -81,10 +83,33 @@ const styles = StyleSheet.create({
     height: "100%",
     width: "5%"
   },
+  preview_img_title: {
+    position: "absolute",
+    bottom: "0"
+  },
   preview_dec_button: {
     position: "absolute",
     height: "100%",
+    left: "0",
     width: "5%"
+  },
+  preview_img: {
+    borderStyle: "solid",
+    backgroundColor: "red",
+    width: "20%",
+    display: "flex",
+    justifyContent: "center",
+    flexDirection: "column-reverse",
+    alignItems: "center"
+
+  },
+
+  preview_img_img: {
+    position: "absolute",
+    width: "15%",
+    maxWidth: "25%",
+    height: "50%",
+    top: "25%"
   }
 });
 

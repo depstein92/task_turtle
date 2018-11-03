@@ -4,7 +4,7 @@ const defaultImages = [
     image_url: './style/images/Distracted-Boyfriend.jpg'
   },
   {
-    title: 'Exapanding-Brain.jpg',
+    title: 'Expanding-Brain',
     image_url: './style/images/Expanding-Brain.jpg'
   },
   {
