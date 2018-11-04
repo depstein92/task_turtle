@@ -1,11 +1,10 @@
-//import axios from 'axios';
+const addImageToEditor = (image, title) => {
+  return {
+    type: 'ADD_PHOTO_SUCCESS',
+    payload: { image, title }
+  }
+};
 
-
-
-
-
-//  export const evaluateText = (text) => {
-//   return {
-//     text
-//   };
-// }
+export default {
+  addImageToEditor: addImageToEditor
+};

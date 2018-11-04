@@ -1,6 +1,11 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom'
 import defaultImages from '../DefaultImages';
 import { StyleSheet, css } from "aphrodite";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import actions from '../actions/index';
+
 
 class Preview extends React.Component{
 
@@ -10,6 +15,12 @@ class Preview extends React.Component{
     this.renderImages = this.renderImages.bind(this);
     this.incrementSlider = this.incrementSlider.bind(this);
     this.decrementSlider = this.decrementSlider.bind(this);
+    this.sendImageActionToEditor = this.sendImageActionToEditor.bind(this);
+  }
+
+  sendImageActionToEditor(img, title){
+    let { addImageToEditor } = this.props;
+    addImageToEditor(img, title);
   }
 
   renderImages(){
@@ -17,11 +28,25 @@ class Preview extends React.Component{
         imagesArr = new Array();
 
     for(var i = 0; i < 3; i++){
+
+      const imageTitle = defaultImages[imgIndex + i].title,
+            imageUrl = defaultImages[imgIndex + i].image_url;
+
+      const ReRouteLink = withRouter(({ history}) => (
+            <img
+             className={css(styles.preview_img_img)}
+             onClick={() => {
+               this.sendImageActionToEditor(imageUrl, imageTitle)
+                history.push('/Editor')
+             }}
+             src={ imageUrl } />
+      ))
+
       imagesArr.push(
          <div className={css(styles.preview_img)} key={imgIndex + i}>
-          <img className={css(styles.preview_img_img)} src={ defaultImages[imgIndex + i].img_url } />
+           <ReRouteLink />
           <div className={css(styles.preview_img_title)}>
-           { defaultImages[imgIndex + i].title }
+           { imageTitle }
           </div>
          </div>)
      }
@@ -30,7 +55,8 @@ class Preview extends React.Component{
 
   incrementSlider(){
     let { imgIndex } = this.state;
-    if(imgIndex === defaultImages.length - 1){
+    /*due to there being three images*/
+    if(imgIndex === defaultImages.length - 3){
       this.setState({ imgIndex: 0 })
     } else {
       this.setState({ imgIndex: imgIndex + 1 })
@@ -109,8 +135,14 @@ const styles = StyleSheet.create({
     width: "15%",
     maxWidth: "25%",
     height: "50%",
-    top: "25%"
+    top: "25%",
+    cursor: "pointer"
   }
 });
 
-export default Preview;
+ const mapDispatchToProps = (dispatch) => {
+   let { addImageToEditor } = actions;
+   return bindActionCreators({ addImageToEditor }, dispatch)
+ };
+
+export default connect(null, mapDispatchToProps)(Preview);
