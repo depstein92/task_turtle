@@ -5,6 +5,14 @@ const addImageToEditor = (image, title) => {
   }
 };
 
-export default {
-  addImageToEditor: addImageToEditor
+const addFormField = (num) =>{
+  return {
+    type: 'ADD_FORM_FIELD_SUCCESS',
+    payload: num
+  }
+}
+
+export default { /*unecc*/
+  addImageToEditor: addImageToEditor,
+  addFormField: addFormField
 };
