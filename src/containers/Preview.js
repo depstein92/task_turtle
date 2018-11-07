@@ -5,6 +5,7 @@ import { StyleSheet, css } from "aphrodite";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import actions from '../actions/index';
+import { Icon, Button } from 'semantic-ui-react';
 
 
 class Preview extends React.Component{
@@ -75,17 +76,17 @@ class Preview extends React.Component{
   render(){
     return(
       <div className={css(styles.preview_container)}>
-      <button
+      <Button
         onClick={() => { this.incrementSlider() }}
         className={css(styles.preview_inc_button)}>
-       <i className="fa fa-arrow-circle-right" aria-hidden="true"></i>
-      </button>
+        <Icon name='right arrow' />
+      </Button>
         {this.renderImages()}
-        <button
+        <Button
          onClick={() => { this.decrementSlider() }}
          className={css(styles.preview_dec_button)}>
-        <i className="fa fa-arrow-circle-left" aria-hidden="true"></i>
-        </button>
+         <Icon name='left arrow' />
+        </Button>
       </div>
     )
   }
