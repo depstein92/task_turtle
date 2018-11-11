@@ -94,7 +94,6 @@ class Preview extends React.Component{
 
 const styles = StyleSheet.create({
   preview_container: {
-    border: "1px solid",
     width: "80%",
     height: "30vh",
     display: "flex",
@@ -102,7 +101,7 @@ const styles = StyleSheet.create({
     margin: "0 auto",
     position: "relative",
     justifyContent: "space-evenly",
-    alignItems: ""
+    border: 'none'
   },
   preview_inc_button: {
     position: "absolute",
@@ -121,8 +120,7 @@ const styles = StyleSheet.create({
     width: "5%"
   },
   preview_img: {
-    borderStyle: "solid",
-    backgroundColor: "red",
+    border: "1px solid",
     width: "20%",
     display: "flex",
     justifyContent: "center",

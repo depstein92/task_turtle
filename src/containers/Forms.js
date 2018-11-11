@@ -1,9 +1,7 @@
-
 import React from 'react'
 import { Field, reduxForm } from 'redux-form';
 import { StyleSheet, css } from 'aphrodite';
 import { connect } from 'react-redux';
-
 
 let ImageEditorForm = props => {
 
@@ -13,10 +11,11 @@ let ImageEditorForm = props => {
     let formArr = new Array();
 
     for(let i = 0; i < imageForms; i++){
+
       formArr.push(
-        <div>
+        <div className={css(styles.editImageForm)}>
           <label htmlFor="Image_Narrative">Image Narrative</label>
-          <Field name="firstName" component="input" type="text" />
+          <Field name={`form${i}`} component="input" type="text" />
         </div>
       )
      }
@@ -40,11 +39,14 @@ const styles = StyleSheet.create({
     height: '15vh',
     alignItems: 'center',
     flexDirection: 'column'
+  },
+  editImageForm: {
+   marginBottom: "40px"
   }
 });
 
 ImageEditorForm = reduxForm({
-  form: 'contact'
+  form: 'image_editor'
 })(ImageEditorForm)
 
 

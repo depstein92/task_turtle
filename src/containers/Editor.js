@@ -34,7 +34,7 @@ class Editor extends React.Component{
    } else{
     return(
       <div>
-       <Image src={data.data.image} size="medium" centered />
+       <Image src={data.data.image} size="large" centered />
        <div className={styles.imageTitle}>{ data.data.title }</div>
       </div>
     )
@@ -60,7 +60,8 @@ const styles = StyleSheet.create({
     textAlign: "center"
   },
   imageTitle: {
-    textAlign: 'center'
+    textAlign: 'center',
+
   }
 });
 

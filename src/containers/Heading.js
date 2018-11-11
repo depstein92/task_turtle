@@ -2,45 +2,57 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { StyleSheet, css } from "aphrodite";
 import globalStyles from "../ReusableStyles";
+import { Menu, Segment, Icon } from 'semantic-ui-react';
+
 
 class Heading extends React.Component{
-  render(){
-    return(
-      <div className={css(styles.heading_container)}>
-       <div className={css(styles.link)}>
-         <Link to="/">Create Meme</Link>
-       </div>
-       <div className={css(styles.link)}>
-         <Link to="/">Blank Link</Link>
-       </div>
-       <div className={css(styles.link)}>
-         <Link to="/">Blank Link</Link>
-       </div>
-       <div className={css(styles.link)}>
-         <Link to="/">Blank Link</Link>
-       </div>
+  state = { activeItem: 'home' }
+
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+
+  render() {
+    const { activeItem } = this.state
+
+    return (
+      <div className={css(styles.menu_container)}>
+      <Segment>
+      </Segment>
+        <Menu pointing secondary>
+         <Menu.Item>
+          <Icon className='truck' />
+          </Menu.Item>
+          <Menu.Item name='home'
+           active={activeItem === 'home'}
+           onClick={this.handleItemClick}>
+           <Link to="/" className={css(styles.link)}>Home</Link>
+           </Menu.Item>
+          <Menu.Item
+            name='editor'
+            active={activeItem === 'editor'}
+            onClick={this.handleItemClick}>
+            <Link to="/editor" className={css(styles.link)}>Editor</Link>
+          </Menu.Item>
+          <Menu.Item
+            name='memes'
+            active={activeItem === 'memes'}
+            onClick={this.handleItemClick}>
+            <Link to="/memes" className={css(styles.link)}>Memes</Link>
+          </Menu.Item>
+        </Menu>
       </div>
     )
   }
 }
 
 const styles = StyleSheet.create({
-   heading_container: {
-    width: '100%',
-    backgroundColor: 'blue',
-    height: '15vh',
-    borderBottom:'5px solid',
-    marginBottom: '30px',
-    display: "flex",
-    justifyContent: "space-evenly",
-    alignItems: "flex-end"
-   },
-   link: {
-     fontFamily: globalStyles.primaryFont.fontFamily,
-     color: "inherit",
-     cursor: "pointer",
-     fontSize: "3vh"
-   }
+  menu_container: {
+    position: "relative",
+    marginBottom: "10%"
+  },
+  link: {
+    color: "black"
+  }
+
 });
 
 export default Heading;
