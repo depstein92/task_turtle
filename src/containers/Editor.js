@@ -5,15 +5,17 @@ import { StyleSheet, css } from 'aphrodite';
 import ImageEditorForm from './Forms';
 import { addFormField } from '../actions/index';
 import { Container, Image } from 'semantic-ui-react';
+import { getFormValues } from 'redux-form';
 
 
 class Editor extends React.Component{
   constructor(props){
     super(props)
 
-    this.state = { addImageForm: 1 }
+    this.state = { addImageForm: 1, numOfDialogueBox: 1 }
     this.onAddImageForm = this.onAddImageForm.bind(this);
     this.ifImageIsNull = this.ifImageIsNull.bind(this);
+    this.renderDialogueBox = this.renderDialogueBox.bind(this);
   }
 
   onAddImageForm(){
@@ -41,14 +43,33 @@ class Editor extends React.Component{
    }
   }
 
+  renderDialogueBox(){
+    let {
+      narrativeBoxContent: {
+          image_editor
+        }
+     } = this.props;
+     
+   if(image_editor !== undefined){
+    if(image_editor.hasOwnProperty('values')){
+       return Object.keys(image_editor.values).map(obj => {
+          return <div>{ image_editor.values[obj] }</div>
+     })
+    }
+  }
+}
+
+
   render(){
+
     return(
       <div>
        <Container fluid>
         { this.ifImageIsNull() }
        </Container>
        <button onClick={()=>{ this.onAddImageForm() }}>Add Image Form</button>
-       <ImageEditorForm imageForms={this.state.addImageForm}  />
+       <ImageEditorForm imageForms={this.state.addImageForm} />
+       { this.renderDialogueBox() }
       </div>
     )
   }
@@ -61,14 +82,14 @@ const styles = StyleSheet.create({
   },
   imageTitle: {
     textAlign: 'center',
-
   }
 });
 
 
 const mapStateToProps = (state) => {
   return {
-    addImageToEditor: state.addImageReducer
+    addImageToEditor: state.addImageReducer,
+    narrativeBoxContent: state.form
   }
 }
 

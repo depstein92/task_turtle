@@ -8,10 +8,10 @@ let ImageEditorForm = props => {
   const { handleSubmit, imageForms } = props;
 
   let formField = () => {
+
     let formArr = new Array();
 
     for(let i = 0; i < imageForms; i++){
-
       formArr.push(
         <div className={css(styles.editImageForm)}>
           <label htmlFor="Image_Narrative">Image Narrative</label>
@@ -19,7 +19,7 @@ let ImageEditorForm = props => {
         </div>
       )
      }
-     return formArr
+     return formArr;
   }
 
   return (
@@ -42,6 +42,9 @@ const styles = StyleSheet.create({
   },
   editImageForm: {
    marginBottom: "40px"
+  },
+  narrativeBoxCenter: {
+
   }
 });
 
