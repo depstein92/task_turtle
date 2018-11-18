@@ -55,7 +55,7 @@ class Editor extends React.Component{
   renderDialogueBox(){
 
    const {
-     narrativeBoxContent: { image_editor }
+    narrativeBoxContent: {image_editor}
    } = this.props;
 
    if(image_editor !== undefined){
@@ -65,6 +65,7 @@ class Editor extends React.Component{
        <Draggable
           bounds={{left: '100vw', top: '100vh', right: '100vw', bottom: '100vh'}}
           handle=".handle"
+          className={css(styles.draggable)}
           defaultPosition={{x: 0, y: 0}}
           position={null}
           grid={[25, 25]}
@@ -72,9 +73,9 @@ class Editor extends React.Component{
           onDrag={this.handleDrag}
           onStop={this.handleStop}>
           <div style={{ borderStyle: 'solid'}}>
-          <div style={{textAlign: 'center'}} className="handle">
-          { image_editor.values[obj] }
-          </div>
+            <div style={{textAlign: 'center'}} className="handle">
+             { image_editor.values[obj] }
+            </div>
           </div>
         </Draggable>
         )
@@ -84,7 +85,6 @@ class Editor extends React.Component{
 }
 
   render(){
-
     return(
       <div>
        <Container fluid>
@@ -92,7 +92,9 @@ class Editor extends React.Component{
        </Container>
        <button onClick={()=>{ this.onAddImageForm() }}>Add Image Form</button>
        <ImageEditorForm imageForms={this.state.addImageForm} />
+       <div className={css(styles.narrativeDiv)}>
        { this.renderDialogueBox() }
+       </div>
       </div>
     )
   }
@@ -100,14 +102,25 @@ class Editor extends React.Component{
 
 const styles = StyleSheet.create({
   imageNotSelected: {
-    fontSize: "11vw",
-    textAlign: "center"
+   fontSize: "11vw",
+   textAlign: "center"
   },
   imageTitle: {
-    textAlign: 'center',
+   textAlign: 'center',
   },
   centeredContainer: {
-    width: '100%'
+   width: '100%'
+  },
+  narrativeDiv: {
+   color: 'black',
+   height: '15vh',
+   border: 'solid',
+   width: '40%',
+   display: 'flex',
+   justifyContent: 'space-evenly',
+   flexDirection: 'column',
+   position: 'absolute',
+   top: '10%'
   }
 });
 
