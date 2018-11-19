@@ -3,22 +3,26 @@ import { Field, reduxForm } from 'redux-form';
 import { StyleSheet, css } from 'aphrodite';
 import { connect } from 'react-redux';
 import { Icon } from 'semantic-ui-react';
+import { bindActionCreators } from 'redux';
 
 let ImageEditorForm = props => {
 
-  const { handleSubmit, imageForms } = props;
+  const { handleSubmit, imageForms } = props,
+        formArr = new Array();
+  const formField = () => {
 
-  let formArr = new Array();
+  const removeNarr = (e) => {
 
-  let formField = () => {
+    const narrBox = e.target.parentElement.parentNode.style,
+          { removeNarrativeByNum } = props;
 
-   const getRefs = (e) => {
-       e.target.parentElement.parentNode.style.visibility = 'hidden';
-       e.target.parentElement.parentNode.style.position = "absolute";
-       e.target.parentElement.parentNode.style.top = "0px";
+    narrBox.visibility = 'hidden';
+    narrBox.position = "absolute";
+    narrBox.top = "0px";
+    removeNarrativeByNum(parseInt(e.target.dataset.tag));
    }
 
-    for(let i = 0; i < imageForms; i++){
+   for(let i = 0; i < imageForms; i++){
       formArr.push(
         <div className={css(styles.ImageEditorForm_child)}>
           <label htmlFor="Image_Narrative">Image Narrative</label>
@@ -27,7 +31,7 @@ let ImageEditorForm = props => {
           <Icon
             data-tag={i}
             name="times circle"
-            onClick={(e) => getRefs(e) }
+            onClick={(e) => removeNarr(e) }
             />
           </span>
         </div>
@@ -77,9 +81,15 @@ const styles = StyleSheet.create({
   }
 });
 
+
+ const mapDispatchToProps = (dispatch) => {
+   return bindActionCreators({  }, dispatch);
+ }
+
+
 ImageEditorForm = reduxForm({
   form: 'image_editor'
 })(ImageEditorForm)
 
 
-export default ImageEditorForm;
+export default connect()(ImageEditorForm);

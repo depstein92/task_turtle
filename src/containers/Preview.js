@@ -54,6 +54,7 @@ class Preview extends React.Component{
      return imagesArr;
   };
 
+
   incrementSlider(){
     let { imgIndex } = this.state;
     /*due to there being three images*/
@@ -64,6 +65,7 @@ class Preview extends React.Component{
     }
   }
 
+
   decrementSlider(){
     let { imgIndex } = this.state;
     if(imgIndex === 0){
@@ -72,6 +74,7 @@ class Preview extends React.Component{
       this.setState({ imgIndex: imgIndex - 1 })
     }
   }
+
 
   render(){
     return(

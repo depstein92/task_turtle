@@ -14,12 +14,12 @@ class Editor extends React.Component{
 
     this.state = {
       addImageForm: 1,
-      numOfDialogueBox: 1
+      numOfDialogueBox: [ 1 ]
     }
     this.onAddImageForm = this.onAddImageForm.bind(this);
     this.ifImageIsNull = this.ifImageIsNull.bind(this);
     this.renderDialogueBox = this.renderDialogueBox.bind(this);
-    this.eventLogger = this.eventLogger.bind(this);
+    this.removeNarrativeByNum =   this.removeNarrativeByNum.bind(this);
   }
 
   onAddImageForm(){
@@ -28,9 +28,9 @@ class Editor extends React.Component{
    this.setState({ addImageForm: addImageForm + 1 });
   }
 
-  eventLogger = (e: MousEvent, data: Object) => {
-     console.log('Event: ', e);
-     console.log('Data: ', data);
+  removeNarrativeByNum(num){
+    let { numOfDialogueBox } = this.state;
+    this.setState({ numOfDialogueBox: [ num ] });
   }
 
   ifImageIsNull(){
@@ -53,14 +53,17 @@ class Editor extends React.Component{
   }
 
   renderDialogueBox(){
-
    const {
     narrativeBoxContent: {image_editor}
    } = this.props;
+   const { numOfDialogueBox } = this.state;
 
    if(image_editor !== undefined){
     if(image_editor.hasOwnProperty('values')){
-       return Object.keys(image_editor.values).map(obj => {
+       return Object.keys(image_editor.values).map((obj, index) => {
+         if(numOfDialogueBox.includes(index)){
+           return null;
+         } else{
           return(
        <Draggable
           bounds={{left: '100vw', top: '100vh', right: '100vw', bottom: '100vh'}}
@@ -79,19 +82,23 @@ class Editor extends React.Component{
           </div>
         </Draggable>
         )
+      }
      })
     }
   }
 }
 
   render(){
+    console.log(this.state)
     return(
       <div>
        <Container fluid>
         { this.ifImageIsNull() }
        </Container>
        <button onClick={()=>{ this.onAddImageForm() }}>Add Image Form</button>
-       <ImageEditorForm imageForms={this.state.addImageForm} />
+       <ImageEditorForm
+        imageForms={this.state.addImageForm}
+        removeNarrativeByNum={this.removeNarrativeByNum} />
        <div className={css(styles.narrativeDiv)}>
        { this.renderDialogueBox() }
        </div>
