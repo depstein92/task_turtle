@@ -7,12 +7,11 @@ import { bindActionCreators } from 'redux';
 
 let ImageEditorForm = props => {
 
-  const { handleSubmit, imageForms } = props,
+  const { imageForms, handleSubmit } = props,
         formArr = new Array();
   const formField = () => {
 
   const removeNarr = (e) => {
-
     const narrBox = e.target.parentElement.parentNode.style,
           { removeNarrativeByNum } = props;
 
@@ -40,10 +39,17 @@ let ImageEditorForm = props => {
      return formArr;
   }
 
+  const onSubmit = (values) => {
+    console.log(values);
+  }
+
   return (
-    <form onSubmit={handleSubmit} className={css(styles.ImageEditorForm)}>
+    <form className={css(styles.ImageEditorForm)} onSubmit={handleSubmit}>
       { formField() }
-      <button type="submit" className={css(styles.formButton)}>Submit</button>
+      <button type="submit"
+       className={css(styles.formButton) }>
+          Submit
+      </button>
     </form>
   )
 }

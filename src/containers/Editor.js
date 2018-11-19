@@ -8,18 +8,20 @@ import { Container, Image } from 'semantic-ui-react';
 import { getFormValues } from 'redux-form';
 import Draggable from 'react-draggable';
 
+
 class Editor extends React.Component{
   constructor(props){
     super(props)
 
     this.state = {
       addImageForm: 1,
-      numOfDialogueBox: [ 1 ]
+      numOfDialogueBox: []
     }
     this.onAddImageForm = this.onAddImageForm.bind(this);
     this.ifImageIsNull = this.ifImageIsNull.bind(this);
     this.renderDialogueBox = this.renderDialogueBox.bind(this);
     this.removeNarrativeByNum =   this.removeNarrativeByNum.bind(this);
+    this.onFormSubmit = this.onFormSubmit.bind(this);
   }
 
   onAddImageForm(){
@@ -30,7 +32,7 @@ class Editor extends React.Component{
 
   removeNarrativeByNum(num){
     let { numOfDialogueBox } = this.state;
-    this.setState({ numOfDialogueBox: [ num ] });
+    this.setState({ numOfDialogueBox: numOfDialogueBox.concat(...[num]) });
   }
 
   ifImageIsNull(){
@@ -88,8 +90,13 @@ class Editor extends React.Component{
   }
 }
 
+onFormSubmit(values){
+
+}
+
+
   render(){
-    console.log(this.state)
+    
     return(
       <div>
        <Container fluid>
@@ -98,6 +105,7 @@ class Editor extends React.Component{
        <button onClick={()=>{ this.onAddImageForm() }}>Add Image Form</button>
        <ImageEditorForm
         imageForms={this.state.addImageForm}
+        onSubmit={this.onFormSubmit}
         removeNarrativeByNum={this.removeNarrativeByNum} />
        <div className={css(styles.narrativeDiv)}>
        { this.renderDialogueBox() }

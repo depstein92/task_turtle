@@ -1,5 +1,6 @@
 import React from 'react';
 import Preview from './Preview';
+import ImageLine from './ImageLine';
 
 
 class Home extends React.Component{
@@ -7,6 +8,7 @@ class Home extends React.Component{
     return(
       <div className="landing-container">
        <Preview />
+       <ImageLine />
       </div>
     )
   }
