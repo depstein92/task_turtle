@@ -3,8 +3,6 @@ import { StyleSheet, css } from 'aphrodite';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-
-
 class ImageLine extends React.Component{
   constructor(props){
     super(props);
@@ -22,7 +20,6 @@ class ImageLine extends React.Component{
 const styles = StyleSheet.create({
   imageLine_container: {
     backgroundColor: 'indianred',
-    marginTop: '20%',
     position: 'absolute',
     width: '100%',
     height: '100vh'

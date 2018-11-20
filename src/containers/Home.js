@@ -1,5 +1,6 @@
 import React from 'react';
 import Preview from './Preview';
+import PrePostContainer from './PrePostContainer';
 import ImageLine from './ImageLine';
 
 
@@ -8,6 +9,7 @@ class Home extends React.Component{
     return(
       <div className="landing-container">
        <Preview />
+       <PrePostContainer />
        <ImageLine />
       </div>
     )
