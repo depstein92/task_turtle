@@ -4,6 +4,8 @@ import { StyleSheet, css } from 'aphrodite';
 import { connect } from 'react-redux';
 import { Icon } from 'semantic-ui-react';
 import { bindActionCreators } from 'redux';
+import { Link } from 'react-router-dom';
+
 
 let ImageEditorForm = props => {
 
@@ -13,7 +15,7 @@ let ImageEditorForm = props => {
 
   const removeNarr = (e) => {
     const narrBox = e.target.parentElement.parentNode.style,
-          { removeNarrativeByNum } = props;
+    { removeNarrativeByNum } = props;
 
     narrBox.visibility = 'hidden';
     narrBox.position = "absolute";
@@ -39,16 +41,12 @@ let ImageEditorForm = props => {
      return formArr;
   }
 
-  const onSubmit = (values) => {
-    console.log(values);
-  }
-
   return (
     <form className={css(styles.ImageEditorForm)} onSubmit={handleSubmit}>
       { formField() }
       <button type="submit"
        className={css(styles.formButton) }>
-          Submit
+       <Link to='/'>Submit</Link>
       </button>
     </form>
   )
@@ -86,11 +84,6 @@ const styles = StyleSheet.create({
     }
   }
 });
-
-
- const mapDispatchToProps = (dispatch) => {
-   return bindActionCreators({  }, dispatch);
- }
 
 
 ImageEditorForm = reduxForm({

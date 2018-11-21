@@ -21,7 +21,6 @@ class Editor extends React.Component{
     this.ifImageIsNull = this.ifImageIsNull.bind(this);
     this.renderDialogueBox = this.renderDialogueBox.bind(this);
     this.removeNarrativeByNum =   this.removeNarrativeByNum.bind(this);
-    this.onFormSubmit = this.onFormSubmit.bind(this);
   }
 
   onAddImageForm(){
@@ -68,7 +67,6 @@ class Editor extends React.Component{
          } else{
           return(
        <Draggable
-          bounds={{left: '100vw', top: '100vh', right: '100vw', bottom: '100vh'}}
           handle=".handle"
           className={css(styles.draggable)}
           defaultPosition={{x: 0, y: 0}}
@@ -90,13 +88,8 @@ class Editor extends React.Component{
   }
 }
 
-onFormSubmit(values){
-
-}
-
-
   render(){
-    
+
     return(
       <div>
        <Container fluid>
