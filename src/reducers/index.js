@@ -4,7 +4,7 @@ import addImageReducer from './AddImageReducer';
 
 const rootReducer = combineReducers({
   addImageReducer,
-  form: formReducer
+  form: formReducer 
 });
 
 export default rootReducer;
