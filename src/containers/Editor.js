@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { StyleSheet, css } from 'aphrodite';
 import ImageEditorForm from './Forms';
 import { addFormField } from '../actions/index';
-import { Container, Image } from 'semantic-ui-react';
+import { Container, Image, Form } from 'semantic-ui-react';
 import { getFormValues } from 'redux-form';
 import Draggable from 'react-draggable';
 
@@ -15,18 +15,64 @@ class Editor extends React.Component{
 
     this.state = {
       addImageForm: 1,
-      numOfDialogueBox: []
+      numOfDialogueBox: [],
+      fontStyle: 'normal',
+      activeFontIndex: false
     }
     this.onAddImageForm = this.onAddImageForm.bind(this);
     this.ifImageIsNull = this.ifImageIsNull.bind(this);
     this.renderDialogueBox = this.renderDialogueBox.bind(this);
     this.removeNarrativeByNum =   this.removeNarrativeByNum.bind(this);
+    this.renderTextMenu = this.renderTextMenu.bind(this);
+    this.changeFontObject = this.changeFontObject.bind(this);
+    this.openFontMenuClick = this.openFontMenuClick.bind(this);
+    this.closeFontMenuClick = this.closeFontMenuClick.bind(this);
   }
 
   onAddImageForm(){
    let { addImageForm } = this.state;
    let { addFormField } = this.props;
    this.setState({ addImageForm: addImageForm + 1 });
+  }
+
+  openFontMenuClick = () => {
+   let { activeFontIndex } = this.state;
+   this.setState({ activeFontIndex: true });
+  }
+
+  closeFontMenuClick = () => {
+    let { activeFontIndex } = this.state;
+    this.setState({ activeFontIndex: false });
+  }
+
+  changeFontObject = () => {
+    return {
+
+
+    }
+  }
+
+
+  renderTextMenu(){
+    let { activeFontIndex, addImageForm } = this.state,
+        textMenus = new Array();
+
+    for(let i = 0 ; i < addImageForm; i++){
+       textMenus.push(activeFontIndex ?
+         ( <Form.Group
+            className={css(styles.fontMenu)}
+            onClick={this.closeFontMenuClick} 
+            key={`${i}`} grouped>
+             <Form.Radio label='Small' name='size' type='radio' value='small' />
+             <Form.Radio label='Medium' name='size' type='radio' value='medium' />
+             <Form.Radio label='Large' name='size' type='radio' value='large' />
+             <Form.Radio label='X-Large' name='size' type='radio' value='x-large' />
+           </Form.Group>
+         ) : <div onClick={this.openFontMenuClick}>Change Font </div>);
+     }
+     console.log(textMenus);
+     return textMenus
+
   }
 
   removeNarrativeByNum(num){
@@ -103,6 +149,7 @@ class Editor extends React.Component{
         removeNarrativeByNum={this.removeNarrativeByNum} />
        <div className={css(styles.narrativeDiv)}>
        { this.renderDialogueBox() }
+       { this.renderTextMenu()    }
        </div>
       </div>
     )
@@ -117,6 +164,9 @@ const styles = StyleSheet.create({
   editor_container: {
     marginTop: '20vh',
     border: 'solid'
+  },
+  fontMenu: {
+   backgroundColor: 'blue'
   },
   imageTitle: {
   },

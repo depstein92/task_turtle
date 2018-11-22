@@ -1,6 +1,5 @@
 import React from 'react';
 import Preview from './Preview';
-import PrePostContainer from './PrePostContainer';
 import ImageLine from './ImageLine';
 import Editor from './Editor';
 
