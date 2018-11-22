@@ -26,6 +26,7 @@ class Preview extends React.Component{
 
   renderImages(){
     let { imgIndex } = this.state,
+        { handleIsDataLoaded } = this.props,
         imagesArr = new Array();
 
     for(var i = 0; i < 3; i++){
@@ -37,8 +38,9 @@ class Preview extends React.Component{
             <img
              className={css(styles.preview_img_img)}
              onClick={() => {
-               this.sendImageActionToEditor(imageUrl, imageTitle)
-                history.push('/Editor')
+               this.sendImageActionToEditor(imageUrl, imageTitle);
+               this.handleIsDataLoaded();
+               history.push('/Editor');
              }}
              src={ imageUrl } />
       ))
@@ -77,6 +79,7 @@ class Preview extends React.Component{
 
 
   render(){
+    console.log(this.props)
     return(
       <div className={css(styles.preview_container)}>
       <Button

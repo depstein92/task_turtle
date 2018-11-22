@@ -27,12 +27,6 @@ class Heading extends React.Component{
            <Link to="/" className={css(styles.link)}>Home</Link>
            </Menu.Item>
           <Menu.Item
-            name='editor'
-            active={activeItem === 'editor'}
-            onClick={this.handleItemClick}>
-            <Link to="/editor" className={css(styles.link)}>Editor</Link>
-          </Menu.Item>
-          <Menu.Item
             name='memes'
             active={activeItem === 'memes'}
             onClick={this.handleItemClick}>

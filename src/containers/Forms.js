@@ -60,7 +60,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'red',
     height: '15vh',
     alignItems: 'center',
-    flexDirection: 'row',
     flexWrap: 'wrap'
   },
   ImageEditorForm_child: {
@@ -70,9 +69,6 @@ const styles = StyleSheet.create({
    }
   },
   formButton: {
-    position: 'absolute',
-    top: '38%',
-    left: '11%',
     ':hover': {
       cursor: 'pointer'
     }

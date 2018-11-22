@@ -39,9 +39,9 @@ class Editor extends React.Component{
 
    if(Object.keys(data.data).length === 0){
     return (
-       <div className={css(styles.imageNotSelected)}>
-          Image Not Selected
-       </div>
+      <Image className={css(styles.imageNotAvail)}
+             src='https://react.semantic-ui.com/images/wireframe/square-image.png'
+             size='large' centered bordered />
      )
    } else{
     return(
@@ -89,13 +89,14 @@ class Editor extends React.Component{
 }
 
   render(){
-
     return(
-      <div>
+      <div className={css(styles.editor_container)}>
        <Container fluid>
         { this.ifImageIsNull() }
        </Container>
-       <button onClick={()=>{ this.onAddImageForm() }}>Add Image Form</button>
+       <button onClick={()=>{ this.onAddImageForm() }}>
+       Add Image Narrative
+       </button>
        <ImageEditorForm
         imageForms={this.state.addImageForm}
         onSubmit={this.onFormSubmit}
@@ -110,25 +111,18 @@ class Editor extends React.Component{
 
 const styles = StyleSheet.create({
   imageNotSelected: {
-   fontSize: "11vw",
-   textAlign: "center"
+    textAlign: 'center',
+
+  },
+  editor_container: {
+    marginTop: '20vh',
+    border: 'solid'
   },
   imageTitle: {
-   textAlign: 'center',
   },
   centeredContainer: {
-   width: '100%'
   },
   narrativeDiv: {
-   color: 'black',
-   height: '15vh',
-   border: 'solid',
-   width: '40%',
-   display: 'flex',
-   justifyContent: 'space-evenly',
-   flexDirection: 'column',
-   position: 'absolute',
-   top: '10%'
   }
 });
 
