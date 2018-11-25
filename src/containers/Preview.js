@@ -79,7 +79,6 @@ class Preview extends React.Component{
 
 
   render(){
-    console.log(this.props)
     return(
       <div className={css(styles.preview_container)}>
       <Button

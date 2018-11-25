@@ -16,7 +16,6 @@ class Home extends React.Component{
   }
 
   render(){
-    console.log(this.state.isFormDataLoaded);
     return(
       <div className="landing-container">
        <Preview handleIsDataLoaded={ this.handleIsDataLoaded } />

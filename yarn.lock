@@ -3687,6 +3687,11 @@ mkdirp@0.5.1, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0:
   dependencies:
     minimist "0.0.8"
 
+mockingcase@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/mockingcase/-/mockingcase-1.0.1.tgz#32c9a6b886fb16f8cea638bbb8b5f40f73f165d3"
+  integrity sha512-dtczTTWRe0BXwbLgK2KvK3hWt70asfTwcF3joLjYY4cKofp9YKJ7Q6UHEock/axrdXOQBLaiNTewFfNCJEc2iw==
+
 ms@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
