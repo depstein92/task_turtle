@@ -36,7 +36,6 @@
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "file-loader": "^2.0.0",
-    "mockingcase": "^1.0.1",
     "prop-types": "^15.6.2",
     "react": "16.3.2",
     "react-dom": "16.3.2",

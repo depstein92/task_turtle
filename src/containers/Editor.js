@@ -48,8 +48,22 @@ class Editor extends React.Component{
       mockingFontType
         } = this.state,
     index = parseInt(e.target.parentNode.dataset.value);
-    debugger;
-    console.log('target', index);
+
+    this.setState({
+       upperCaseFontType: upperCaseFontType.includes(index) ?
+                          upperCaseFontType.splice(1, index) :
+                          upperCaseFontType,
+       lowerCaseFontType: lowerCaseFontType.includes(index) ?
+                          lowerCaseFontType.splice(1, index) :
+                          lowerCaseFontType,
+       italicFontType:    italicFontType.includes(index) ?
+                          italicFontType.splice(1, index) :
+                          italicFontType,
+       mockingCase:       mockingFontType.includes(index) ?
+                          mockingFontType.splice(1, index) :
+                          mockingFontType
+    });
+
     if(e.target.innerHTML === 'Upper Case'){
       this.setState({ upperCaseFontType: [...upperCaseFontType, index]});
     } else if(e.target.innerHTML === 'Lower Case'){
@@ -70,13 +84,17 @@ class Editor extends React.Component{
       italicFontType,
       mockingFontType
     } = this.state;
-    console.log(upperCaseFontType);
+
+
+
     if(upperCaseFontType.includes(index)){
       return string.toUpperCase();
     } else if(lowerCaseFontType.includes(index)){
       return string.toLowerCase();
     } else if(mockingFontType.includes(index)){
-    //  return mockingCase(string);
+      return string.split('').map((obj, index) => {
+                return index % 2 === 0 ? obj : obj.toUpperCase()
+             }).join('')
     } else if(italicFontType.includes(index)){
       return string.italics();
     } else {
