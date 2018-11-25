@@ -16,7 +16,10 @@ class Editor extends React.Component{
     this.state = {
       addImageForm: 1,
       numOfDialogueBox: [],
+      activeColorIndex: [],
       activeFontIndex: [],
+      blackColorFontType: [],
+      whiteColorFontType: [],
       upperCaseFontType: [],
       lowerCaseFontType: [],
       italicFontType: [],
@@ -31,6 +34,11 @@ class Editor extends React.Component{
     this.closeFontMenuClick = this.closeFontMenuClick.bind(this);
     this.setFontType = this.setFontType.bind(this);
     this.getFontType = this.getFontType.bind(this);
+    this.renderColorMenu = this.renderColorMenu.bind(this);
+    this.openColorMenuClick = this.openColorMenuClick.bind(this);
+    this.closeColorMenuClick = this.closeColorMenuClick.bind(this);
+    this.getColorType = this.getColorType.bind(this);
+    this.setColorType = this.setColorType.bind(this);
   }
 
   onAddImageForm = () => {
@@ -38,6 +46,94 @@ class Editor extends React.Component{
         { addFormField } = this.props;
 
     this.setState({ addImageForm: addImageForm + 1 });
+  }
+
+  openColorMenuClick = (e) => {
+    let index = parseInt(e.target.dataset.key),
+        { activeColorIndex } = this.state;
+
+    this.setState({ activeColorIndex: [...activeColorIndex, index ]  });
+  }
+
+  closeColorMenuClick = (e) => {
+    let index = parseInt(e.target.dataset.key),
+        { activeColorIndex } = this.state;
+
+    this.setState({ activeColorIndex: activeColorIndex.splice(1, index) });
+  }
+
+  getColorType = (e) => {
+   let {
+     blackColorFontType,
+     whiteColorFontType
+   } = this.state,
+   index = parseInt(e.target.parentNode.dataset.value);
+
+   this.setState({
+     blackColorFontType: blackColorFontType.includes(index) ?
+                         blackColorFontType.splice(1, index ) :
+                         blackColorFontType,
+     whiteColorFontType: whiteColorFontType.includes(index) ?
+                         whiteColorFontType.splice(1, index) :
+                         whiteColorFontType
+   });
+
+   if(e.target.innerHTML === 'White'){
+     this.setState({
+       whiteColorFontType: [...whiteColorFontType, index ]
+     });
+   } else{
+     this.setState({
+       blackColorFontType: [...blackColorFontType, index ]
+     });
+   }
+
+ }
+
+ setColorType = (index, str) => {
+
+   let { whiteColorFontType, blackColorFontType } = this.state;
+
+   if(whiteColorFontType.includes(index)){
+      return <div style={{ color: 'white' }}>{ str }</div>;
+   } else{
+      return str;
+   }
+ }
+
+  renderColorMenu = () => {
+    let { addImageForm, activeColorIndex } = this.state,
+          colorMenus = new Array();
+
+    for(let i = 0; i < addImageForm; i++){
+      colorMenus.push(
+        activeColorIndex.includes(i) ?
+        (<Form.Group
+         className={css(styles.fontMenu)}
+         key={`${i}`} grouped>
+          <Form.Radio label='Exit' onClick={this.closeColorMenuClick}  />
+          <Form.Radio
+            label='White'
+            name='White'
+            type='radio'
+            key={'${i}'}
+            value={'white'}
+            data-value={`${i}`}
+            onClick={ this.getColorType }
+            />
+          <Form.Radio
+            label='Black'
+            name='Black'
+            type='radio'
+            value='Black'
+            data-value={`${i}`}
+            onClick={ this.getColorType }
+            />
+        </Form.Group>
+      ) :
+      <div data-key={i} onClick={this.openColorMenuClick}>Change Font Color</div>);
+    }
+    return colorMenus;
   }
 
   getFontType = (e) => {
@@ -85,20 +181,18 @@ class Editor extends React.Component{
       mockingFontType
     } = this.state;
 
-
-
     if(upperCaseFontType.includes(index)){
-      return string.toUpperCase();
+       return string.toUpperCase();
     } else if(lowerCaseFontType.includes(index)){
-      return string.toLowerCase();
+       return string.toLowerCase();
     } else if(mockingFontType.includes(index)){
-      return string.split('').map((obj, index) => {
+       return string.split('').map((obj, index) => {
                 return index % 2 === 0 ? obj : obj.toUpperCase()
-             }).join('')
+             }).join('');
     } else if(italicFontType.includes(index)){
-      return string.italics();
+       return string.italics();
     } else {
-      return string;
+       return string;
     }
   }
 
@@ -202,8 +296,8 @@ class Editor extends React.Component{
     if(image_editor.hasOwnProperty('values')){
        return Object.keys(image_editor.values).map((obj, index) => {
 
-         const fontTypeOfStr = this.setFontType(index, image_editor.values[obj]);
-        console.log(fontTypeOfStr);
+         const fontTypeOfStr = this.setFontType(index, image_editor.values[obj]),
+               finalStringEdit = this.setColorType(index, fontTypeOfStr);
 
          if(numOfDialogueBox.includes(index)){
            return null;
@@ -224,7 +318,7 @@ class Editor extends React.Component{
                textAlign: 'center',
              }}
              className="handle">
-             { fontTypeOfStr  }
+             { finalStringEdit }
             </div>
           </div>
         </Draggable>
@@ -251,6 +345,7 @@ class Editor extends React.Component{
        <div className={css(styles.narrativeDiv)}>
        { this.renderDialogueBox() }
        { this.renderTextMenu()    }
+       { this.renderColorMenu() }
        </div>
       </div>
     )
