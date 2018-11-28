@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { StyleSheet, css } from "aphrodite";
-import globalStyles from "../ReusableStyles";
 import { Menu, Segment, Icon } from 'semantic-ui-react';
 
 
@@ -14,7 +13,7 @@ class Heading extends React.Component{
     const { activeItem } = this.state
 
     return (
-      <div className={css(styles.menu_container)}>
+      <div className={css(styles.menu_container)} data-test='heading'>
       <Segment>
       </Segment>
         <Menu pointing secondary>
@@ -30,7 +29,9 @@ class Heading extends React.Component{
             name='memes'
             active={activeItem === 'memes'}
             onClick={this.handleItemClick}>
-            <Link to="/memes" className={css(styles.link)}>Memes</Link>
+            <Link to="/memes" className={css(styles.link)}>
+            Memes
+            </Link>
           </Menu.Item>
         </Menu>
       </div>

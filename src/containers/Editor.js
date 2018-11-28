@@ -25,20 +25,6 @@ class Editor extends React.Component{
       italicFontType: [],
       mockingFontType: []
     }
-    this.onAddImageForm = this.onAddImageForm.bind(this);
-    this.ifImageIsNull = this.ifImageIsNull.bind(this);
-    this.renderDialogueBox = this.renderDialogueBox.bind(this);
-    this.removeNarrativeByNum =   this.removeNarrativeByNum.bind(this);
-    this.renderTextMenu = this.renderTextMenu.bind(this);
-    this.openFontMenuClick = this.openFontMenuClick.bind(this);
-    this.closeFontMenuClick = this.closeFontMenuClick.bind(this);
-    this.setFontType = this.setFontType.bind(this);
-    this.getFontType = this.getFontType.bind(this);
-    this.renderColorMenu = this.renderColorMenu.bind(this);
-    this.openColorMenuClick = this.openColorMenuClick.bind(this);
-    this.closeColorMenuClick = this.closeColorMenuClick.bind(this);
-    this.getColorType = this.getColorType.bind(this);
-    this.setColorType = this.setColorType.bind(this);
   }
 
   onAddImageForm = () => {
@@ -91,7 +77,6 @@ class Editor extends React.Component{
  }
 
  setColorType = (index, str) => {
-
    let { whiteColorFontType, blackColorFontType } = this.state;
 
    if(whiteColorFontType.includes(index)){
@@ -286,7 +271,7 @@ class Editor extends React.Component{
    }
   }
 
-  renderDialogueBox(){
+  renderDialogueBox = () => {
    const {
     narrativeBoxContent: {image_editor}
    } = this.props;
