@@ -5,12 +5,14 @@ import { connect } from 'react-redux';
 import { Icon } from 'semantic-ui-react';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
+import { addImageToFeed } from '../actions/index';
 
 
 let ImageEditorForm = props => {
 
   const { imageForms, handleSubmit } = props,
         formArr = new Array();
+      
   const formField = () => {
 
   const removeNarr = (e) => {
@@ -22,6 +24,7 @@ let ImageEditorForm = props => {
     narrBox.top = "0px";
     removeNarrativeByNum(parseInt(e.target.dataset.tag));
    }
+
 
    for(let i = 0; i < imageForms; i++){
       formArr.push(
@@ -46,7 +49,7 @@ let ImageEditorForm = props => {
       { formField() }
       <button type="submit"
        className={css(styles.formButton) }>
-       <Link to='/'>Submit</Link>
+
       </button>
     </form>
   )

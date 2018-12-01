@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { StyleSheet, css } from 'aphrodite';
 import ImageEditorForm from './Forms';
-import { addFormField } from '../actions/index';
+import { addFormField, addImageToFeed } from '../actions/index';
 import { Container, Image, Form, Icon } from 'semantic-ui-react';
 import { getFormValues } from 'redux-form';
 import Draggable from 'react-draggable';

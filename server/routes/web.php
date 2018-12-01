@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+
+// Route::post('/posts', function($var){
+//   DB::insert()
+// });

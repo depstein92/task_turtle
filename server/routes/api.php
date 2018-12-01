@@ -13,6 +13,12 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::get('posts/{$narrative}/{$image_url}', function($narrative, $image_url){
+
+  DB::insert('insert into posts(narrative, image_url) values(?, ?)', [ $narrative, $image_url ]);
+});
+
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
