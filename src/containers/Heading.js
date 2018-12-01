@@ -22,12 +22,14 @@ class Heading extends React.Component{
           </Menu.Item>
           <Menu.Item name='home'
            active={activeItem === 'home'}
+           data-test="home_button"
            onClick={this.handleItemClick}>
            <Link to="/" className={css(styles.link)}>Home</Link>
            </Menu.Item>
           <Menu.Item
             name='memes'
             active={activeItem === 'memes'}
+            data-test="memes_button"
             onClick={this.handleItemClick}>
             <Link to="/memes" className={css(styles.link)}>
             Memes

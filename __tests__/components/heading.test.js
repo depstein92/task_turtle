@@ -20,3 +20,14 @@ test('Heading renders without error', () => {
   const Heading = findByTestAttr(wrapper, 'heading');
   expect(Heading).toBeDefined();
 });
+
+test('state changes to home', () => {
+  const activeItem = 'home';
+  const wrapper = setup(null, { activeItem });
+  const homeButton = findByTestAttr(wrapper, 'home_button');
+
+  homeButton.simulate('click');
+
+  expect(home_button.text()).to.be();
+
+});
