@@ -8,9 +8,14 @@ use App\Posts;
 
 class PostsController extends Controller
 {
-    public function show ($id)
+    public function show($id)
     {
       return new PostsResource(Posts::findOrFail($id));
     }
 
+    public function showAll()
+    {
+      $posts = Posts::all();
+      return $posts;
+    }
 }
