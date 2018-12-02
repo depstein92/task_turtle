@@ -18,4 +18,9 @@ class PostsController extends Controller
       $posts = Posts::all();
       return $posts;
     }
+
+    public function createPost($image_url, $content)
+    {
+     Posts::create(["image_url"=> $image_url,"content"=>$content]);
+    }
 }

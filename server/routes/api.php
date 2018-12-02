@@ -13,7 +13,11 @@ use Illuminate\Http\Request;
 |
 */
 
+/******POSTS ROUTE*******/
+
 Route::get('/posts/showOne/{id}', 'PostsController@show');
+
+Route::get('/posts/createPost/{image_url}/{content}', 'PostsController@createPost');
 
 Route::get('/posts/showAll', 'PostsController@showAll');
 
