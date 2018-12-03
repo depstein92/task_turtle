@@ -7,7 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Posts extends Model
 {
   protected $fillable = [
-    "image_url",
-    "content"
+    "image",
+    "narrative",
+    "title",
+    "font_type"
   ];
+
+
+
 }

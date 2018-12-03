@@ -11,8 +11,10 @@ class Posts extends JsonResource
     {
       return [
         'id' => $this->id,
-        'image_url'=> $this->image_url,
-        'content'=> $this->content,
+        'image'=> $this->image,
+        'narrative'=> $this->narrative,
+        'title'=> $this->title,
+        'font_type'=> $this->fontType,
         'created_at'=> $this->created_at,
         'updated_at' => $this->updated_at
       ];

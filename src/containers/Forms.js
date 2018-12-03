@@ -12,12 +12,17 @@ let ImageEditorForm = props => {
 
   const { imageForms, handleSubmit } = props,
         formArr = new Array();
-      
+
   const formField = () => {
 
+   const {
+    removeNarrativeByNum,
+    handleSubmit,
+    addImageToFeed
+   } = props;
+
   const removeNarr = (e) => {
-    const narrBox = e.target.parentElement.parentNode.style,
-    { removeNarrativeByNum } = props;
+    const narrBox = e.target.parentElement.parentNode.style;
 
     narrBox.visibility = 'hidden';
     narrBox.position = "absolute";
@@ -45,11 +50,14 @@ let ImageEditorForm = props => {
   }
 
   return (
-    <form className={css(styles.ImageEditorForm)} onSubmit={handleSubmit}>
+    <form
+     className={css(styles.ImageEditorForm)}>
       { formField() }
-      <button type="submit"
+      <button
+       type="submit"
+       handleSubmit={props.handleSubmit}
        className={css(styles.formButton) }>
-
+       Hello
       </button>
     </form>
   )

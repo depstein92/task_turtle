@@ -27,6 +27,48 @@ class Editor extends React.Component{
     }
   }
 
+
+
+  onSubmitSetState = () => {
+
+   let {
+    narrativeBoxContent: {image_editor},
+    blackColorFontType,
+    whiteColorFontType,
+    upperCaseFontType,
+    lowerCaseFontType,
+    italicFontType,
+    mockingFontType
+   } = this.state;
+
+   let { addImageToEditor: {
+         data: { image, title} }
+       } = this.props;
+
+   let fontProperties = {},
+       addToFontProperties = val => val.length ? true : false,
+       fontTypes = {},
+       narrative = null,
+       img = image ? image : null;
+
+
+   for(obj in this.state) {
+     if(`${obj}`.includes('FontType')) {
+       fontTypes[`${obj}`] = this.state[obj];
+     };
+   };
+
+   if(Object.values(image_editor.values).length){
+    if(Object.values(image_editor.values).length === 1){
+        narrative = image_editor.values.form0;
+    } else{
+        narrative = Object.values(image_editor.values)
+                          .reduce((a, b) => a + b);
+    }
+   }
+   addImageToFeed(title, img, narrative, fontType);
+  }
+
   onAddImageForm = () => {
     let { addImageForm } = this.state,
         { addFormField } = this.props;
@@ -315,6 +357,7 @@ class Editor extends React.Component{
 }
 
   render(){
+    console.log(this.props);
     return(
       <div className={css(styles.editor_container)}>
        <Container fluid>

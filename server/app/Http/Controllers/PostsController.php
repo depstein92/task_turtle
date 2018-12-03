@@ -19,8 +19,13 @@ class PostsController extends Controller
       return $posts;
     }
 
-    public function createPost($image_url, $content)
+    public function createPost($title, $image, $narrative, $fontType)
     {
-     Posts::create(["image_url"=> $image_url,"content"=>$content]);
+
+     Posts::create([ "image" => $image,
+                     "narrative" => $narrative,
+                     "title" => $title,
+                     "font_type" => $fontType
+                   ]);
     }
 }

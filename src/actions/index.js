@@ -1,13 +1,11 @@
 import axios from 'axios';
 
-
 const addImageToEditor = (image, title) => {
   return {
     type: 'ADD_PHOTO_SUCCESS',
     payload: { image, title }
   }
 };
-
 
 const addImageToFeedLoading = () => {
   return {
@@ -26,11 +24,16 @@ const addImageToFeedFailure = (error) => {
   }
 }
 
-const addImageToFeed = (narrative, image) => {
+const addImageToFeed = (title, img, narrative, fontType) => {
 
   addImageToFeedLoading();
 
-  axios.post('/posts', { /*ADD URL*/
+  let payloadObj = `${title}/${img}/${narrative}/${fontType}`,
+      url = `http//localhost:8000/api/posts/createPost/` + payloadObj;
+
+  debugger;
+
+  axios.post(url, { /*ADD URL*/
     narrative,
     image
   })
