@@ -24,7 +24,7 @@ const addImagesToFeedOnLoadSuccess = () => { //////////////////////////////////M
       "updated_at":"2018-12-04 00:19:02"
     }
   ];
-
+  debugger;
   return {
     type: 'ADD_IMAGES_ON_LOAD_SUCCESS',
     payload: data
@@ -83,7 +83,7 @@ const addImageToFeedSuccess = () => { //////////////////////////////////MOCK////
    ];
 
    return {
-     type: 'GET_ALL_POSTS_SUCCESS',
+     type: 'ADD_IMAGES_ON_LOAD_SUCCESS',
      payload: data
    }
 }
@@ -108,12 +108,13 @@ const addImageToFeed = (title, img, narrative, fontType) => {
     console.log(response);
   })
   .catch(function (error) {
-    recievedPostFromDB(); //////////////////// Until AJAX PROBLEM IS FIXED use dummy
+    addImageToFeedSuccess(); //////////////////// Until AJAX PROBLEM IS FIXED use dummy
     console.log(error);
   });
 };
 
 export default {
   addImageToEditor,
-  addImageToFeed
+  addImageToFeed,
+  addImagesToFeedOnLoadSuccess
 };
