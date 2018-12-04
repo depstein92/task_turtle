@@ -3,7 +3,7 @@ import { StyleSheet, css } from 'aphrodite';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-class ImageLine extends React.Component{
+class Feed extends React.Component{
   constructor(props){
     super(props);
     this.state = { p: 0 }
@@ -26,4 +26,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default ImageLine;
+export default Feed;

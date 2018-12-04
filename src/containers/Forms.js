@@ -13,6 +13,11 @@ let ImageEditorForm = props => {
   const { imageForms, handleSubmit } = props,
         formArr = new Array();
 
+  const submitToFeed = (e) => {
+          e.preventDefault();
+          props.onSubmit();
+        }
+
   const formField = () => {
 
    const {
@@ -20,6 +25,7 @@ let ImageEditorForm = props => {
     handleSubmit,
     addImageToFeed
    } = props;
+
 
   const removeNarr = (e) => {
     const narrBox = e.target.parentElement.parentNode.style;
@@ -51,11 +57,11 @@ let ImageEditorForm = props => {
 
   return (
     <form
-     className={css(styles.ImageEditorForm)}>
+     className={css(styles.ImageEditorForm)} onSubmit={(e) => { submitToFeed(e) }}>
       { formField() }
       <button
        type="submit"
-       handleSubmit={props.handleSubmit}
+       handleSubmit={(e) => { submitToFeed(e) }}
        className={css(styles.formButton) }>
        Hello
       </button>

@@ -24,27 +24,52 @@ const addImageToFeedFailure = (error) => {
   }
 }
 
+const addImageToFeedSuccess = () => {
+   let data = [
+     {  "id":1,"title":"'title'",
+        "image":"'image'","narrative":"'narrative'",
+        "font_type":"'fontType'","created_at":"2018-12-03 06:49:27",
+        "updated_at":"2018-12-03 06:49:27"
+     },
+     {
+       "id":2,"title":"'new_title'",
+       "image":"'helloooo''",
+       "narrative":"'narrative'",
+       "font_type":"'fontType'",
+       "created_at":"2018-12-04 00:19:02",
+       "updated_at":"2018-12-04 00:19:02"
+     }
+   ];
+
+   return {
+     type: 'GET_ALL_POSTS_SUCCESS',
+     payload: data;
+   }
+}
+
+
 const addImageToFeed = (title, img, narrative, fontType) => {
 
   addImageToFeedLoading();
 
-  let payloadObj = `${title}/${img}/${narrative}/${fontType}`,
-      url = `http//localhost:8000/api/posts/createPost/` + payloadObj;
-
   debugger;
 
-  axios.post(url, { /*ADD URL*/
-    narrative,
-    image
-  })
-  .then(function (response) {
+  axios({
+    method: 'get',
+    url: `http//127.0.0.1/api/posts/createPost/${title}/${img}/${narrative}/${fontType}`,
+    data: {
+      title,
+      img,
+      narrative,
+      fontType
+   }
+  }).then(function (response) {
     console.log(response);
   })
   .catch(function (error) {
-    addImageToFeedFailure(error);
+    recievedPostFromDB() //////////////////// Until AJAX PROBLEM IS FIXED use dummy
     console.log(error);
   });
-
 };
 
 export default {

@@ -1,6 +1,6 @@
 import React from 'react';
 import Preview from './Preview';
-import ImageLine from './ImageLine';
+import Feed from './Feed';
 import Editor from './Editor';
 
 class Home extends React.Component{
@@ -20,7 +20,7 @@ class Home extends React.Component{
       <div className="landing-container">
        <Preview handleIsDataLoaded={ this.handleIsDataLoaded } />
        <Editor />
-       <ImageLine />
+       <Feed />
       </div>
     )
   }

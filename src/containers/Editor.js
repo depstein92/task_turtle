@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { StyleSheet, css } from 'aphrodite';
 import ImageEditorForm from './Forms';
-import { addFormField, addImageToFeed } from '../actions/index';
+import { addFormField } from '../actions/index';
+import actions from '../actions/index';
 import { Container, Image, Form, Icon } from 'semantic-ui-react';
 import { getFormValues } from 'redux-form';
 import Draggable from 'react-draggable';
@@ -32,7 +33,6 @@ class Editor extends React.Component{
   onSubmitSetState = () => {
 
    let {
-    narrativeBoxContent: {image_editor},
     blackColorFontType,
     whiteColorFontType,
     upperCaseFontType,
@@ -41,20 +41,29 @@ class Editor extends React.Component{
     mockingFontType
    } = this.state;
 
-   let { addImageToEditor: {
-         data: { image, title} }
+   let { addImageToEditor: { data: { image, title} },
+         addImageToFeed,
+         narrativeBoxContent: { image_editor }
        } = this.props;
 
    let fontProperties = {},
-       addToFontProperties = val => val.length ? true : false,
-       fontTypes = {},
+       fontTypes = '',
        narrative = null,
-       img = image ? image : null;
+       img = image ? image : null,
+       stateKeys = Object.keys(this.state),
+       stateValues = Object.values(this.state);
 
-
-   for(obj in this.state) {
-     if(`${obj}`.includes('FontType')) {
-       fontTypes[`${obj}`] = this.state[obj];
+   for(let i = 0; i < stateKeys.length; i++){
+     if(stateKeys[i].includes('FontType')) {
+       if(stateKeys[i].values){
+         if(stateValues[i].values.length === 1){
+            fontTypes += stateValues[i].values[1]
+         } else {
+            let fonts = stateValues[i].values
+                        .reduce((a, b) => a + b);
+            fontTypes += fonts;
+         }
+       }
      };
    };
 
@@ -66,8 +75,9 @@ class Editor extends React.Component{
                           .reduce((a, b) => a + b);
     }
    }
-   addImageToFeed(title, img, narrative, fontType);
+   addImageToFeed(title, img, narrative, fontTypes);
   }
+
 
   onAddImageForm = () => {
     let { addImageForm } = this.state,
@@ -75,6 +85,7 @@ class Editor extends React.Component{
 
     this.setState({ addImageForm: addImageForm + 1 });
   }
+
 
   openColorMenuClick = (e) => {
     let index = parseInt(e.target.dataset.key),
@@ -368,7 +379,7 @@ class Editor extends React.Component{
        </button>
        <ImageEditorForm
         imageForms={this.state.addImageForm}
-        onSubmit={this.onFormSubmit}
+        onSubmit={this.onSubmitSetState}
         removeNarrativeByNum={this.removeNarrativeByNum} />
        <div className={css(styles.narrativeDiv)}>
        { this.renderDialogueBox() }
@@ -409,7 +420,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ addFormField }, dispatch)
+  return bindActionCreators({ addFormField, addImageToFeed: actions.addImageToFeed}, dispatch)
 }
 
 export default connect(mapStateToProps,  mapDispatchToProps)(Editor);
