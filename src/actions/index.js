@@ -7,6 +7,38 @@ const addImageToEditor = (image, title) => {
   }
 };
 
+
+const addImagesToFeedOnLoadSuccess = () => { //////////////////////////////////MOCK//////////////////
+  let data = [
+    {  "id":1,"title":"'title'",
+       "image":"'image'","narrative":"'narrative'",
+       "font_type":"'fontType'","created_at":"2018-12-03 06:49:27",
+       "updated_at":"2018-12-03 06:49:27"
+    },
+    {
+      "id":2,"title":"'new_title'",
+      "image":"'helloooo''",
+      "narrative":"'narrative'",
+      "font_type":"'fontType'",
+      "created_at":"2018-12-04 00:19:02",
+      "updated_at":"2018-12-04 00:19:02"
+    }
+  ];
+
+  return {
+    type: 'ADD_IMAGES_ON_LOAD_SUCCESS',
+    payload: data
+  }
+}
+
+const addImagesToFeedOnLoadFailure = () => {
+  return {
+    type: 'ADD_IMAGES_ON_LOAD_FAILURE',
+    payload: 'Add Images on load failed'
+  }
+}
+
+
 const addImageToFeedLoading = () => {
   return {
     type: 'ADD_PHOTO_LOADING',
@@ -24,7 +56,7 @@ const addImageToFeedFailure = (error) => {
   }
 }
 
-const addImageToFeedSuccess = () => {
+const addImageToFeedSuccess = () => { //////////////////////////////////MOCK//////////////////
    let data = [
      {  "id":1,"title":"'title'",
         "image":"'image'","narrative":"'narrative'",
@@ -38,12 +70,21 @@ const addImageToFeedSuccess = () => {
        "font_type":"'fontType'",
        "created_at":"2018-12-04 00:19:02",
        "updated_at":"2018-12-04 00:19:02"
-     }
+     },
+     {
+       "id":2,"ADDtitle":"'new_title'",
+       "image":"'ADDIMAGE''",
+       "narrative":"'ADDnarrative'",
+       "font_type":"'ADDfontType'",
+       "created_at":"2018-12-04 00:19:02",
+       "updated_at":"2018-12-04 00:19:02"
+     },
+
    ];
 
    return {
      type: 'GET_ALL_POSTS_SUCCESS',
-     payload: data;
+     payload: data
    }
 }
 
@@ -67,7 +108,7 @@ const addImageToFeed = (title, img, narrative, fontType) => {
     console.log(response);
   })
   .catch(function (error) {
-    recievedPostFromDB() //////////////////// Until AJAX PROBLEM IS FIXED use dummy
+    recievedPostFromDB(); //////////////////// Until AJAX PROBLEM IS FIXED use dummy
     console.log(error);
   });
 };
