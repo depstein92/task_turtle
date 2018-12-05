@@ -8,7 +8,7 @@ const addImageToEditor = (image, title) => {
 };
 
 
-const addImagesToFeedOnLoadSuccess = () => { //////////////////////////////////MOCK//////////////////
+const addImagesToFeedOnLoadSuccess =  async () => { //////////////////////////////////MOCK//////////////////
   let data = [
     {  "id":1,"title":"'title'",
        "image":"'image'","narrative":"'narrative'",
@@ -24,6 +24,13 @@ const addImagesToFeedOnLoadSuccess = () => { //////////////////////////////////M
       "updated_at":"2018-12-04 00:19:02"
     }
   ];
+
+  //The CORS settings need to be setup in the API to allow access from your React app domain
+  //It needs to be ser up in Laravel
+  //https://packagist.org/packages/barryvdh/laravel-cors
+  const data2 = await fetch('localhost:8000/api/posts/showAll') //CORS ERROR
+                      .then(obj => console.log(obj))
+                      .catch(obj => console.log(obj));
   debugger;
   return {
     type: 'ADD_IMAGES_ON_LOAD_SUCCESS',
@@ -81,6 +88,7 @@ const addImageToFeedSuccess = () => { //////////////////////////////////MOCK////
      },
 
    ];
+
 
    return {
      type: 'ADD_IMAGES_ON_LOAD_SUCCESS',

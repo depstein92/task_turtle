@@ -12,9 +12,18 @@ class Feed extends React.Component{
   }
 
   componentDidMount(){
+  let { getImageFeed } = this.props;  
+   getImageFeed();
+  }
+
+  renderMemes = () => {
     let { memesOnLoad, getImageFeed } = this.props;
     let { memes } = this.state;
-    getImageFeed();
+
+    return memesOnLoad.map(obj => {
+      <div>
+      </div>
+    });
   }
 
 
@@ -22,19 +31,20 @@ class Feed extends React.Component{
   render(){
     console.log(this.props);
     return(
-      <div className={css(styles.imageLine_container)}>
+      <div className={css(styles.feed_container)}>
       </div>
     )
   }
 }
 
 const styles = StyleSheet.create({
-  imageLine_container: {
+  feed_container: {
     backgroundColor: 'indianred',
     position: 'absolute',
     width: '100%',
     height: '100vh'
-  }
+  },
+
 });
 
 const mapStateToProps = state =>  {
