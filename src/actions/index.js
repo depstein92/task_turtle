@@ -8,7 +8,6 @@ const addImageToEditor = (image, title) => {
 };
 
 const addImagesToFeedLoading = () => {
-  debugger;
   return {
     type: 'ADD_IMAGES_ON_LOAD_LOADING',
     payload: { loading: true }
@@ -110,7 +109,6 @@ const addImageToFeed = (title, img, narrative, fontType) => {
 
   addImageToFeedLoading();
 
-  debugger;
 
   axios({
     method: 'get',
