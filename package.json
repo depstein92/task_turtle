@@ -31,10 +31,12 @@
     "jest": "^23.6.0",
     "node-sass": "^4.9.4",
     "sass-loader": "^7.1.0",
+    "source-map-loader": "^0.2.4",
     "webpack": "^1.15.0",
     "webpack-dev-server": "^1.14.0"
   },
   "dependencies": {
+    "@emotion/core": "^10.0.4",
     "ajv": "^6.5.5",
     "aphrodite": "^2.2.3",
     "axios": "^0.18.0",
@@ -52,6 +54,7 @@
     "react-draggable": "^3.0.5",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
+    "react-spinners": "^0.4.7",
     "redux": "4.0.0",
     "redux-form": "^7.4.2",
     "redux-promise": "^0.6.0",

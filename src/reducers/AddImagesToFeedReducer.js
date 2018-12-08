@@ -13,8 +13,11 @@ function addImagesToFeedReducer(state=initialState, action){
       case 'ADD_IMAGES_ON_LOAD_FAILURE':
         return { ...state, data: action.payload, loading: false, error: true }
         break;
+      case 'ADD_IMAGES_ON_LOAD_LOADING':
+         debugger;
+         return  { loading: true, data: {},  error: false }
+         break;
       default:
-        debugger;
         return { loading: false, data: {}, error: null }
     }
 }

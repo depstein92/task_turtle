@@ -7,17 +7,30 @@ const addImageToEditor = (image, title) => {
   }
 };
 
+const addImagesToFeedLoading = () => {
+  debugger;
+  return {
+    type: 'ADD_IMAGES_ON_LOAD_LOADING',
+    payload: { loading: true }
+  }
+}
 
-const addImagesToFeedOnLoadSuccess =  async () => { //////////////////////////////////MOCK//////////////////
+
+const addImagesToFeedOnLoadSuccess = async () => { //////////////////////////////////MOCK//////////////////
+
+
   let data = [
-    {  "id":1,"title":"'title'",
-       "image":"'image'","narrative":"'narrative'",
-       "font_type":"'fontType'","created_at":"2018-12-03 06:49:27",
+    {  "id":1,
+       "title":"'title'",
+       "image":"./style/images/Distracted-Boyfriend.jpg",
+       "narrative":"'narrative'",
+       "font_type":"'fontType'",
+       "created_at":"2018-12-03 06:49:27",
        "updated_at":"2018-12-03 06:49:27"
     },
     {
       "id":2,"title":"'new_title'",
-      "image":"'helloooo''",
+      "image":"./style/images/Expanding-Brain.jpg",
       "narrative":"'narrative'",
       "font_type":"'fontType'",
       "created_at":"2018-12-04 00:19:02",
@@ -28,10 +41,11 @@ const addImagesToFeedOnLoadSuccess =  async () => { ////////////////////////////
   //The CORS settings need to be setup in the API to allow access from your React app domain
   //It needs to be ser up in Laravel
   //https://packagist.org/packages/barryvdh/laravel-cors
-  const data2 = await fetch('localhost:8000/api/posts/showAll') //CORS ERROR
-                      .then(obj => console.log(obj))
-                      .catch(obj => console.log(obj));
-  debugger;
+  // const data2 =  axios.get('http://localhost:8000/api/posts/showAll') //CORS ERROR
+  //                     .then(obj => console.log(obj))
+  //                     .catch(obj => console.log(obj));
+  // let k = await data2;
+//  debugger;
   return {
     type: 'ADD_IMAGES_ON_LOAD_SUCCESS',
     payload: data
@@ -46,18 +60,11 @@ const addImagesToFeedOnLoadFailure = () => {
 }
 
 
-const addImageToFeedLoading = () => {
-  return {
-    type: 'ADD_PHOTO_LOADING',
-    payload: { isLoading: true }
-  }
-}
-
 const addImageToFeedFailure = (error) => {
   return {
     type: 'ADD_PHOTO_FAIURE',
     payload: {
-      isLoading: false,
+      loading: false,
       error
     }
   }
@@ -66,8 +73,10 @@ const addImageToFeedFailure = (error) => {
 const addImageToFeedSuccess = () => { //////////////////////////////////MOCK//////////////////
    let data = [
      {  "id":1,"title":"'title'",
-        "image":"'image'","narrative":"'narrative'",
-        "font_type":"'fontType'","created_at":"2018-12-03 06:49:27",
+        "image":"'image'",
+        "narrative":"'narrative'",
+        "font_type":"'fontType'",
+        "created_at":"2018-12-03 06:49:27",
         "updated_at":"2018-12-03 06:49:27"
      },
      {
@@ -124,5 +133,6 @@ const addImageToFeed = (title, img, narrative, fontType) => {
 export default {
   addImageToEditor,
   addImageToFeed,
-  addImagesToFeedOnLoadSuccess
+  addImagesToFeedOnLoadSuccess,
+  addImagesToFeedLoading
 };

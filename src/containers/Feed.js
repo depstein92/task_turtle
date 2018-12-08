@@ -3,6 +3,7 @@ import { StyleSheet, css } from 'aphrodite';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import actions from '../actions/index';
+import { ClipLoader } from 'react-spinners';
 
 
 class Feed extends React.Component{
@@ -12,7 +13,10 @@ class Feed extends React.Component{
   }
 
   componentDidMount(){
-  let { getImageFeed } = this.props;  
+  let { getImageFeed, getImageLoad  } = this.props;
+   //getImageLoad();
+   console.log('p', this.props);
+   console.log('a', actions.addImageToFeedLoading);
    getImageFeed();
   }
 
@@ -20,10 +24,27 @@ class Feed extends React.Component{
     let { memesOnLoad, getImageFeed } = this.props;
     let { memes } = this.state;
 
-    return memesOnLoad.map(obj => {
-      <div>
-      </div>
-    });
+    if(memesOnLoad.loading){
+      return(
+        <div className='sweet-loading'>
+          <ClipLoader
+            className={override}
+            sizeUnit={"px"}
+            size={150}
+            color={'#123abc'}
+            loading={this.state.loading}
+          />
+       </div>
+      )
+    } else{
+      // return memesOnLoad.map(obj => {
+      //   <div>
+      //    <img src={ obj.image } />
+      //    <div>{ obj.narrative }</div>
+      //    <div> title: { obj.title }</div>
+      //   </div>
+      // });
+    }
   }
 
 
@@ -32,6 +53,7 @@ class Feed extends React.Component{
     console.log(this.props);
     return(
       <div className={css(styles.feed_container)}>
+      { this.renderMemes() }
       </div>
     )
   }
@@ -53,7 +75,10 @@ const mapStateToProps = state =>  {
   }
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({ getImageFeed: actions.addImagesToFeedOnLoadSuccess}, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({
+           getImageFeed: actions.addImagesToFeedOnLoadSuccess,
+           getImageLoad: actions.addImageToFeedLoading },
+           dispatch);
 
 
 export default connect(mapStateToProps,mapDispatchToProps)(Feed);

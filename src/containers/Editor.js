@@ -368,7 +368,6 @@ class Editor extends React.Component{
 }
 
   render(){
-    console.log(this.props);
     return(
       <div className={css(styles.editor_container)}>
        <Container fluid>
