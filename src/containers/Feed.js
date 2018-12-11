@@ -41,7 +41,8 @@ class Feed extends React.Component{
                color={"blue"}
                loading={memesOnLoad.initialLoad}
                />
-             </div>)
+             </div>
+        )
     } else{
       return memesOnLoad.data.map((obj, index) => {
         return(

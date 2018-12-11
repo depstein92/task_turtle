@@ -41,14 +41,14 @@ let ImageEditorForm = props => {
    for(let i = 0; i < imageForms; i++){
       formArr.push(
         <div className={css(styles.ImageEditorForm_child)} key={i}>
-          <label htmlFor="Image_Narrative">Image Narrative</label>
+          <label htmlFor="Image_Narrative">Image Narrative {`${i + 1}`}</label>
           <Field name={`form${i}`} component="input" type="text" />
           <span className={css(styles.close_button)}>
           <Icon
-            data-tag={i}
-            name="times circle"
-            onClick={(e) => removeNarr(e) }
-            />
+           data-tag={i}
+           name="times circle"
+           onClick={(e) => removeNarr(e) }
+           />
           </span>
         </div>
       )
@@ -63,7 +63,7 @@ let ImageEditorForm = props => {
       <button
        type="submit"
        className={css(styles.formButton)}>
-       Hello
+       Submit
       </button>
     </form>
   )

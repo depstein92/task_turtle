@@ -167,7 +167,12 @@ class Editor extends React.Component{
             />
         </Form.Group>
       ) :
-      <div data-key={i} onClick={this.openColorMenuClick}>Change Font Color</div>);
+      <div
+       data-key={i}
+       className={css(styles.change_font_color_button)}
+       onClick={this.openColorMenuClick}>
+        Change Font Color for Narrative {`${i + 1}`}
+      </div>);
     }
     return colorMenus;
   }
@@ -292,7 +297,12 @@ class Editor extends React.Component{
                />
            </Form.Group>
          ) :
-         <div data-key={i} onClick={this.openFontMenuClick}>Change Font </div>);
+         <div
+          data-key={i}
+          className={css(styles.change_font_type_button)}
+          onClick={this.openFontMenuClick}>
+          Change Font Type for Narrative {`${i + 1}`}
+         </div>);
      }
 
      return textMenus
@@ -399,6 +409,22 @@ const styles = StyleSheet.create({
   },
   editor_container: {
     marginTop: '20vh',
+  },
+  change_font_type_button: {
+    ':hover': {
+      cursor: 'pointer',
+      backgroundColor: 'blue',
+      color: 'white'
+    },
+    textAlign: 'center'
+  },
+  change_font_color_button: {
+    ':hover': {
+      cursor: 'pointer',
+      backgroundColor: 'blue',
+      color: 'white'
+    },
+    textAlign: 'center'
   },
   fontMenu: {
    backgroundColor: 'blue'
