@@ -168,9 +168,7 @@ class Editor extends React.Component{
         </Form.Group>
       ) :
       <div
-       data-key={i}
-       className={css(styles.change_font_color_button)}
-       onClick={this.openColorMenuClick}>
+       data-key={i} className={css(styles.change_font_color_button)} onClick={this.openColorMenuClick}>
         Change Font Color for Narrative {`${i + 1}`}
       </div>);
     }
@@ -392,9 +390,13 @@ class Editor extends React.Component{
         onSubmit={this.onSubmitSetState}
         removeNarrativeByNum={this.removeNarrativeByNum} />
        <div className={css(styles.narrativeDiv)}>
-       { this.renderDialogueBox() }
-       { this.renderTextMenu()    }
-       { this.renderColorMenu() }
+        {this.renderDialogueBox()}
+       <div className={css(styles.change_font_type_container)}>
+        {this.renderTextMenu()}
+       </div>
+       <div className={css(styles.change_font_color_container)}>
+        {this.renderColorMenu()}
+       </div>
        </div>
       </div>
     )
@@ -410,13 +412,22 @@ const styles = StyleSheet.create({
   editor_container: {
     marginTop: '20vh',
   },
+  change_font_type_container: {
+   border: 'solid black',
+   width: '50%'
+  },
+  change_font_color_container: {
+   border: 'solid black',
+   width: '50%'
+  },
   change_font_type_button: {
     ':hover': {
       cursor: 'pointer',
       backgroundColor: 'blue',
       color: 'white'
     },
-    textAlign: 'center'
+    textAlign: 'center',
+    margin: '5%'
   },
   change_font_color_button: {
     ':hover': {
@@ -424,7 +435,8 @@ const styles = StyleSheet.create({
       backgroundColor: 'blue',
       color: 'white'
     },
-    textAlign: 'center'
+    textAlign: 'center',
+    margin: '5%'
   },
   fontMenu: {
    backgroundColor: 'blue'
@@ -434,6 +446,10 @@ const styles = StyleSheet.create({
   centeredContainer: {
   },
   narrativeDiv: {
+   display: 'flex',
+   justifyContent: 'space-evenly',
+   height: '100%',
+   flexDirection: 'row'
   }
 });
 
