@@ -2,7 +2,7 @@ const initialState = {
         loading: false,
         data: {},
         error: null
-      }
+}
 
 function addImagesToFeedReducer(state=initialState, action){
     switch(action.type){
@@ -13,8 +13,11 @@ function addImagesToFeedReducer(state=initialState, action){
         return { ...state, data: action.payload, loading: false, error: true }
         break;
       case 'ADD_IMAGES_ON_LOAD_LOADING':
-         return  { loading: true, data: {},  error: false }
-         break;
+        return  { loading: true, data: {},  error: false }
+        break;
+      case 'ADD_IMAGES_TO_FEED_SUCCESS':
+        return { ...state, data: action.payload, error: null, loading: false }
+        break;
       default:
         return { loading: true, error: null }
     }

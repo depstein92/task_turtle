@@ -35,18 +35,16 @@ class Feed extends React.Component{
       )
     } else{
       return memesOnLoad.data.map((obj, index) => {
-      return(
-        <div key={index}>
-         <img src={ obj.image } />
-         <div>{ obj.narrative }</div>
-         <div> title: { obj.title }</div>
-        </div>
-      )
+        return(
+          <div key={index} className={css(styles.feed_image_container)}>
+            <img className={css(styles.feed_images)} src={ obj.image } />
+            <div>{ obj.narrative }</div>
+            <div> title: { obj.title }</div>
+          </div>
+        )
       });
     }
   }
-
-
 
   render(){
     console.log(this.props);
@@ -61,11 +59,24 @@ class Feed extends React.Component{
 const styles = StyleSheet.create({
   feed_container: {
     backgroundColor: 'indianred',
-    position: 'absolute',
+    position: 'relative',
     width: '100%',
-    height: '100vh'
+    height: '100vh',
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    alignItems: 'center'
   },
-
+  feed_image_container: {
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    alignItems: 'center',
+    margin: '1%'
+  },
+  feed_images: {
+    maxWidth: '50%'
+  }
 });
 
 const mapStateToProps = state =>  {

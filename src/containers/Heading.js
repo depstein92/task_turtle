@@ -23,6 +23,7 @@ class Heading extends React.Component{
           <Menu.Item name='home'
            active={activeItem === 'home'}
            data-test="home_button"
+           link={true}
            onClick={this.handleItemClick}>
            <Link to="/" className={css(styles.link)}>Home</Link>
            </Menu.Item>
@@ -30,6 +31,7 @@ class Heading extends React.Component{
             name='memes'
             active={activeItem === 'memes'}
             data-test="memes_button"
+            link={true}
             onClick={this.handleItemClick}>
             <Link to="/memes" className={css(styles.link)}>
             Memes

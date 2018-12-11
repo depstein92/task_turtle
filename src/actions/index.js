@@ -17,9 +17,9 @@ const addImagesToFeedLoading = () => {
 
 const addImagesToFeedOnLoadSuccess = async () => { //////////////////////////////////MOCK//////////////////
 
-
   let data = [
-    {  "id":1,
+    {
+       "id":1,
        "title":"'title'",
        "image":"./style/images/Distracted-Boyfriend.jpg",
        "narrative":"'narrative'",
@@ -70,63 +70,48 @@ const addImageToFeedFailure = (error) => {
 }
 
 const addImageToFeedSuccess = () => { //////////////////////////////////MOCK//////////////////
-   let data = [
-     {  "id":1,"title":"'title'",
-        "image":"'image'",
-        "narrative":"'narrative'",
-        "font_type":"'fontType'",
-        "created_at":"2018-12-03 06:49:27",
-        "updated_at":"2018-12-03 06:49:27"
-     },
-     {
-       "id":2,"title":"'new_title'",
-       "image":"'helloooo''",
-       "narrative":"'narrative'",
-       "font_type":"'fontType'",
-       "created_at":"2018-12-04 00:19:02",
-       "updated_at":"2018-12-04 00:19:02"
-     },
-     {
-       "id":2,"ADDtitle":"'new_title'",
-       "image":"'ADDIMAGE''",
-       "narrative":"'ADDnarrative'",
-       "font_type":"'ADDfontType'",
-       "created_at":"2018-12-04 00:19:02",
-       "updated_at":"2018-12-04 00:19:02"
-     },
 
-   ];
-
-
-   return {
-     type: 'ADD_IMAGES_ON_LOAD_SUCCESS',
-     payload: data
-   }
 }
 
 
-const addImageToFeed = (title, img, narrative, fontType) => {
+const addImageToFeed = () => {
 
-  addImageToFeedLoading();
+     let data = [
+       {  "id":1,
+          "title":"'title'",
+          "image":"'image'",
+          "narrative":"'narrative'",
+          "font_type":"'fontType'",
+          "created_at":"2018-12-03 06:49:27",
+          "updated_at":"2018-12-03 06:49:27"
+       },
+       {
+         "id":2,
+         "title":"'new_title'",
+         "image":"'helloooo''",
+         "narrative":"'narrative'",
+         "font_type":"'fontType'",
+         "created_at":"2018-12-04 00:19:02",
+         "updated_at":"2018-12-04 00:19:02"
+       },
+       {
+         "id":2,
+         "ADDtitle":"'new_title'",
+         "image": "./style/images/Expanding-Brain.jpg",
+         "narrative":"'ADDnarrative'",
+         "font_type":"'ADDfontType'",
+         "created_at":"2018-12-04 00:19:02",
+         "updated_at":"2018-12-04 00:19:02"
+       }
 
+     ];
 
-  axios({
-    method: 'get',
-    url: `http//127.0.0.1/api/posts/createPost/${title}/${img}/${narrative}/${fontType}`,
-    data: {
-      title,
-      img,
-      narrative,
-      fontType
-   }
-  }).then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    addImageToFeedSuccess(); //////////////////// Until AJAX PROBLEM IS FIXED use dummy
-    console.log(error);
-  });
+     return {
+       type: 'ADD_IMAGES_TO_FEED_SUCCESS',
+       payload: data
+     }
 };
+
 
 export default {
   addImageToEditor,

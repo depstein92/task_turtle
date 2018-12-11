@@ -39,7 +39,7 @@ let ImageEditorForm = props => {
 
    for(let i = 0; i < imageForms; i++){
       formArr.push(
-        <div className={css(styles.ImageEditorForm_child)}>
+        <div className={css(styles.ImageEditorForm_child)} key={i}>
           <label htmlFor="Image_Narrative">Image Narrative</label>
           <Field name={`form${i}`} component="input" type="text" />
           <span className={css(styles.close_button)}>
@@ -55,13 +55,13 @@ let ImageEditorForm = props => {
      return formArr;
   }
 
+  { /*handleSubmit={(e) => { submitToFeed(e) }} */ } 
   return (
     <form
      className={css(styles.ImageEditorForm)} onSubmit={(e) => { submitToFeed(e) }}>
       { formField() }
       <button
        type="submit"
-       handleSubmit={(e) => { submitToFeed(e) }}
        className={css(styles.formButton) }>
        Hello
       </button>

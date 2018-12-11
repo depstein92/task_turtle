@@ -28,8 +28,6 @@ class Editor extends React.Component{
     }
   }
 
-
-
   onSubmitSetState = () => {
 
    let {
@@ -67,7 +65,7 @@ class Editor extends React.Component{
      };
    };
 
-   if(Object.values(image_editor.values).length){
+   if(image_editor.values){
     if(Object.values(image_editor.values).length === 1){
         narrative = image_editor.values.form0;
     } else{
@@ -75,7 +73,7 @@ class Editor extends React.Component{
                           .reduce((a, b) => a + b);
     }
    }
-   addImageToFeed(title, img, narrative, fontTypes);
+   addImageToFeed();
   }
 
 
@@ -256,8 +254,8 @@ class Editor extends React.Component{
       textMenus.push(
         activeFontIndex.includes(i) ?
          ( <Form.Group
-            className={css(styles.fontMenu)}
-            key={`${i}`} grouped>
+              className={css(styles.fontMenu)}
+              key={`${i}`} grouped>
              <Form.Radio label='Exit' onClick={this.closeFontMenuClick}  />
              <Form.Radio
                label='Upper Case'
@@ -347,6 +345,7 @@ class Editor extends React.Component{
           defaultPosition={{x: 0, y: 0}}
           position={null}
           grid={[25, 25]}
+          key={index}
           onStart={this.handleStart}
           onDrag={this.handleDrag}
           onStop={this.handleStop}>
@@ -419,7 +418,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ addFormField, addImageToFeed: actions.addImageToFeed}, dispatch)
+  return bindActionCreators({ addFormField, addImageToFeed: actions['addImageToFeed']}, dispatch)
 }
 
 export default connect(mapStateToProps,  mapDispatchToProps)(Editor);
