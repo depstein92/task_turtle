@@ -23,7 +23,9 @@ let ImageEditorForm = props => {
    const {
     removeNarrativeByNum,
     handleSubmit,
-    addImageToFeed
+    addImageToFeed,
+    renderTextMenu,
+    renderColorMenu
    } = props;
 
 
@@ -35,7 +37,6 @@ let ImageEditorForm = props => {
     narrBox.top = "0px";
     removeNarrativeByNum(parseInt(e.target.dataset.tag));
    }
-
 
    for(let i = 0; i < imageForms; i++){
       formArr.push(
@@ -55,14 +56,13 @@ let ImageEditorForm = props => {
      return formArr;
   }
 
-  { /*handleSubmit={(e) => { submitToFeed(e) }} */ } 
   return (
     <form
      className={css(styles.ImageEditorForm)} onSubmit={(e) => { submitToFeed(e) }}>
       { formField() }
       <button
        type="submit"
-       className={css(styles.formButton) }>
+       className={css(styles.formButton)}>
        Hello
       </button>
     </form>

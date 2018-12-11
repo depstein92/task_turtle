@@ -377,6 +377,8 @@ class Editor extends React.Component{
        </button>
        <ImageEditorForm
         imageForms={this.state.addImageForm}
+        renderTextMenu={this.renderTextMenu}
+        renderColorMenu={this.renderColorMenu}
         onSubmit={this.onSubmitSetState}
         removeNarrativeByNum={this.removeNarrativeByNum} />
        <div className={css(styles.narrativeDiv)}>
@@ -389,14 +391,14 @@ class Editor extends React.Component{
   }
 }
 
+
 const styles = StyleSheet.create({
   imageNotSelected: {
     textAlign: 'center',
-
+    borderTop: 'solid'
   },
   editor_container: {
     marginTop: '20vh',
-    border: 'solid'
   },
   fontMenu: {
    backgroundColor: 'blue'

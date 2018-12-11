@@ -12,7 +12,7 @@ const addImagesToFeedLoading = () => {
     type: 'ADD_IMAGES_ON_LOAD_LOADING',
     payload: { loading: true }
   }
-}
+};
 
 
 const addImagesToFeedOnLoadSuccess = async () => { //////////////////////////////////MOCK//////////////////
@@ -49,14 +49,14 @@ const addImagesToFeedOnLoadSuccess = async () => { /////////////////////////////
     type: 'ADD_IMAGES_ON_LOAD_SUCCESS',
     payload: data
   }
-}
+};
 
 const addImagesToFeedOnLoadFailure = () => {
   return {
     type: 'ADD_IMAGES_ON_LOAD_FAILURE',
     payload: 'Add Images on load failed'
   }
-}
+};
 
 
 const addImageToFeedFailure = (error) => {
@@ -67,44 +67,38 @@ const addImageToFeedFailure = (error) => {
       error
     }
   }
-}
-
-const addImageToFeedSuccess = () => { //////////////////////////////////MOCK//////////////////
-
-}
+};
 
 
 const addImageToFeed = () => {
 
-     let data = [
-       {  "id":1,
-          "title":"'title'",
-          "image":"'image'",
-          "narrative":"'narrative'",
-          "font_type":"'fontType'",
-          "created_at":"2018-12-03 06:49:27",
-          "updated_at":"2018-12-03 06:49:27"
-       },
-       {
-         "id":2,
-         "title":"'new_title'",
-         "image":"'helloooo''",
-         "narrative":"'narrative'",
-         "font_type":"'fontType'",
-         "created_at":"2018-12-04 00:19:02",
-         "updated_at":"2018-12-04 00:19:02"
-       },
-       {
-         "id":2,
-         "ADDtitle":"'new_title'",
-         "image": "./style/images/Expanding-Brain.jpg",
-         "narrative":"'ADDnarrative'",
-         "font_type":"'ADDfontType'",
-         "created_at":"2018-12-04 00:19:02",
-         "updated_at":"2018-12-04 00:19:02"
-       }
-
-     ];
+  let data = [
+     {
+       "id":1,
+       "title":"'title'",
+       "image":"./style/images/Distracted-Boyfriend.jpg",
+       "narrative":"'narrative'",
+       "font_type":"'fontType'",
+       "created_at":"2018-12-03 06:49:27",
+       "updated_at":"2018-12-03 06:49:27"
+    },
+    {
+      "id":2,"title":"'new_title'",
+      "image":"./style/images/Expanding-Brain.jpg",
+      "narrative":"'narrative'",
+      "font_type":"'fontType'",
+      "created_at":"2018-12-04 00:19:02",
+      "updated_at":"2018-12-04 00:19:02"
+    },
+    {
+      "id":2,
+      "ADDtitle":"'new_title'",
+      "image": "./style/images/Expanding-Brain.jpg",
+      "narrative":"'ADDnarrative'",
+      "font_type":"'ADDfontType'",
+      "created_at":"2018-12-04 00:19:02",
+      "updated_at":"2018-12-04 00:19:02"
+    }];
 
      return {
        type: 'ADD_IMAGES_TO_FEED_SUCCESS',

@@ -3,7 +3,7 @@ import { StyleSheet, css } from 'aphrodite';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import actions from '../actions/index';
-import { ClipLoader } from 'react-spinners';
+import { PacmanLoader } from 'react-spinners';
 
 
 class Feed extends React.Component{
@@ -25,7 +25,7 @@ class Feed extends React.Component{
     if(memesOnLoad.loading){
       return(
         <div className='sweet-loading'>
-          <ClipLoader
+          <PacmanLoader
             sizeUnit={"px"}
             size={150}
             color={'#123abc'}
@@ -33,6 +33,15 @@ class Feed extends React.Component{
           />
        </div>
       )
+    } else if(memesOnLoad.initialLoad){
+       return(
+             <div className={css(styles.feed_images_updating)}>
+              <div>Updating In Real Time.</div>
+              <PacmanLoader
+               color={"blue"}
+               loading={memesOnLoad.initialLoad}
+               />
+             </div>)
     } else{
       return memesOnLoad.data.map((obj, index) => {
         return(
@@ -61,10 +70,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'indianred',
     position: 'relative',
     width: '100%',
-    height: '100vh',
+    height: '100%',
     display: 'flex',
     justifyContent: 'center',
-    flexDirection: 'column',
+    flexDirection: 'column-reverse',
     alignItems: 'center'
   },
   feed_image_container: {
@@ -72,10 +81,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'column',
     alignItems: 'center',
-    margin: '1%'
+    margin: '3%'
   },
   feed_images: {
     maxWidth: '50%'
+  },
+  feed_images_updating: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'space-evenly',
+    height: '25vh',
+    flexDirection: 'column',
+    alignItems: 'center'
   }
 });
 
