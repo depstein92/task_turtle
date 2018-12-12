@@ -390,7 +390,12 @@ class Editor extends React.Component{
         onSubmit={this.onSubmitSetState}
         removeNarrativeByNum={this.removeNarrativeByNum} />
        <div className={css(styles.narrativeDiv)}>
+       <div className={css(styles.narrative_container_title)}>
+        Drag and Drop
+       </div>
+       <div className={css(styles.narrative_container)}>
         {this.renderDialogueBox()}
+       </div>
        <div className={css(styles.change_font_type_container)}>
         {this.renderTextMenu()}
        </div>
@@ -450,7 +455,36 @@ const styles = StyleSheet.create({
    justifyContent: 'space-evenly',
    height: '100%',
    flexDirection: 'row'
-  }
+ },
+ narrative_container_title: {
+   position: 'absolute',
+   width: '15%',
+   right: '0',
+   backgroundColor: 'blue',
+   textAlign: 'center',
+   bottom: '27%',
+   padding: '1%'
+ },
+ narrative_container:{
+   bottom: '-23%',
+   position: 'absolute',
+   border: 'solid',
+   backgroundColor: 'red',
+   display: 'flex',
+   justifyContent: 'space-evenly',
+   flexDirection: 'column',
+   width: '15%',
+   height: '50%',
+   alignItems: 'center',
+   right: '0'
+ },
+ draggable: {
+   backgroundColor: 'blue',
+   ':hover': {
+     cursor: 'pointer',
+     backgroundColor: 'blue'
+   }
+ }
 });
 
 

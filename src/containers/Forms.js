@@ -77,7 +77,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'red',
     height: '15vh',
     alignItems: 'center',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    flexDirection: 'column'
   },
   ImageEditorForm_child: {
    minWidth: "33%",

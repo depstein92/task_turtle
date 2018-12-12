@@ -6,7 +6,7 @@
   "repository": "",
   "scripts": {
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
-    "test": "jest --watchAll",
+    "test": "jest",
     "lint": "eslint src"
   },
   "author": "Dan Epstein",
