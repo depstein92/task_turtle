@@ -376,7 +376,7 @@ class Editor extends React.Component{
 
   render(){
     return(
-      <div className={css(styles.editor_container)}>
+      <div className={css(styles.editor_container)} data-test='Editor'>
        <Container fluid>
         { this.ifImageIsNull() }
        </Container>
