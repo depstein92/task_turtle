@@ -21,8 +21,7 @@ describe('Editor runs without error', () => {
 describe('draggable narrative object in Editor renders', () => {
 
   test('narrative content shows', () => {
-    //const wrapper = setup();
-    const wrapper = shallow(<Editor />);
+    const wrapper = setup();
     const draggableNarrative = findByTestAttr(wrapper,'draggable-narrative');
     const addImageButton = findByTestAttr(wrapper, 'add-image-button');
 
