@@ -8,6 +8,7 @@ import actions from '../actions/index';
 import { Container, Image, Form, Icon } from 'semantic-ui-react';
 import { getFormValues } from 'redux-form';
 import Draggable from 'react-draggable';
+import PropTypes from 'prop-types';
 
 
 class Editor extends React.Component{
@@ -375,6 +376,7 @@ class Editor extends React.Component{
 }
 
   render(){
+    console.log(this.props);
     return(
       <div className={css(styles.editor_container)} data-test='Editor'>
        <Container fluid>
@@ -407,6 +409,11 @@ class Editor extends React.Component{
     )
   }
 }
+
+
+Editor.propTypes = {
+
+};
 
 
 const styles = StyleSheet.create({
