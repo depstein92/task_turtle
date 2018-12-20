@@ -350,6 +350,7 @@ class Editor extends React.Component{
           return(
        <Draggable
           handle=".handle"
+          data-test="draggable-narrative"
           className={css(styles.draggable)}
           defaultPosition={{x: 0, y: 0}}
           position={null}
@@ -376,13 +377,15 @@ class Editor extends React.Component{
 }
 
   render(){
-    console.log(this.props);
+    console.dir(this.props);
     return(
       <div className={css(styles.editor_container)} data-test='Editor'>
        <Container fluid>
         { this.ifImageIsNull() }
        </Container>
-       <button onClick={()=>{ this.onAddImageForm() }}>
+       <button
+        data-test="add-image-button"
+        onClick={()=>{ this.onAddImageForm() }}>
        Add Image Narrative
        </button>
        <ImageEditorForm
