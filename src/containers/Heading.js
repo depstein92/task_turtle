@@ -2,16 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { StyleSheet, css } from "aphrodite";
 import { Menu, Segment, Icon } from 'semantic-ui-react';
-
+import PropTypes from 'prop-types';
 
 class Heading extends React.Component{
   state = { activeItem: 'home' }
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
 
   render() {
     const { activeItem } = this.state
-
+    console.log(activeItem);
     return (
       <div className={css(styles.menu_container)} data-test='heading'>
       <Segment>
@@ -20,7 +20,8 @@ class Heading extends React.Component{
          <Menu.Item>
           <Icon className='truck' />
           </Menu.Item>
-          <Menu.Item name='home'
+          <Menu.Item
+           name='home'
            active={activeItem === 'home'}
            data-test="home_button"
            link={true}

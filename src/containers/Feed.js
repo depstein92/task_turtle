@@ -4,12 +4,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import actions from '../actions/index';
 import { PacmanLoader } from 'react-spinners';
+import PropTypes from 'prop-types';
 
 
 class Feed extends React.Component{
   constructor(props){
     super(props);
-    this.state = { memes: [] }
+    this.state = { memes: {} }
   }
 
   componentDidMount(){

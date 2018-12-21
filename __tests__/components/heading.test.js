@@ -11,14 +11,23 @@ Enzyme.configure({ adapter: new EnzymeAdapter() });
 Aphrodite.StyleSheetTestUtils.suppressStyleInjection();
 AphroditeNoImportant.StyleSheetTestUtils.suppressStyleInjection();
 
-test('Heading renders without error', () => {
 
-  const wrapper = shallow(<Heading />);
-  expect(wrapper).toBeDefined();
-  expect(wrapper.length).toBe(1);
-  console.log(wrapper.length);
+describe('Heading renders without error', () => {
+
+  test('Heading renders', () => {
+    const wrapper = shallow(<Heading />);
+    expect(wrapper).toBeDefined();
+    expect(wrapper.length).toBe(1);
+  });
+
+  test('state changes on button click', () => {
+    const wrapper = shallow(<Heading />);
+    const home_button = findByTestAttr(wrapper, "home_button" );
+    const meme_button = wrapper.find(`[data-test="memes_button"]`);
+
+    expect(wrapper.state().activeItem).toEqual("home");
+    //meme_button.simulate('click');
+    //expect(wrapper.state().activeItem).toEqual("meme");
+  });
+
 });
-
-// test('activeItem state changes on click', () => {
-//
-// });
