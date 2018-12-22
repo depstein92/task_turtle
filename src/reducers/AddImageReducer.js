@@ -1,6 +1,6 @@
 const initialState = {
         loading: false,
-        data: {},
+        data: {image: '', title: 'no title selected'},
         error: null
       }
 

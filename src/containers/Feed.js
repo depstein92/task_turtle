@@ -10,7 +10,6 @@ import PropTypes from 'prop-types';
 class Feed extends React.Component{
   constructor(props){
     super(props);
-    this.state = { memes: {} }
   }
 
   componentDidMount(){
@@ -21,7 +20,6 @@ class Feed extends React.Component{
 
   renderMemes = () => {
     let { memesOnLoad, getImageFeed } = this.props;
-    let { memes } = this.state;
 
     if(memesOnLoad.loading){
       return(
@@ -58,7 +56,7 @@ class Feed extends React.Component{
   }
 
   render(){
-    console.log(this.props);
+    console.log(this.state);
     return(
       <div className={css(styles.feed_container)}>
       { this.renderMemes() }
