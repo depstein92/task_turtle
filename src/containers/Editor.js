@@ -26,7 +26,7 @@ class Editor extends React.Component{
    const ifImageIsSelected = data.image.length === 0 ?
                              '../style/images/default_image.png' :
                              data.image;
-   debugger;
+
    return Object.values(data).map((obj, index) => {
     return(
     <div
@@ -36,7 +36,7 @@ class Editor extends React.Component{
        className={css(styles.narrative_image)}
        src={ifImageIsSelected} fluid />
       <div className={css(styles.narrative_container_title)}>
-         {obj.title}
+          { obj.title } Image Title
       </div>
      </div>
    )
@@ -80,13 +80,18 @@ const styles = StyleSheet.create({
     alignItems: 'normal'
   },
   narrative_container_title: {
-
+    backgroundColor: 'red',
+    height: '5vh',
+    textAlign: 'center',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   narrative_image: {
     maxHeight: '40vh',
     maxWidth: '100%',
     width: '50vw',
-    height: '50vh',
+    height: '40vh',
     marginTop: '10%'
   }
 });
