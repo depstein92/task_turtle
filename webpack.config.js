@@ -1,57 +1,52 @@
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = {
-  entry: ['./src/index.js'],
-  output: {
-    path: __dirname,
-    publicPath: '/',
-    filename: 'bundle.js'
-  },
-  devtool: "cheap-module-source-map",
+  entry: './src/index.js',
   module: {
-    loaders: [
+    rules: [
       {
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loader: 'babel',
-        query: {
-          presets: ['react', 'es2015', 'stage-1']
-        }
+        use: 'babel-loader'
       },
+       {
+      test: /\.m?js$/,
+      exclude: /node_modules/,
+      use: {
+        loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-env']
+        }
+      }
+    },
       {
         test: /\.scss$/,
         use: [{ loader: "style-loader" },
               { loader: "css-loader" },
-              { loader: "sass-loader" }],
-        exclude: /flexboxgrid/
+              { loader: "sass-loader" }]
       },
       {
-      test: /\.(png|jpg|gif)$/,
-      use: [
-        {
-          loader: 'file-loader',
-          options: {}
-        }
-      ]
-    }
+        test: /\.(png|svg|jpg|gif)$/,
+        use: ['file']
+      }
     ]
   },
+  mode: 'production',
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: [ '*', '.js', '.jsx']
   },
-  node: {
-  fs: 'empty',
-  net: 'empty',
-  tls: 'empty'
-},
+  output: {
+    path: __dirname + '/dist',
+    publicPath: '/',
+    filename: 'bundle.js'
+  },
   devServer: {
-    historyApiFallback: true,
-    contentBase: './',
-    watchOptions: {
-      aggregateTimeout: 300,
-      poll: 1000
-    },
-    headers: {
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-    "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
-  }
-  }
-}
+      historyApiFallback: true,
+      contentBase: './',
+      watchOptions: {
+        aggregateTimeout: 300,
+        poll: 1000
+      }
+    }
+};

@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
 import { Route, HashRouter as Router } from 'react-router-dom';
-import Home from '../containers/Home';
-import Heading from '../containers/Heading';
+import Landing from '../containers/Landing';
+//import Heading from '../containers/Heading';
 
-export default class App extends Component {
-  render() {
-    return (
-      <Router>
-       <div>
-        <Heading />
-        <Route exact path="/" component={Home} />
-       </div>
-      </Router>
+export default function App() {
+  return (
+    <Router>
+     <div>
+       <Route exact path="/" component={Landing} />
+     </div>
+    </Router>
     );
-  }
-}
+};
