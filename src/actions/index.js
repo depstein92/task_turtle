@@ -1,9 +1,9 @@
 
- const sendLoginDataSuccess = () => {
+const sendLoginDataSuccess = (userName, password) => {
 
   const data = {
-    userName: "Frank Hershel",
-    password: "love_beam123",
+    userName: `${userName}`,
+    password: `${password}`,
     contact: "516-756-0712",
     address: "123 Address of the Gods St."
   }

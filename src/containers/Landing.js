@@ -14,7 +14,7 @@ class Landing extends React.Component{
       isFormDataLoaded: false,
       userName: '',
       password: ''
-    }
+    };
   };
 
   onEventChange = (e) => {
@@ -23,7 +23,12 @@ class Landing extends React.Component{
     });
   };
 
-  onSubmit = e => e.preventDefault();
+  onSubmit = (e) => {
+    e.preventDefault();
+    const { reqLoginData } = this.props;
+    const {userName, password} = this.state;
+    reqLoginData(userName, password);
+  };
 
   render() {
     return (
