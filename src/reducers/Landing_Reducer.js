@@ -17,6 +17,7 @@ export default function Landing_Reducer(state=initialValue, data){
      return { loading: false, error: true, data: {} };
     break;
     default:
+    debugger;
      return state;
   }
 }

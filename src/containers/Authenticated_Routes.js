@@ -10,6 +10,7 @@ import Landing from './Landing';
 
 const Authenticated_Routes = props => {
   const { isLoggedIn } = props;
+  console.log('logged in',props);
   if(isLoggedIn){
     return(
       <Redirect to="/UserProfile" />
@@ -21,10 +22,10 @@ const Authenticated_Routes = props => {
   }
 };
 
-const mapStateToProps = state  => {
+const mapStateToProps = state => {
   return {
-    isLoggedIn: state.loggedIn
-  };
-};
+    loggedIn: state.loggedIn
+  }
+}
 
-export default connect(null, mapStateToProps)(Authenticated_Routes);
+export default connect(mapStateToProps)( Authenticated_Routes);
