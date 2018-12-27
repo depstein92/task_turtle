@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Route, HashRouter as Router } from 'react-router-dom';
 import Landing from '../containers/Landing';
-//import Heading from '../containers/Heading';
+import { hot } from 'react-hot-loader/root'
 
-export default function App() {
+function App() {
   return (
     <Router>
      <div>
@@ -12,3 +12,5 @@ export default function App() {
     </Router>
     );
 };
+
+export default hot(App);

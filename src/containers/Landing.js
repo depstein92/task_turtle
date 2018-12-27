@@ -25,14 +25,15 @@ class Landing extends React.Component{
   render() {
     return (
       <div className="landing-container">
-        <div className={'hero_content'}>
-          <strong className={'landing_page-Hero'}>
-           Welcome To Task Turtle!
-          </strong>
+       <Image src={'https://assets.taskrabbit.com/v3/assets/static/heros/homepage/hero-v2-b4c1033eac5b640d40b824503e42aff0.jpg'}
+              />
+        <div className={"landing-container__Heading"}>
+         Welcome to Task Turtle
         </div>
-        <form onSubmit={htis.onSubmit}>
+        <form onSubmit={this.onSubmit}>
          <input name="userName" onChange={this.onEventChange} />
          <input name="password" onChange={this.onEventChange} />
+         <input type="submit" value="Submit" />
         </form>
      </div>
     )
