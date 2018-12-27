@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
-import { Route, HashRouter as Router } from 'react-router-dom';
-import Landing from '../containers/Landing';
 import { hot } from 'react-hot-loader/root'
+import { Route,  HashRouter as Router } from 'react-router-dom';
+import Landing from '../containers/Landing';
+import UserProfile from '../containers/UserProfile';
+import Authenticated_Routes from '../containers/Authenticated_Routes';
+
 
 function App() {
   return (
     <Router>
      <div>
-       <Route exact path="/" component={Landing} />
+     <Authenticated_Routes />
      </div>
     </Router>
     );

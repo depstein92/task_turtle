@@ -3,7 +3,7 @@ import { reducer as formReducer } from 'redux-form'
 import Landing_Reducer from './Landing_Reducer';
 
 const rootReducer = combineReducers({
-  user_info: Landing_Reducer
+  loggedIn: Landing_Reducer
 });
 
 export default rootReducer;

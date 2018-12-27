@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Image } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import actions from '../actions/index';
-import '../style/Landing.scss';
+import '../style/UserProfile.scss';
 
 class UserProfile extends React.Component{
   constructor(props){
@@ -13,9 +13,15 @@ class UserProfile extends React.Component{
     this.state = { data: {} }
   }
 
+  renderUserProfile = () => {
+    let { userData } = this.props;
+  }
+
   render(){
+    
     return(
-      <div></div>
+      <div className={'user-profile-container'}>
+      </div>
     )
   }
 }

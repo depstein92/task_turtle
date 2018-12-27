@@ -1,12 +1,21 @@
 
-const sendLoginDataSuccess = (userName, password) => {
+const sendLoginRequest = (userName, password) => {
+
+  const fakeAuth = {
+    isAuthenticated: true,
+    authenticate(cb){
+      this.isAuthenticated = true;
+      setTimeout(cb, 100); //fake async
+    },
+    signout(cb){
+      this.isAuthenticated = false;
+      setTimeout(cb, 100); //fake async
+    }
+  }
 
   const data = {
-    userName: `${userName}`,
-    password: `${password}`,
-    contact: "516-756-0712",
-    address: "123 Address of the Gods St."
-  }
+    isAuthenticated: fakeAuth.isAuthenticated
+  };
 
   return {
     type: "SEND_LOGIN_INFORMATION_SUCCESS",
@@ -16,5 +25,5 @@ const sendLoginDataSuccess = (userName, password) => {
 };
 
 export default {
-  sendLoginDataSuccess
+sendLoginRequest
 };

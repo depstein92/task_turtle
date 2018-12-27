@@ -5,7 +5,7 @@ const initialValue = {
   error: false
 };
 
-export default Landing_Reducer(state=initialValue, data){
+export default function Landing_Reducer(state=initialValue, data){
   switch(data.type){
     case 'SEND_LOGIN_INFORMATION_SUCCESS':
      return { ...state, payload: data.payload };

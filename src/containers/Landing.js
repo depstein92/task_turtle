@@ -55,7 +55,7 @@ class Landing extends React.Component{
 }
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ reqLoginData: actions['sendLoginDataSuccess']}, dispatch);
+  return bindActionCreators({ reqLoginData: actions['sendLoginRequest']}, dispatch);
 }
 
 export default connect(null, mapDispatchToProps)(Landing);
