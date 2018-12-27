@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { Image } from 'semantic-ui-react';
+import actions from '../actions/index';
 import '../style/Landing.scss';
 
 
@@ -30,9 +33,15 @@ class Landing extends React.Component{
         <div className={"landing-container__Heading"}>
          Welcome to Task Turtle
         </div>
-        <form onSubmit={this.onSubmit}>
-         <input name="userName" onChange={this.onEventChange} />
+        <form onSubmit={this.onSubmit} className={"landing-container__login-form"}>
+        <label>
+          Name:
+          <input name="userName" onChange={this.onEventChange} />
+        </label>
+        <label>
+        Password:
          <input name="password" onChange={this.onEventChange} />
+        </label>
          <input type="submit" value="Submit" />
         </form>
      </div>
@@ -40,4 +49,8 @@ class Landing extends React.Component{
   }
 }
 
-export default Landing;
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({ reqLoginData: actions['sendLoginDataSuccess']}, dispatch);
+}
+
+export default connect(null, mapDispatchToProps)(Landing);
