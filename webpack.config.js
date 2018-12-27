@@ -10,16 +10,7 @@ module.exports = {
         exclude: /node_modules/,
         use: 'babel-loader'
       },
-       {
-      test: /\.m?js$/,
-      exclude: /node_modules/,
-      use: {
-        loader: 'babel-loader',
-        options: {
-          presets: ['@babel/preset-env']
-        }
-      }
-    },
+
       {
         test: /\.scss$/,
         use: [{ loader: "style-loader" },
@@ -32,7 +23,6 @@ module.exports = {
       }
     ]
   },
-  mode: 'production',
   resolve: {
     extensions: [ '*', '.js', '.jsx']
   },
@@ -41,6 +31,7 @@ module.exports = {
     publicPath: '/',
     filename: 'bundle.js'
   },
+  mode: 'production',
   devServer: {
       historyApiFallback: true,
       contentBase: './',
