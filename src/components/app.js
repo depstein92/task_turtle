@@ -11,6 +11,7 @@ function App() {
     <Router>
      <div>
      <Authenticated_Routes />
+     <Route exact path="/UserProfile" component={UserProfile} />
      </div>
     </Router>
     );

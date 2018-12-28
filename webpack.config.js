@@ -1,5 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+var FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   entry: ['babel-polyfill', './src/index.js'],
@@ -23,6 +25,16 @@ module.exports = {
       }
     ]
   },
+   plugins: [
+    new FriendlyErrorsWebpackPlugin({
+      compilationSuccessInfo: {
+        messages: ['You application is running here sir http://localhost:8080']
+      },
+      clearConsole: true,
+      quiet: true
+    }),
+     new MiniCssExtractPlugin()
+   ],
   resolve: {
     extensions: [ '*', '.js', '.jsx']
   },
@@ -31,7 +43,7 @@ module.exports = {
     publicPath: '/',
     filename: 'bundle.js'
   },
-  mode: 'production',
+  mode: 'development',
   devServer: {
       historyApiFallback: true,
       contentBase: './',

@@ -11,32 +11,39 @@ class UserProfile extends React.Component{
     super(props);
 
     this.state = { data: {} }
-  }
+  };
+
+  componentDidMount(){
+  const { getUserData } = this.props;
+   getUserData();
+  };
 
   renderUserProfile = () => {
-    let { userData } = this.props;
-  }
+    const { userData } = this.props;
+  };
 
   render(){
     console.log('user data', this.props);
 
     return(
       <div className={'user-profile-container'}>
-      {this.renderUserProfile()}
+      I am user profile
       </div>
     )
-  }
-}
+  };
+};
 
 const mapDispatchToProps = dispatch => {
-
-}
+ return bindActionCreators({
+   getUserData: actions["getUserProfileInfo"]
+ }, dispatch);
+};
 
 
 const mapStateToProps = state => {
   return {
-    userData: state.user_info
-  }
-}
+    userData: state.userData
+  };
+};
 
-export default connect(null, mapStateToProps)(UserProfile);
+export default connect(mapDispatchToProps, mapStateToProps)(UserProfile);
