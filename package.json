@@ -49,6 +49,7 @@
     "ajv": "^6.5.5",
     "aphrodite": "^2.2.3",
     "axios": "^0.18.0",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-stage-1": "^6.1.18",
     "dotenv": "^6.0.0",
     "enzyme": "^3.7.0",

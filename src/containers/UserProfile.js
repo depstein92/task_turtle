@@ -19,7 +19,7 @@ class UserProfile extends React.Component{
 
   render(){
     console.log('user data', this.props);
-       
+
     return(
       <div className={'user-profile-container'}>
       {this.renderUserProfile()}
@@ -27,6 +27,11 @@ class UserProfile extends React.Component{
     )
   }
 }
+
+const mapDispatchToProps = dispatch => {
+
+}
+
 
 const mapStateToProps = state => {
   return {
