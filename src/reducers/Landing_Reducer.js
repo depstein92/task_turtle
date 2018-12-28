@@ -2,13 +2,14 @@
 const initialValue = {
   loading: false,
   data: {},
-  error: false
+  error: false,
+  payload: { isAuthenticated: false }
 };
 
 export default function Landing_Reducer(state=initialValue, data){
   switch(data.type){
     case 'SEND_LOGIN_INFORMATION_SUCCESS':
-     return { ...state, payload: data.payload };
+     return {  payload: data.payload, error: false, loading: false };
     break;
     case 'SEND_LOGIN_INFORMATION_LOADING':
       return { loading: true, error: false, data: {} };
@@ -17,7 +18,6 @@ export default function Landing_Reducer(state=initialValue, data){
      return { loading: false, error: true, data: {} };
     break;
     default:
-    debugger;
      return state;
   }
 }

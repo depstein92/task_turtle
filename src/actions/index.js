@@ -2,7 +2,7 @@
 const sendLoginRequest = (userName, password) => {
 
   const fakeAuth = {
-    isAuthenticated: false,
+    isAuthenticated: true,
     authenticate(cb){
       this.isAuthenticated = true;
       setTimeout(cb, 100); //fake async
