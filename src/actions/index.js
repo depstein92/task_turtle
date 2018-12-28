@@ -3,10 +3,11 @@ import axios from 'axios';
 
 /**********GET USER PROFILE***********/
 
-const getUserProfileSuccess = data => {
+const getUserProfileSuccess = payload => {
+  const data = JSON.parse(payload.request.response);
   return {
     type: "GET_USER_DATA_SUCCESS",
-    payload: data
+    payload: data.results[0]
   };
 };
 

@@ -1,6 +1,5 @@
 import action_name from '../actions/action_names';
 
-
 const initialValue = {
   loading: false,
   data: {},
@@ -19,6 +18,7 @@ export default function Landing_Reducer_User_Data(state=initialValue, data){
      return { loading: false, error: true, data: {} };
     break;
     default:
+     debugger;
      return state;
   }
 }

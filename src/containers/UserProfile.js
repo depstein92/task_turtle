@@ -34,9 +34,7 @@ class UserProfile extends React.Component{
 };
 
 const mapDispatchToProps = dispatch => {
- return bindActionCreators({
-   getUserData: actions["getUserProfileInfo"]
- }, dispatch);
+ return bindActionCreators({ getUserData: actions["getUserProfileInfo"] }, dispatch);
 };
 
 
@@ -46,4 +44,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapDispatchToProps, mapStateToProps)(UserProfile);
+export default connect( mapStateToProps, mapDispatchToProps)(UserProfile);
