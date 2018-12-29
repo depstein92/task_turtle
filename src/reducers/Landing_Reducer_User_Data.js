@@ -4,9 +4,9 @@ const initialValue = {
   loading: false,
   payload: {
     name: {
-      title: 'Mr',
-      first: 'First Name',
-      last: 'Last Name '
+      title: 'Loading...',
+      first: 'Loading...',
+      last: 'Loading... '
     },
     picture: {
       large: 'https://react.semantic-ui.com/images/avatar/large/patrick.png',

@@ -18,7 +18,7 @@
     "@babel/plugin-transform-regenerator": "^7.0.0",
     "@babel/preset-env": "^7.1.6",
     "@babel/preset-react": "^7.0.0",
-    "babel-core": "^6.2.1",
+    "babel-core": "^7.0.0-0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.4",
@@ -51,7 +51,6 @@
   "dependencies": {
     "@emotion/core": "^10.0.4",
     "ajv": "^6.5.5",
-    "aphrodite": "^2.2.3",
     "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",
     "babel-preset-stage-1": "^6.1.18",
@@ -80,6 +79,6 @@
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
       "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
     },
-    "setupTestFrameworkScriptFile": "<rootDir>/__tests__/components/heading.test.js"
+    "setupTestFrameworkScriptFile": "<rootDir>/__tests__/containers/heading.test.js"
   }
 }

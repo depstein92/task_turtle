@@ -28,7 +28,7 @@ module.exports = {
    plugins: [
     new FriendlyErrorsWebpackPlugin({
       compilationSuccessInfo: {
-        messages: ['You application is running here my lord http://localhost:8080']
+        messages: ['The machine spirit is prepared on http://localhost:8080']
       },
       clearConsole: true,
       quiet: true
