@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Image, Card, Icon } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
+import UserRecentJobs from './UserRecentJobs';
 import actions from '../actions/index';
 import '../style/UserProfile.scss';
 
@@ -20,11 +21,17 @@ class UserProfile extends React.Component{
   };
 
   renderUserProfile = () => {
-    const { payload } = this.props.userData;
-
-
-
-
+    const { name, picture } = this.props.userData.payload;
+    return(
+   <Card
+    className={"user-profile"}
+    image={picture.large}
+    header={name.first}
+    meta='Friend'
+    description='Name is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat.'
+    extra={<p>Rating 8 out of 10</p>}
+   />
+    )
   };
 
   render(){
@@ -32,7 +39,8 @@ class UserProfile extends React.Component{
 
     return(
       <div className={'user-profile-container'}>
-      I am user profile
+      { this.renderUserProfile() }
+      <UserRecentJobs />
       </div>
     )
   };

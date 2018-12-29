@@ -2,12 +2,24 @@ import action_name from '../actions/action_names';
 
 const initialValue = {
   loading: false,
-  data: {},
-  error: false,
-  payload: { isAuthenticated: false }
-};
+  payload: {
+    name: {
+      title: 'Loading...',
+      first: 'Loading...',
+      last: 'Loading... '
+    },
+    picture: {
+      large: 'https://react.semantic-ui.com/images/avatar/large/patrick.png',
+      medium: 'https://react.semantic-ui.com/images/avatar/large/patrick.png',
+      thumbnail: 'https://react.semantic-ui.com/images/avatar/large/patrick.png'
+    },
+    description: {
 
-export default function Landing_Reducer(state=initialValue, data){
+    }
+  },
+  error: false,
+};
+export default function Landing_Reducer(userData=initialValue, data){
   switch(data.type){
     case action_name.SEND_LOGIN_INFORMATION_SUCCESS:
      return {  payload: data.payload, error: false, loading: false };
@@ -19,6 +31,6 @@ export default function Landing_Reducer(state=initialValue, data){
      return { loading: false, error: true, data: {} };
     break;
     default:
-     return state;
+     return userData;
   }
 }
