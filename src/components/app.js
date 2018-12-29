@@ -3,6 +3,7 @@ import { hot } from 'react-hot-loader/root'
 import { Route,  HashRouter as Router } from 'react-router-dom';
 import Landing from '../containers/Landing';
 import UserProfile from '../containers/UserProfile';
+import Heading from '../containers/Heading';
 import Authenticated_Routes from '../containers/Authenticated_Routes';
 
 
@@ -11,6 +12,7 @@ function App() {
     <Router>
      <div>
      <Authenticated_Routes />
+     <Heading />
      <Route exact path="/UserProfile" component={UserProfile} />
      </div>
     </Router>

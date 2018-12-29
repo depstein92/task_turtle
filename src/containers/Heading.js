@@ -1,47 +1,58 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, Segment, Icon } from 'semantic-ui-react';
+import { Menu, Header, Image } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import '../style/Heading.scss';
 
 class Heading extends React.Component{
 
-  this.state = { activeItem: 'home' }
+  constructor(props){
+    super(props);
+
+    this.state = { activeItem: 'home' };
+  }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
 
+
   render() {
-    const { activeItem } = this.state
+    const { activeItem } = this.state;
 
     return (
-      <div className={css(styles.menu_container)} data-test='heading'>
-      <Segment>
-      </Segment>
-        <Menu pointing secondary>
-         <Menu.Item>
-          <Icon className='truck' />
-          </Menu.Item>
-          <Menu.Item
-           name='home'
-           active={activeItem === 'home'}
-           data-test="home_button"
-           link={true}
-           onClick={this.handleItemClick}>
-           <Link to="/" className={css(styles.link)}>Home</Link>
-           </Menu.Item>
-          <Menu.Item
-            name='tasks'
-            active={activeItem === 'memes'}
-            data-test="tasks_button"
-            link={true}
-            onClick={this.handleItemClick}>
-            <Link to="/tasks" className={css(styles.link)}>
-            Memes
-            </Link>
-          </Menu.Item>
+      <div data-test='heading'>
+       <Menu pointing secondary className={'heading-menu'}>
+          <Menu.Menu position='left' className={"heading-menu-profile-image"}>
+              <Header as='h2'>
+              <Image circular src='https://react.semantic-ui.com/images/avatar/large/patrick.png' /> Patrick
+              </Header>
+          </Menu.Menu>
+          <Menu.Menu position='right'>
+            <Menu.Item
+              name='logout'
+              active={activeItem === 'logout'}
+              onClick={this.handleItemClick}
+            />
+            <Menu.Item
+             name='home'
+             active={activeItem === 'home'}
+             onClick={this.handleItemClick} />
+            <Menu.Item
+              name='messages'
+              active={activeItem === 'messages'}
+              onClick={this.handleItemClick}
+            />
+          </Menu.Menu>
         </Menu>
       </div>
     )
   }
 }
 
-export default Heading;
+const mapStateToProps = state => {
+  return {
+    userData: state.userData
+  };
+};
+
+export default connect(mapStateToProps)(Heading);

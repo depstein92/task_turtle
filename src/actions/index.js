@@ -3,14 +3,6 @@ import axios from 'axios';
 
 /**********GET USER PROFILE***********/
 
-const getUserProfileSuccess = payload => {
-  const data = JSON.parse(payload.request.response);
-  return {
-    type: "GET_USER_DATA_SUCCESS",
-    payload: data.results[0]
-  };
-};
-
 const getUserProfileError = error => {
   return {
     type: "GET_USER_DATA_ERROR",
@@ -28,10 +20,18 @@ const getUserProfileLoading = () => {
 
 const getUserProfileInfo = async () => {
   getUserProfileLoading();
-  const mockData =  await axios.get("https://randomuser.me/api/")
-                               .then(data => getUserProfileSuccess(data))
-                               .catch(err => getUserProfileError(err));
-};
+  const fetchData =  await axios.get("https://randomuser.me/api/");
+  const data = JSON.parse(fetchData.request.response);
+
+  if(!data){
+    getUserProfileError();
+  } else{
+  return {
+    type: "GET_USER_DATA_SUCCESS",
+    payload: data.results[0]
+  };
+}
+ };
 
 /**********SEND LOGIN REQUEST***********/
 

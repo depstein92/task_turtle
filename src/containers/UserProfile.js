@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Image } from 'semantic-ui-react';
+import { Image, Card, Icon } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import actions from '../actions/index';
 import '../style/UserProfile.scss';
+
 
 class UserProfile extends React.Component{
   constructor(props){
@@ -19,7 +20,11 @@ class UserProfile extends React.Component{
   };
 
   renderUserProfile = () => {
-    const { userData } = this.props;
+    const { payload } = this.props.userData;
+
+
+
+
   };
 
   render(){
