@@ -1,5 +1,7 @@
 .user-profile-container{
-    margin-top: 5%;
+
+   margin-top: 5%;
+
   .user-profile{
     margin-left: 5%;
     img{
@@ -19,5 +21,10 @@
     position: absolute;
     top: 16%;
     justify-content: center;
-}
+  }
+  .user-profile-messaging-link{
+    margin-left: 5%;
+    width: 30%;
+    text-align: center;
+  }
 }

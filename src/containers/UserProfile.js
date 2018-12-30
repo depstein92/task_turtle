@@ -5,6 +5,7 @@ import { Image, Card, Icon } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import UserRecentJobs from './UserRecentJobs';
 import Heading from './Heading';
+import { Link } from 'react-router-dom';
 import actions from '../actions/index';
 import '../style/UserProfile.scss';
 
@@ -35,13 +36,23 @@ class UserProfile extends React.Component{
     )
   };
 
-  render(){
+  renderMessageLink = () => {
+    const { name } = this.props.userData.payload;
+    return(
+    <div className="user-profile-messaging-link">
+      <Link to={"/Messaging"}>
+        Click here to message!
+      </Link>
+    </div>)
+  };
 
+  render(){
     return(
     <div>
       <Heading />
       <div className={'user-profile-container'}>
       { this.renderUserProfile() }
+      { this.renderMessageLink() }
       <UserRecentJobs />
       </div>
     </div>

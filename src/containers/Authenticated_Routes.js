@@ -11,7 +11,6 @@ import Landing from './Landing';
 const Authenticated_Routes = props => {
 
   const { isAuthenticated  } = props.loggedIn.payload;
-  debugger;
 
   if(isAuthenticated){
     return(
