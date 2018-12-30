@@ -1,6 +1,19 @@
 import axios from 'axios';
 
 
+/************SEND LOGOUT REQUEST************/
+
+const logOutUser = () => {
+
+  const data = {
+    isAuthenticated: false
+  };
+  return{
+    type: "SEND_LOGOUT_SUCCESS",
+    payload: data
+  }
+}
+
 /**********GET USER PROFILE***********/
 
 const getUserProfileError = error => {
@@ -62,5 +75,6 @@ const sendLoginRequest = (userName, password) => {
 
 export default {
 sendLoginRequest,
-getUserProfileInfo
+getUserProfileInfo,
+logOutUser
 };

@@ -29,6 +29,9 @@ export default function Landing_Reducer(userData=initialValue, data){
     break;
     case action_name.SEND_LOGIN_INFORMATION_ERROR:
      return { loading: false, error: true, data: {} };
+    case action_name.SEND_LOGOUT_SUCCESS:
+    debugger;
+     return { loading: false, error: false, payload: data.payload }
     break;
     default:
      return userData;

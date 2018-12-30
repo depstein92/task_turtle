@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 import { Menu, Header, Image } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import '../style/Heading.scss';
+import actions from '../actions/index';
 
 class Heading extends React.Component{
 
@@ -14,12 +16,16 @@ class Heading extends React.Component{
   }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
-  
+
+  handleLogOutButton = (e, { name }) => {
+    let { logOutUser } = this.props;
+    logOutUser();
+    this.setState({ activeItem: name });
+  };
 
   render() {
     const { activeItem } = this.state;
     const { name, picture } = this.props.userData.payload;
-
     return (
       <div data-test='heading'>
        <Menu pointing secondary className={'heading-menu'}>
@@ -31,11 +37,6 @@ class Heading extends React.Component{
           </Menu.Menu>
           <Menu.Menu position='right'>
             <Menu.Item
-              name='logout'
-              active={activeItem === 'logout'}
-              onClick={this.handleItemClick}
-            />
-            <Menu.Item
              name='home'
              active={activeItem === 'home'}
              onClick={this.handleItemClick} />
@@ -43,6 +44,11 @@ class Heading extends React.Component{
               name='messages'
               active={activeItem === 'messages'}
               onClick={this.handleItemClick}
+            />
+            <Menu.Item
+              name='logout'
+              active={activeItem === 'logout'}
+              onClick={this.handleLogOutButton}
             />
           </Menu.Menu>
         </Menu>
@@ -57,4 +63,8 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(Heading);
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({ logOutUser: actions['logOutUser'] }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Heading);

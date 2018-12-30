@@ -11,6 +11,7 @@ import Landing from './Landing';
 const Authenticated_Routes = props => {
 
   const { isAuthenticated  } = props.loggedIn.payload;
+  debugger;
 
   if(isAuthenticated){
     return(
@@ -18,7 +19,7 @@ const Authenticated_Routes = props => {
     )
   } else{
     return(
-      <Route exact path="/" component={Landing} />
+      <Redirect to="/" />
     )
   }
 };

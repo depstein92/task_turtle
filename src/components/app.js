@@ -13,6 +13,7 @@ function App() {
   <div>
     <Authenticated_Routes />
     <Route exact path="/UserProfile" component={UserProfile} />
+    <Route exact path="/" component={Landing} />
     <Footer />
   </div>
 </Router>
