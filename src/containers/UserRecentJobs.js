@@ -15,13 +15,10 @@ class UserRecentJobs extends React.Component{
   };
 
   render(){
-    const { jobs } = this.props.userData.payload; //tommorow
-    console.log( 'userrecentJobs', this.props.userData);
-    console.log('jobs', jobs);
+    const { jobs } = this.props.userData.payload;
 
     return(
       <div className={"user-recent-job-container"}>
-    
      { Object.values(jobs).map(obj => {
         return(
        <div className={"jobs-completed-post"}>
@@ -36,7 +33,6 @@ class UserRecentJobs extends React.Component{
         </div>
           )
        }) }
-
     </div>
     )
   };
