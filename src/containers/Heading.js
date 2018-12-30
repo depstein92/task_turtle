@@ -14,7 +14,7 @@ class Heading extends React.Component{
   }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
-
+  
 
   render() {
     const { activeItem } = this.state;

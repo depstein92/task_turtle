@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Image, Card, Icon } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import UserRecentJobs from './UserRecentJobs';
+import Heading from './Heading';
 import actions from '../actions/index';
 import '../style/UserProfile.scss';
 
@@ -35,13 +36,15 @@ class UserProfile extends React.Component{
   };
 
   render(){
-    console.log('user data', this.props);
 
     return(
+    <div>
+      <Heading />
       <div className={'user-profile-container'}>
       { this.renderUserProfile() }
       <UserRecentJobs />
       </div>
+    </div>
     )
   };
 };

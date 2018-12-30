@@ -15,13 +15,16 @@ class UserRecentJobs extends React.Component{
   };
 
   render(){
-    const { jobs } = this.props.userData; //tommorow
+    const { jobs } = this.props.userData.payload; //tommorow
+    console.log( 'userrecentJobs', this.props.userData);
+    console.log('jobs', jobs);
 
     return(
       <div className={"user-recent-job-container"}>
-       { Array.from(jobs).map(obj => {
-          return(
-            <div className={"jobs-completed-post"}>
+    
+     { Object.values(jobs).map(obj => {
+        return(
+       <div className={"jobs-completed-post"}>
           <Card>
             <Card.Content header={`Customer ${obj.customer}`} />
             <Card.Content description={obj.job_description} />
@@ -33,6 +36,7 @@ class UserRecentJobs extends React.Component{
         </div>
           )
        }) }
+
     </div>
     )
   };
