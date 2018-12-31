@@ -7,6 +7,7 @@ import Heading from '../containers/Heading';
 import Authenticated_Routes from '../containers/Authenticated_Routes';
 import Footer from '../components/Footer';
 import Messaging from '../containers/Messaging';
+import Messaging_Inbox from '../containers/Messaging_Inbox';
 
 function App() {
   return (
