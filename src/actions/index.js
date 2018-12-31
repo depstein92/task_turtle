@@ -73,41 +73,29 @@ const sendLoginRequest = (userName, password) => {
 
 };
 
-/**********MESSAGING APP ACTION CREATORS***********/
+/**********MESSAGING APP INBOX***********/
 
-const sendMessageSuccess = () => {
- 
-}
+const getUsersMessages = () => {
 
-const sendMessageLoading = () => {
+   const messagesInfo = [
+     "Hey I was just hopeing to talk to you...",
+     "Hey I was hopeing to get to know you...",
+     "Dear yee king of yeee, all that is yee to me swag"
+   ];
 
-}
+   const messages = () => setTimeout(messagesInfo, 3000);
 
-const sendMessageError = () => {
 
-}
-
-const sendMessageWhileTyping = () => {
-
-}
-
-const sendMessage = () => {
+  return {
+    type: "GET_USER_MESSAGE_SUCCESS",
+    payload: messages
+  }
 
 }
-
-
-
-
-
-
-
-
-
-
-
 
 export default {
   sendLoginRequest,
   getUserProfileInfo,
-  logOutUser
+  logOutUser,
+  getUsersMessages
 };

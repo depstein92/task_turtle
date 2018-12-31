@@ -1,10 +1,19 @@
 import React, { Component } from 'react';
 import { Menu } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import actions from '../actions/index';
 
 class Messaging_Inbox extends React.Component{
 
   constructor(props){
     super(props);
+  }
+
+  componentDidMount(){
+    const { getMessages } = this.props;
+
+    getMessages();
   }
 
   render(){
@@ -38,4 +47,13 @@ class Messaging_Inbox extends React.Component{
   }
 }
 
-export default Messaging_Inbox;
+const mapStateToProps = state => {
+  return {
+    messages: messages_inbox
+  }
+}
+
+const mapDispatchToProps = dispatch => bindActionCreators({ getMessages: actions['getUsersMessages'] }, dispatch);
+
+
+export default connect(mapDispatchToProps, mapStateToProps)(Messaging_Inbox);

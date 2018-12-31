@@ -57,9 +57,9 @@ class UserProfile extends React.Component{
          </Table.Row>
        </Table.Header>
        <Table.Body>
-       { skills.map(obj => {
+       { skills.map((obj, index) => {
          return(
-           <Table.Row>
+           <Table.Row key={index}>
              <Table.Cell>
               { obj }
              </Table.Cell>
