@@ -44,7 +44,7 @@ class Heading extends React.Component{
             <Menu.Item
               name='messages'
               link={true}
-              as={ Link }
+              as={Link}
               to="/Messaging_Inbox"
               active={activeItem === 'messages'}
               onClick={this.handleItemClick}

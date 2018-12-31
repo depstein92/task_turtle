@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { Menu } from 'semantic-ui-react';
 
 class Messaging_Inbox extends React.Component{
+
   constructor(props){
     super(props);
   }
-
 
   render(){
     return(

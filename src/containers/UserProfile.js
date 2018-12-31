@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Image, Card, Icon } from 'semantic-ui-react';
+import { Image, Card, Icon, Table } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import UserRecentJobs from './UserRecentJobs';
 import Heading from './Heading';
 import { Link } from 'react-router-dom';
 import actions from '../actions/index';
 import '../style/UserProfile.scss';
-
 
 class UserProfile extends React.Component{
   constructor(props){
@@ -46,6 +45,32 @@ class UserProfile extends React.Component{
     </div>)
   };
 
+  renderSkillsTable = () => {
+    const { skills } = this.props.userData.payload;
+    return(
+      <Table collapsing>
+       <Table.Header>
+         <Table.Row>
+         <Table.HeaderCell>
+             Skills
+         </Table.HeaderCell>
+         </Table.Row>
+       </Table.Header>
+       <Table.Body>
+       { skills.map(obj => {
+         return(
+           <Table.Row>
+             <Table.Cell>
+              { obj }
+             </Table.Cell>
+           </Table.Row>
+         )
+       })}
+       </Table.Body>
+     </Table>
+    )
+  };
+
   render(){
     return(
     <div>
@@ -53,6 +78,7 @@ class UserProfile extends React.Component{
       <div className={'user-profile-container'}>
       { this.renderUserProfile() }
       { this.renderMessageLink() }
+      { this.renderSkillsTable() }
       <UserRecentJobs />
       </div>
     </div>

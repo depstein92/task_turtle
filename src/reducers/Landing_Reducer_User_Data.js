@@ -37,6 +37,12 @@ const initialValue = {
       medium: 'https://react.semantic-ui.com/images/avatar/large/patrick.png',
       thumbnail: 'https://react.semantic-ui.com/images/avatar/large/patrick.png'
     },
+    skills: [
+      "Trombone",
+      "Yeezy Album",
+      "Getting a Divorce",
+      "Eating Doritos"
+    ]
   },
   error: false,
 };
@@ -67,11 +73,19 @@ const jobsCompleted = {
     }
   };
 
+  const skillList = {
+    skills: [
+      "Trombone",
+      "Yeezy Album",
+      "Getting a Divorce",
+      "Eating Doritos"
+   ]
+  }
 
 export default function Landing_Reducer_User_Data(userData=initialValue, data){
   switch(data.type){
     case action_name.GET_USER_DATA_SUCCESS:
-     return { payload:Object.assign({}, jobsCompleted, data.payload), error: false, loading: false };
+     return { payload: Object.assign({}, jobsCompleted, skillList, data.payload), error: false, loading: false };
     break;
     case action_name.GET_USER_DATA_LOADING:
       return { loading: true, error: false, data: {} };
