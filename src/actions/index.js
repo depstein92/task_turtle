@@ -73,8 +73,41 @@ const sendLoginRequest = (userName, password) => {
 
 };
 
+/**********MESSAGING APP ACTION CREATORS***********/
+
+const sendMessageSuccess = () => {
+ 
+}
+
+const sendMessageLoading = () => {
+
+}
+
+const sendMessageError = () => {
+
+}
+
+const sendMessageWhileTyping = () => {
+
+}
+
+const sendMessage = () => {
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
 export default {
-sendLoginRequest,
-getUserProfileInfo,
-logOutUser
+  sendLoginRequest,
+  getUserProfileInfo,
+  logOutUser
 };

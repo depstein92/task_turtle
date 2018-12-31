@@ -25,14 +25,14 @@ class UserProfile extends React.Component{
   renderUserProfile = () => {
     const { name, picture } = this.props.userData.payload;
     return(
-   <Card
-    className={"user-profile"}
-    image={picture.large}
-    header={name.first}
-    meta='Friend'
-    description='Name is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat.'
-    extra={<p>Rating 8 out of 10</p>}
-   />
+     <Card
+      className={"user-profile"}
+      image={picture.large}
+      header={name.first}
+      meta='Friend'
+      description='Name is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat.'
+      extra={<p>Rating 8 out of 10</p>}
+     />
     )
   };
 
