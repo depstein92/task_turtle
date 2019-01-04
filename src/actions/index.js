@@ -77,18 +77,18 @@ const sendLoginRequest = (userName, password) => {
 
 const getUsersMessages = () => {
 
-   const messagesInfo = [
+   const messagesInfoTitle = [
      "Hey I was just hopeing to talk to you...",
      "Hey I was hopeing to get to know you...",
-     "Dear yee king of yeee, all that is yee to me swag"
+     "Dear yee king of yeee, all that is yee to me"
    ];
 
-   const messages = () => setTimeout(messagesInfo, 3000);
-
+   const messages = () => setTimeout(messagesInfoTitle, 1000);
+   debugger;
 
   return {
-    type: "GET_USER_MESSAGE_SUCCESS",
-    payload: messages
+    type: "GET_USER_MESSAGES_SUCCESS",
+    payload: messagesInfoTitle
   }
 
 }

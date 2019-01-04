@@ -17,6 +17,7 @@ function App() {
     <Route exact path="/UserProfile" component={UserProfile} />
     <Route exact path="/" component={Landing} />
     <Route exact path="/Messaging" component={Messaging} />
+    <Route exact path="/Messaging_Inbox" component={Messaging_Inbox} />
     <Footer />
   </div>
 </Router>

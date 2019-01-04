@@ -1,8 +1,8 @@
 import action_name from '../actions/action_names'
 
 
-const initialValue = {
-  messages: [
+const messages_inbox = {
+  payload : [
     "Loading",
     "Loading",
     "Loading"
@@ -10,7 +10,8 @@ const initialValue = {
 }
 
 
-export default function Message_Inbox_Reducer(state=initialValue, data){
+
+export default function Message_Inbox_Reducer(state=messages, messages_inbox){
   switch(data.type){
     case action_name.GET_USER_MESSAGES_SUCCESS:
      return {  payload: data.payload, error: false, loading: false };
