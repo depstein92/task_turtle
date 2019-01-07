@@ -1,13 +1,37 @@
 import axios from 'axios';
+import actionNames from './action_names';
 
 /***********SEND REGISTER REQUEST*********/
 
-const registerUser = (userName, password) => {
-// const registerConfirmation =
-//       axios.post('http://127.0.0.1:5000/register')
-console.log('userName', userName, 'password', password)
+const registerUserSuccess = data => {
+  return {
+    type: actionNames.REGISTER_USER_SUCCESS,
+    payload: data
+  }
 }
 
+const registerUserError = err => {
+  return {
+    type: actionNames.REGISTER_USER_ERROR,
+    payload: err
+  }
+}
+
+const registerUser = async (userName, password) => {
+
+    await axios.post('http://127.0.0.1:5000/register', {
+        userName,
+        password
+    })
+    .then(function(response) {
+        console.log('repsonse from register', response);
+        registerUserSuccess(response);
+    })
+    .catch(function(error) {
+        console.log('Error from register', error);
+        registerUserError(error);
+    });
+}
 
 /************SEND LOGOUT REQUEST************/
 

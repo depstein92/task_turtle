@@ -31,7 +31,7 @@ class UserRegister(Resource):
 
         user.save_to_db()
 
-        return { "message": "User created successfully"}
+        return { "message": "You have been registered"}
 
     def get(self):
         return {'user' : [ user.json() for user in UserModel.query.all() ]}

@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import actions from '../actions/index';
 import '../style/SignUp.scss';
-
 
 class SignUp extends React.Component{
   constructor(props){
@@ -13,7 +16,11 @@ class SignUp extends React.Component{
   }
 
   onSubmit = e => {
+    const { userName, password } = this.state;
+    const { registerUser } = this.props;
     e.preventDefault();
+
+    registerUser(userName, password);
   }
 
   onEventChange = e => {
@@ -44,4 +51,7 @@ class SignUp extends React.Component{
   }
 }
 
-export default SignUp;
+const mapDispatchToProps = dispatch => bindActionCreators({ registerUser: actions['registerUser'] }, dispatch);
+
+
+export default connect(null, mapDispatchToProps)(SignUp);
