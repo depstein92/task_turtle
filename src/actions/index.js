@@ -1,5 +1,13 @@
 import axios from 'axios';
 
+/***********SEND REGISTER REQUEST*********/
+
+const registerUser = (userName, password) => {
+// const registerConfirmation =
+//       axios.post('http://127.0.0.1:5000/register')
+console.log('userName', userName, 'password', password)
+}
+
 
 /************SEND LOGOUT REQUEST************/
 

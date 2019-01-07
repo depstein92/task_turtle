@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Image } from 'semantic-ui-react';
+import SignUp from './SignUp';
 import actions from '../actions/index';
 import '../style/Landing.scss';
 
@@ -49,6 +50,7 @@ class Landing extends React.Component{
         </label>
          <input type="submit" value="Submit" />
         </form>
+        <SignUp />
      </div>
     )
   }
