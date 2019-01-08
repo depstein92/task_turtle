@@ -10,6 +10,13 @@ const registerUserSuccess = data => {
   }
 }
 
+const registerUserLoading = () => {
+  return {
+    type: actionNames.REGISTER_USER_LOADING,
+    payload: { loading: true }
+  }
+}
+
 const registerUserError = err => {
   return {
     type: actionNames.REGISTER_USER_ERROR,
@@ -19,8 +26,11 @@ const registerUserError = err => {
 
 const registerUser = async (userName, password) => {
 
+    registerUserLoading();
+     
     await axios.post('http://127.0.0.1:5000/register', {
-        userName,
+        headers: { 'Access-Control-Allow-Origin': '*' },
+        username: userName,
         password
     })
     .then(function(response) {
@@ -129,5 +139,6 @@ export default {
   sendLoginRequest,
   getUserProfileInfo,
   logOutUser,
-  getUsersMessages
+  getUsersMessages,
+  registerUser
 };

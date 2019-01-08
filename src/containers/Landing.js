@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Image } from 'semantic-ui-react';
+import { Image, Message } from 'semantic-ui-react';
 import SignUp from './SignUp';
 import actions from '../actions/index';
 import '../style/Landing.scss';
-
 
 class Landing extends React.Component{
   constructor(props) {
@@ -24,9 +23,14 @@ class Landing extends React.Component{
     });
   };
 
+  renderRegisterMessage = () => {
+    console.log('yee')
+    console.log(this.props);    
+  }
+
   onSubmit = (e) => {
     e.preventDefault();
-    const { reqLoginData } = this.props;
+    const {reqLoginData} = this.props;
     const {userName, password} = this.state;
     reqLoginData(userName, password);
   };
@@ -39,6 +43,7 @@ class Landing extends React.Component{
         <div className={"landing-container__Heading"}>
          Welcome to Task Turtle
         </div>
+        { this.renderRegisterMessage() }
         <form onSubmit={this.onSubmit} className={"landing-container__login-form"}>
         <label>
           Name:
@@ -56,8 +61,14 @@ class Landing extends React.Component{
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    registerUserMessage: state.register_message
+  }
+}
+
 const mapDispatchToProps = dispatch => {
   return bindActionCreators({ reqLoginData: actions['sendLoginRequest']}, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(Landing);
+export default connect(mapStateToProps, mapDispatchToProps)(Landing);

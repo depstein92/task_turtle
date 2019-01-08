@@ -2,6 +2,7 @@ from flask import Flask
 from db import db
 from flask_restful import Api
 from flask_jwt import JWT
+from flask_cors import CORS
 
 from resources.security import authenticate, identity
 from resources.user_register import UserRegister
@@ -10,6 +11,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db' #sqllite is exchangeable
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False #turns off extensions
 api = Api(app)
+CORS(app)
 
 @app.before_first_request
 def create_tables():
