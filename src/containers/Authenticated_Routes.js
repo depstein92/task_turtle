@@ -10,9 +10,9 @@ import Landing from './Landing';
 
 const Authenticated_Routes = props => {
 
-  const { isAuthenticated  } = props.loggedIn.payload;
+  const isAuthorized = props.isAuthenticated.isLoggedIn.data.logged_in
 
-  if(isAuthenticated){
+  if(isAuthorized){
     return(
       <Redirect to="/UserProfile" />
     )
@@ -25,7 +25,7 @@ const Authenticated_Routes = props => {
 
 const mapStateToProps = state => {
   return {
-    loggedIn: state.loggedIn
+    isAuthenticated: state.isAuthenticated
   }
 }
 

@@ -4,10 +4,12 @@ import actionNames from './action_names';
 /***********SEND REGISTER REQUEST*********/
 
 const registerUserLoading = () => {
-  return {
-    type: actionNames.REGISTER_USER_LOADING,
-    payload: { loading: true }
-  }
+    return {
+        type: actionNames.REGISTER_USER_LOADING,
+        payload: {
+            loading: true
+        }
+    }
 }
 
 const registerUser = async (userName, password) => {
@@ -34,6 +36,40 @@ const registerUser = async (userName, password) => {
         payload: response
     }
 }
+
+
+/**********SEND LOGIN REQUEST***********/
+
+const sendLoginRequestLoading = () => {
+    return {
+        type: actionNames['SEND_LOGIN_INFORMATION_LOADING'],
+        payload: {
+            loading: true
+        }
+    }
+}
+
+const sendLoginRequest = async (username, password) => {
+
+    sendLoginRequestLoading();
+
+    const data = await axios.post('http://127.0.0.1:5000/login', {
+        username,
+        password
+    });
+
+    if (!data) {
+        return {
+            type: actionNames['SEND_LOGIN_INFORMATION_ERROR'],
+            payload: error
+        };
+    };
+    debugger;
+    return {
+        type: actionNames['SEND_LOGIN_INFORMATION_SUCCESS'],
+        payload: data
+    };
+};
 
 /************SEND LOGOUT REQUEST************/
 
@@ -80,38 +116,6 @@ const getUserProfileInfo = async () => {
 }
  };
 
-/**********SEND LOGIN REQUEST***********/
-
-const sendLoginRequestLoading = () => {
-    return {
-        type: actionNames['SEND_LOGIN_INFORMATION_LOADING'],
-        payload: {
-            loading: true
-        }
-    }
-}
-
-const sendLoginRequest = async (username, password) => {
-
-    sendLoginRequestLoading();
-
-    const data = await axios.post('http://127.0.0.1:5000/login', {
-        username,
-        password
-    });
-
-    if (!data) {
-        return {
-            type: actionNames['SEND_LOGIN_INFORMATION_ERROR'],
-            payload: error
-        };
-    };
-
-    return {
-        type: actionNames['SEND_LOGIN_INFORMATION_SUCCESS'],
-        payload: data
-    };
-};
 
 /**********MESSAGING APP INBOX***********/
 

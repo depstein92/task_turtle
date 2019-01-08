@@ -2,6 +2,12 @@ import action_name from '../actions/action_names';
 
 const initialValue = {
   loading: false,
+  isLoggedIn: {
+    data:{
+      message:' ',
+      logged_in: false
+    }
+  },
   payload: {
     name: {
       title: 'Loading...',
@@ -21,11 +27,11 @@ const initialValue = {
 };
 
 export default function Landing_Reducer(userData = initialValue, data) {
-    debugger;
     switch (data.type) {
         case action_name['SEND_LOGIN_INFORMATION_SUCCESS']:
+            debugger;
             return {
-                payload: data.payload,
+                isLoggedIn: data.payload,
                 error: false,
                 loading: false
             };
