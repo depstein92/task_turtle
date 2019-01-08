@@ -33,7 +33,7 @@ class PopularTasks extends React.Component{
     }
   };
 
-  decrementCount = () =>{
+  decrementCount = () => {
     const { count } = this.state;
     if(count <= 0){
       this.setState({ count: 0 });
@@ -46,21 +46,20 @@ class PopularTasks extends React.Component{
 
   render(){
     const {count} = this.state;
-    console.log(count);
     return(
      <div className={"popular-tasks-container"}>
-        <div onClick={this.decrementCount}>
+       <div onClick={this.decrementCount}>
          <Icon
           className={"angle left"}
           id={"count-button"}
           size={"large"}>
          </Icon>
         </div>
-        {this.arrayOfImages[0 + count]}
+         {this.arrayOfImages[0 + count]}
          <Divider hidden />
-        {this.arrayOfImages[1 + count]}
+         {this.arrayOfImages[1 + count]}
          <Divider hidden />
-        {this.arrayOfImages[2 + count]}
+         {this.arrayOfImages[2 + count]}
          <Divider hidden />
         <div onClick={this.incrementCount}>
           <Icon

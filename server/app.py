@@ -6,6 +6,7 @@ from flask_cors import CORS
 
 from resources.security import authenticate, identity
 from resources.user_register import UserRegister
+from resources.user_login import UserLogin
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db' #sqllite is exchangeable
@@ -20,6 +21,7 @@ def create_tables():
 jwt = JWT(app, authenticate, identity)
 
 api.add_resource(UserRegister, '/register')
+api.add_resource(UserLogin, '/login')
 
 # api.add_resource(Item, '/item/<string:name>')
 # api.add_resource(ItemList, '/items')

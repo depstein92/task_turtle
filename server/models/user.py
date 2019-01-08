@@ -19,8 +19,12 @@ class UserModel(db.Model):
         db.session.add(self) #saves to database
         db.session.commit()
 
+    @classmethod
+    def find_by_username_and_password(cls, username, password):
+        return cls.query.filter_by(username=username, password=password).first()    
+
     def json(self):
-        return {'username': self.username, 'password': self.password }    
+        return {'username': self.username, 'password': self.password }
 
     @classmethod
     def find_by_id(cls, _id):
