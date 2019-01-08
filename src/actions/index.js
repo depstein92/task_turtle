@@ -71,19 +71,6 @@ const sendLoginRequest = async (username, password) => {
     };
 };
 
-/************SEND LOGOUT REQUEST************/
-
-const logOutUser = () => {
-
-  const data = {
-    isAuthenticated: false
-  };
-  return{
-    type: "SEND_LOGOUT_SUCCESS",
-    payload: data
-  }
-}
-
 /**********GET USER PROFILE***********/
 
 const getUserProfileError = error => {
@@ -115,6 +102,21 @@ const getUserProfileInfo = async () => {
   };
 }
  };
+
+
+/************SEND LOGOUT REQUEST************/
+
+const logOutUser = () => {
+
+  const data = {
+    isAuthenticated: false
+  };
+  return{
+    type: "SEND_LOGOUT_SUCCESS",
+    payload: data
+  }
+}
+
 
 
 /**********MESSAGING APP INBOX***********/

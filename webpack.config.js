@@ -28,7 +28,8 @@ module.exports = {
    plugins: [
     new FriendlyErrorsWebpackPlugin({
       compilationSuccessInfo: {
-        messages: ['The machine spirit is prepared on http://localhost:8080']
+        messages: ['The machine spirit is prepared on http://localhost:8080'],
+        notes: ['Compiled successfully my lord']
       },
       clearConsole: true,
       quiet: true
@@ -50,6 +51,22 @@ module.exports = {
       watchOptions: {
         aggregateTimeout: 300,
         poll: 1000
+      },
+      stats: {
+         colors: true,
+         hash: false,
+         version: false,
+         timings: false,
+         assets: false,
+         chunks: false,
+         modules: false,
+         reasons: false,
+         children: false,
+         source: false,
+         errors: true,
+         errorDetails: true,
+         warnings: true,
+         publicPath: false
       }
     }
 };
