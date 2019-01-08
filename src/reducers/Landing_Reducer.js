@@ -19,20 +19,38 @@ const initialValue = {
   },
   error: false,
 };
-export default function Landing_Reducer(userData=initialValue, data){
-  switch(data.type){
-    case action_name.SEND_LOGIN_INFORMATION_SUCCESS:
-     return {  payload: data.payload, error: false, loading: false };
-    break;
-    case action_name.SEND_LOGIN_INFORMATION_LOADING:
-      return { loading: true, error: false, data: {} };
-    break;
-    case action_name.SEND_LOGIN_INFORMATION_ERROR:
-     return { loading: false, error: true, data: {} };
-    case action_name.SEND_LOGOUT_SUCCESS:
-     return { loading: false, error: false, payload: data.payload }
-    break;
-    default:
-     return userData;
-  }
+
+export default function Landing_Reducer(userData = initialValue, data) {
+    debugger;
+    switch (data.type) {
+        case action_name['SEND_LOGIN_INFORMATION_SUCCESS']:
+            return {
+                payload: data.payload,
+                error: false,
+                loading: false
+            };
+            break;
+        case action_name['SEND_LOGIN_INFORMATION_LOADING']:
+            return {
+                loading: true,
+                error: false,
+                data: {}
+            };
+            break;
+        case action_name['SEND_LOGIN_INFORMATION_ERROR']:
+            return {
+                loading: false,
+                error: true,
+                data: {}
+            };
+        case action_name.SEND_LOGOUT_SUCCESS:
+            return {
+                loading: false,
+                error: false,
+                payload: data.payload
+            }
+            break;
+        default:
+            return userData;
+    }
 }

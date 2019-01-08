@@ -6,6 +6,7 @@ class UserModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40))
     password = db.Column(db.String(40))
+    # profile_image = db.Column(db.String(120))
 
     def __init__(self, username, password):
         self.username = username
@@ -21,7 +22,7 @@ class UserModel(db.Model):
 
     @classmethod
     def find_by_username_and_password(cls, username, password):
-        return cls.query.filter_by(username=username, password=password).first()    
+        return cls.query.filter_by(username=username, password=password).first()
 
     def json(self):
         return {'username': self.username, 'password': self.password }

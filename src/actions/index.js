@@ -3,13 +3,6 @@ import actionNames from './action_names';
 
 /***********SEND REGISTER REQUEST*********/
 
-const registerUserSuccess = data => {
-  return {
-    type: actionNames.REGISTER_USER_SUCCESS,
-    payload: data
-  }
-}
-
 const registerUserLoading = () => {
   return {
     type: actionNames.REGISTER_USER_LOADING,
@@ -17,30 +10,29 @@ const registerUserLoading = () => {
   }
 }
 
-const registerUserError = err => {
-  return {
-    type: actionNames.REGISTER_USER_ERROR,
-    payload: err
-  }
-}
-
 const registerUser = async (userName, password) => {
 
     registerUserLoading();
-     
-    await axios.post('http://127.0.0.1:5000/register', {
-        headers: { 'Access-Control-Allow-Origin': '*' },
-        username: userName,
-        password
-    })
-    .then(function(response) {
-        console.log('repsonse from register', response);
-        registerUserSuccess(response);
-    })
-    .catch(function(error) {
-        console.log('Error from register', error);
-        registerUserError(error);
-    });
+
+    const response = await axios.post('http://127.0.0.1:5000/register', {
+            headers: {
+                'Access-Control-Allow-Origin': '*'
+            },
+            username: userName,
+            password
+        })
+        .catch(function(error) {
+            console.log(`Error in Register User ${error}`);
+            return {
+                type: actionNames.REGISTER_USER_ERROR,
+                payload: err
+            }
+        });
+
+    return {
+        type: actionNames.REGISTER_USER_SUCCESS,
+        payload: response
+    }
 }
 
 /************SEND LOGOUT REQUEST************/
@@ -90,29 +82,35 @@ const getUserProfileInfo = async () => {
 
 /**********SEND LOGIN REQUEST***********/
 
-const sendLoginRequest = (userName, password) => {
-
-  const fakeAuth = {
-    isAuthenticated: true,
-    authenticate(cb){
-      setTimeout(cb, 100); //fake async
-      this.isAuthenticated = true;
-    },
-    signout(cb){
-      this.isAuthenticated = false;
-      setTimeout(cb, 100); //fake async
+const sendLoginRequestLoading = () => {
+    return {
+        type: actionNames['SEND_LOGIN_INFORMATION_LOADING'],
+        payload: {
+            loading: true
+        }
     }
-  };
+}
 
-  const data = {
-    isAuthenticated: fakeAuth.isAuthenticated
-  };
+const sendLoginRequest = async (username, password) => {
 
-  return {
-    type: "SEND_LOGIN_INFORMATION_SUCCESS",
-    payload: data
-  };
+    sendLoginRequestLoading();
 
+    const data = await axios.post('http://127.0.0.1:5000/login', {
+        username,
+        password
+    });
+
+    if (!data) {
+        return {
+            type: actionNames['SEND_LOGIN_INFORMATION_ERROR'],
+            payload: error
+        };
+    };
+
+    return {
+        type: actionNames['SEND_LOGIN_INFORMATION_SUCCESS'],
+        payload: data
+    };
 };
 
 /**********MESSAGING APP INBOX***********/
