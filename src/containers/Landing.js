@@ -13,11 +13,12 @@ class Landing extends React.Component{
     this.state = {
       isFormDataLoaded: false,
       userName: '',
-      password: ''
+      password: '',
+      isLoginOrSignUp: false
     };
   };
 
-  onEventChange = (e) => {
+  onEventChange = e => {
     this.setState({
       [name] : e.target.value
     });
@@ -25,15 +26,54 @@ class Landing extends React.Component{
 
   renderRegisterMessage = () => {
     console.log('yee')
-    console.log(this.props);    
+    console.log(this.props);
   }
 
-  onSubmit = (e) => {
+  onSubmit = e => {
     e.preventDefault();
     const {reqLoginData} = this.props;
     const {userName, password} = this.state;
     reqLoginData(userName, password);
   };
+
+  onSelectLogin = () => this.setState({ isLoginOrSignUp: true });
+
+  onSelectSignUp = () => this.setState({ isLoginOrSignUp: false });
+
+
+  renderLoginForm = () => {
+    return(
+      <div className={"landing-container__login-form"}>
+      <h1 className={'signup-title'}>Log In</h1>
+      <form onSubmit={this.onSubmit} >
+      <label>
+        Name:
+        <input name="userName" onChange={this.onEventChange} />
+      </label>
+      <label>
+      Password:
+       <input name="password" onChange={this.onEventChange} />
+      </label>
+       <input type="submit" value="Submit" />
+      </form>
+      <div className={"SignUp-button"} onClick={() => {this.onSelectLogin()}}>
+        Did you mean to Sign Up? Click here.
+      </div>
+    </div>
+    )
+  }
+
+    renderLoginOrSignUp = () => {
+      const LoginOrSignUp = this.state.isLoginOrSignUp ?
+                            <SignUp onSelectSignUp={this.onSelectSignUp} /> :
+                            this.renderLoginForm();
+
+      return(
+      <div>
+        { LoginOrSignUp }
+      </div>
+      )
+    }
 
   render() {
     return (
@@ -43,19 +83,7 @@ class Landing extends React.Component{
         <div className={"landing-container__Heading"}>
          Welcome to Task Turtle
         </div>
-        { this.renderRegisterMessage() }
-        <form onSubmit={this.onSubmit} className={"landing-container__login-form"}>
-        <label>
-          Name:
-          <input name="userName" onChange={this.onEventChange} />
-        </label>
-        <label>
-        Password:
-         <input name="password" onChange={this.onEventChange} />
-        </label>
-         <input type="submit" value="Submit" />
-        </form>
-        <SignUp />
+        { this.renderLoginOrSignUp() }
      </div>
     )
   }

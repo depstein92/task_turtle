@@ -46,6 +46,9 @@ class SignUp extends React.Component{
         </label>
          <input type="submit" value="Submit" />
         </form>
+        <div className={"LogIn-button"} onClick={() => {this.props.onSelectSignUp()}}>
+          Did you mean to Log In? Click here.
+        </div>
       </div>
     )
   }
