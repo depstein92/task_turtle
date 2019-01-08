@@ -32,17 +32,13 @@ class SignUp extends React.Component{
   render(){
     return(
       <div className={'signup-form-container'}>
-        <h1 className={'signup-title'}>
-            Sign Up
-        </h1>
+        <h1 className={'signup-title'}>Sign Up</h1>
         <form onSubmit={this.onSubmit} className={"landing-container__signup-form"}>
         <label>
-         Name:
-          <input name="userName" onChange={this.onEventChange} />
+          Name: <input name="userName" onChange={this.onEventChange} />
         </label>
         <label>
-         Password:
-         <input name="password" onChange={this.onEventChange} />
+         Password: <input name="password" onChange={this.onEventChange} />
         </label>
          <input type="submit" value="Submit" />
         </form>
@@ -55,6 +51,5 @@ class SignUp extends React.Component{
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({ registerUser: actions['registerUser'] }, dispatch);
-
 
 export default connect(null, mapDispatchToProps)(SignUp);

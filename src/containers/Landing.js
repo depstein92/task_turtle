@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Image, Message } from 'semantic-ui-react';
-import SignUp from './SignUp';
 import actions from '../actions/index';
+import SignUp from './SignUp';
+import PopularTasks from '../components/PopularTasks';
+
 import '../style/Landing.scss';
 
 class Landing extends React.Component{
@@ -63,17 +65,18 @@ class Landing extends React.Component{
     )
   }
 
-    renderLoginOrSignUp = () => {
-      const LoginOrSignUp = this.state.isLoginOrSignUp ?
-                            <SignUp onSelectSignUp={this.onSelectSignUp} /> :
-                            this.renderLoginForm();
+  renderLoginOrSignUp = () => {
+    const LoginOrSignUp =
+        this.state.isLoginOrSignUp ?
+        <SignUp onSelectSignUp={this.onSelectSignUp} /> :
+        this.renderLoginForm();
 
-      return(
-      <div>
-        { LoginOrSignUp }
-      </div>
-      )
-    }
+    return(
+    <div>
+      { LoginOrSignUp }
+    </div>
+    )
+  }
 
   render() {
     return (
@@ -84,6 +87,7 @@ class Landing extends React.Component{
          Welcome to Task Turtle
         </div>
         { this.renderLoginOrSignUp() }
+        <PopularTasks />
      </div>
     )
   }
