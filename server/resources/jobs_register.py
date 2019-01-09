@@ -34,7 +34,7 @@ class JobsRegister(Resource):
     def post(self):
         data = JobsRegister.parser.parse_args() #adds constraints to data
 
-        if Jobs.find_job_by_id(data['id']):
+        if JobsModel.find_job_by_id(data['user_id']):
            return {'message': 'job exists already'}
 
         job = JobsModel(**data)

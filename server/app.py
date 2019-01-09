@@ -7,12 +7,14 @@ from flask_cors import CORS
 from resources.security import authenticate, identity
 from resources.user_register import UserRegister
 from resources.user_login import UserLogin
+from resources.jobs_register import JobsRegister
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db' #sqllite is exchangeable
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False #turns off extensions
 api = Api(app)
 CORS(app)
+
 
 @app.before_first_request
 def create_tables():
@@ -22,6 +24,7 @@ jwt = JWT(app, authenticate, identity)
 
 api.add_resource(UserRegister, '/register')
 api.add_resource(UserLogin, '/login')
+api.add_resource(JobsRegister, '/jobs')
 
 # api.add_resource(Item, '/item/<string:name>')
 # api.add_resource(ItemList, '/items')
