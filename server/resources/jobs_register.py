@@ -30,7 +30,6 @@ class JobsRegister(Resource):
         help="Date Field cannot be blank"
     )
 
-
     def post(self):
         data = JobsRegister.parser.parse_args() #adds constraints to data
 
