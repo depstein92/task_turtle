@@ -6,10 +6,10 @@ class JobsRegister(Resource):
 
     parser = reqparse.RequestParser()
 
-    parser.add_argument('user_id',
-        type=int,
+    parser.add_argument('username',
+        type=str,
         required=True,
-        help="User Id cannot be blank"
+        help="UserName cannot be blank"
     )
 
     parser.add_argument('title',
@@ -34,7 +34,7 @@ class JobsRegister(Resource):
     def post(self):
         data = JobsRegister.parser.parse_args() #adds constraints to data
 
-        if JobsModel.find_job_by_id(data['user_id']):
+        if JobsModel.find_job_by_id(data['title']):
            return {'message': 'job exists already'}
 
         job = JobsModel(**data)
@@ -46,5 +46,6 @@ class JobsRegister(Resource):
 
         return { "message": "Job added"}
 
-    def get(self):
-        return {'job' : [ job.json() for job in JobsModel.query.all() ]}
+    class JobsList(Resource):
+        def get(self):
+            return {'job' : [ job.json() for job in JobsModel.query.all() ]}

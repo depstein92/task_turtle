@@ -29,7 +29,6 @@ const initialValue = {
 export default function Landing_Reducer(userData = initialValue, data) {
     switch (data.type) {
         case action_name['SEND_LOGIN_INFORMATION_SUCCESS']:
-            debugger;
             return {
                 isLoggedIn: data.payload,
                 error: false,

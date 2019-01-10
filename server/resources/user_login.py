@@ -28,12 +28,9 @@ class UserLogin(Resource):
             }
         else:
             return {
-              'message': 'You have entered an incorrect password',
+              'message': 'You have entered an incorrect password or username',
               'logged_in': False
             }
 
-
-
-
-    # def get(self):
-    #     return {'user' : [ user.json() for user in UserModel.query.all() ]}
+    def get(self):
+        return {'user' : [ user.json() for user in UserModel.query.all() ]}

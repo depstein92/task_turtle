@@ -22,14 +22,9 @@ class Landing extends React.Component{
 
   onEventChange = e => {
     this.setState({
-      [name] : e.target.value
+      [e.target.name] : e.target.value
     });
   };
-
-  renderRegisterMessage = () => {
-    console.log('yee')
-    console.log(this.props);
-  }
 
   onSubmit = e => {
     e.preventDefault();
@@ -44,17 +39,18 @@ class Landing extends React.Component{
 
 
   renderLoginForm = () => {
+    const {userName, password} = this.state;
     return(
       <div className={"landing-container__login-form"}>
       <h1 className={'signup-title'}>Log In</h1>
       <form onSubmit={this.onSubmit} >
       <label>
         Name:
-        <input name="userName" onChange={this.onEventChange} />
+        <input name="userName" value={userName} onChange={this.onEventChange} />
       </label>
       <label>
-      Password:
-       <input name="password" onChange={this.onEventChange} />
+        Password:
+       <input name="password" value={password} onChange={this.onEventChange} />
       </label>
        <input type="submit" value="Submit" />
       </form>

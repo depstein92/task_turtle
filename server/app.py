@@ -8,6 +8,7 @@ from resources.security import authenticate, identity
 from resources.user_register import UserRegister
 from resources.user_login import UserLogin
 from resources.jobs_register import JobsRegister
+from resources.user_data import UserData
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db' #sqllite is exchangeable
@@ -25,6 +26,7 @@ jwt = JWT(app, authenticate, identity)
 api.add_resource(UserRegister, '/register')
 api.add_resource(UserLogin, '/login')
 api.add_resource(JobsRegister, '/jobs')
+api.add_resource(UserData, '/user_data')
 
 # api.add_resource(Item, '/item/<string:name>')
 # api.add_resource(ItemList, '/items')

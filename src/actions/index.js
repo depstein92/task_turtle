@@ -30,7 +30,6 @@ const registerUser = async (userName, password) => {
                 payload: err
             }
         });
-
     return {
         type: actionNames.REGISTER_USER_SUCCESS,
         payload: response
@@ -64,7 +63,7 @@ const sendLoginRequest = async (username, password) => {
             payload: error
         };
     };
-    debugger;
+
     return {
         type: actionNames['SEND_LOGIN_INFORMATION_SUCCESS'],
         payload: data
@@ -130,7 +129,6 @@ const getUsersMessages = () => {
    ];
 
    const messages = () => setTimeout(messagesInfoTitle, 1000);
-   debugger;
 
   return {
     type: "GET_USER_MESSAGES_SUCCESS",
