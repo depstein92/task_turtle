@@ -9,13 +9,15 @@ class UserModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40))
     password = db.Column(db.String(40))
+    profile_picture = db.Column(db.String(200))
     rating = db.Column(db.Integer, nullable=True)
     description = db.Column(db.String(200), nullable=True)
     children = relationship("JobsModel")
 
-    def __init__(self, username, password, rating=None, description=None):
+    def __init__(self, username, password, profile_picture=None, rating=None, description=None):
         self.username = username
         self.password = password
+        self.profile_picture = profile_picture
         self.rating = rating
         self.description = description
 
@@ -42,4 +44,4 @@ class UserModel(db.Model):
 
 
     def json(self):
-        return {'username': self.username, 'password': self.password }
+        return {'username': self.username, 'password': self.password3 }
