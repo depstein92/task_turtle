@@ -9,10 +9,12 @@ from resources.user_register import UserRegister
 from resources.user_login import UserLogin
 from resources.jobs_register import JobsRegister
 from resources.user_data import UserData
+# from resources.jobs_register import JobsList
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db' #sqllite is exchangeable
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False #turns off extensions
+app.config['SQLALCHEMY_ECHO'] = True
 api = Api(app)
 CORS(app)
 
@@ -27,6 +29,8 @@ api.add_resource(UserRegister, '/register')
 api.add_resource(UserLogin, '/login')
 api.add_resource(JobsRegister, '/jobs')
 api.add_resource(UserData, '/user_data')
+# api.add_resource(JobsList, '/get')
+
 
 # api.add_resource(Item, '/item/<string:name>')
 # api.add_resource(ItemList, '/items')

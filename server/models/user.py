@@ -9,11 +9,16 @@ class UserModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40))
     password = db.Column(db.String(40))
+    rating = db.Column(db.Integer, nullable=True)
+    description = db.Column(db.String(200), nullable=True)
     children = relationship("JobsModel")
 
-    def __init__(self, username, password):
+    def __init__(self, username, password, rating=None, description=None):
         self.username = username
         self.password = password
+        self.rating = rating
+        self.description = description
+
 
     @classmethod
     def find_by_username(cls, username):

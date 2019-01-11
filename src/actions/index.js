@@ -87,20 +87,22 @@ const getUserProfileLoading = () => {
 };
 
 
-const getUserProfileInfo = async () => {
-  getUserProfileLoading();
-  const fetchData =  await axios.get("https://randomuser.me/api/");
-  const data = JSON.parse(fetchData.request.response);
+const getUserProfileInfo = async (username) => {
+    getUserProfileLoading();
+    const fetchData = await axios.get("http://127.0.0.1:5000/user_data", {
+        username
+    });
+    const data = JSON.parse(fetchData.request.response);
 
-  if(!data){
-    getUserProfileError();
-  } else{
-  return {
-    type: "GET_USER_DATA_SUCCESS",
-    payload: data.results[0]
-  };
-}
- };
+    if (!data) {
+        getUserProfileError();
+    } else {
+        return {
+            type: "GET_USER_DATA_SUCCESS",
+            payload: data
+        };
+    }
+};
 
 
 /************SEND LOGOUT REQUEST************/

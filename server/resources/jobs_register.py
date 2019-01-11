@@ -12,6 +12,12 @@ class JobsRegister(Resource):
         help="UserName cannot be blank"
     )
 
+    parser.add_argument('client',
+        type=str,
+        required=True,
+        help="Client cannot be blank"
+    )
+
     parser.add_argument('title',
         type=str,
         required=True,
@@ -30,11 +36,17 @@ class JobsRegister(Resource):
         help="Date Field cannot be blank"
     )
 
+    parser.add_argument('rating',
+        type=int,
+        required=True,
+        help="UserName cannot be blank"
+    )
+
     def post(self):
         data = JobsRegister.parser.parse_args() #adds constraints to data
 
-        if JobsModel.find_job_by_id(data['title']):
-           return {'message': 'job exists already'}
+        # if JobsModel.find_job_by_title(data['title']):
+        #    return {'message': 'job exists already'}
 
         job = JobsModel(**data)
         # for each value on data insert data
