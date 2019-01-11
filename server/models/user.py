@@ -44,4 +44,4 @@ class UserModel(db.Model):
 
 
     def json(self):
-        return {'username': self.username, 'password': self.password3 }
+        return {'username': self.username, 'password': self.password, 'profile_picture': self.profile_picture }
