@@ -23,6 +23,7 @@ class UserProfile extends React.Component{
 
   renderUserProfile = () => {
     const { user_data } = this.props.userData.payload.data;
+    console.log(user_data);
     return(
      <Card
       className={"user-profile"}
@@ -36,7 +37,7 @@ class UserProfile extends React.Component{
   };
 
   renderMessageLink = () => {
-    const { user_data } = this.props.userData.payload.data;
+    const {user_data} = this.props.userData.payload.data;
     return(
     <div className="user-profile-messaging-link">
       <Link to={"/Messaging"}>
@@ -47,32 +48,62 @@ class UserProfile extends React.Component{
   };
 
   renderSkillsTable = () => {
-    {
-    // const { user_data } = this.props.userData.payload.data;
-    // return(
-    //   <Table collapsing>
-    //    <Table.Header>
-    //      <Table.Row>
-    //      <Table.HeaderCell>
-    //          Skills
-    //      </Table.HeaderCell>
-    //      </Table.Row>
-    //    </Table.Header>
-    //    <Table.Body>
-    //    { skills.map((obj, index) => {
-    //      return(
-    //        <Table.Row key={index}>
-    //          <Table.Cell>
-    //           { obj }
-    //          </Table.Cell>
-    //        </Table.Row>
-    //      )
-    //    })}
-    //    </Table.Body>
-    //  </Table>
-    // )
-  }
+    const {skills} = this.props.userData.payload.data;
+    console.log(skills);
 
+    if(!skills || !skills.length){
+      return(
+          <Table collapsing>
+       <Table.Header>
+         <Table.Row>
+         <Table.HeaderCell>
+             Skills
+         </Table.HeaderCell>
+         </Table.Row>
+       </Table.Header>
+       <Table.Body>
+           <Table.Row>
+             <Table.Cell>
+              No Skills added
+             </Table.Cell>
+           </Table.Row>
+           <Table.Row>
+             <Table.Cell>
+              No Skills added
+             </Table.Cell>
+           </Table.Row>
+           <Table.Row>
+             <Table.Cell>
+              No Skills added
+             </Table.Cell>
+           </Table.Row>
+       </Table.Body>
+     </Table>
+      )
+    } else {
+      return(
+        <Table collapsing>
+         <Table.Header>
+           <Table.Row>
+           <Table.HeaderCell>
+               Skills
+           </Table.HeaderCell>
+           </Table.Row>
+         </Table.Header>
+         <Table.Body>
+         { skills.map((obj, index) => {
+           return(
+             <Table.Row key={index}>
+               <Table.Cell>
+                { obj.description }
+               </Table.Cell>
+             </Table.Row>
+           )
+         })}
+         </Table.Body>
+       </Table>
+     )
+    };
   };
 
   render(){

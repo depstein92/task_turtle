@@ -86,11 +86,11 @@ const getUserProfileLoading = () => {
   };
 };
 
-const getUserProfileInfo = async (username) => { //pass username ??
+const getUserProfileInfo = async (username) => { // TODO pass username ??
 
     getUserProfileLoading();
 
-    const userData = await axios.get("http://127.0.0.1:5000/user_data/dan")
+    const userData = await axios.get("http://127.0.0.1:5000/user_data/dimpt")
                                 .catch(error => console.log(error));
     if (!userData) {
         getUserProfileError();

@@ -9,24 +9,23 @@ import action_name from '../actions/action_names';
               description: 'Place description here',
               profile_picture: 'https://react.semantic-ui.com/images/avatar/large/patrick.png'
             }
-          ]
+          ],
+            skills: [
+            { description: "Loading..."},
+            { description: "Loading..."},
+            { description: "Loading..."},
+            { description: "Loading..."}
+           ]
         }
       }
     }
 
-  const skillList = {
-    skills: [
-      "Trombone",
-      "Yeezy Album",
-      "Getting a Divorce",
-      "Eating Doritos"
-   ]
-  }
+
 
 export default function Landing_Reducer_User_Data(userData=initialValue, data){
   switch(data.type){
     case action_name.GET_USER_DATA_SUCCESS:
-     return { payload: Object.assign({}, skillList, data.payload), error: false, loading: false };
+     return { payload: Object.assign({}, data.payload), error: false, loading: false };
     break;
     case action_name.GET_USER_DATA_LOADING:
       return { loading: true, error: false, data: {} };

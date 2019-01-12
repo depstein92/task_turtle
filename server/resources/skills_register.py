@@ -1,6 +1,6 @@
 import sqlite3
 from flask_restful import Resource, reqparse
-from model.skills import SkillsModel
+from models.skills import SkillsModel
 
 class SkillsRegister(Resource):
 
@@ -17,7 +17,6 @@ class SkillsRegister(Resource):
         required=True,
         help="Description cannot be blank"
     )
-
 
     def post(self):
 
