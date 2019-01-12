@@ -22,16 +22,17 @@ class UserProfile extends React.Component{
   };
 
   renderUserProfile = () => {
-    const { user_data } = this.props.userData.payload.data;
-    console.log(user_data);
+    const { user_data } = this.props.userData.payload.data,
+          defaultPhoto = 'https://react.semantic-ui.com/images/avatar/large/patrick.png';
+
     return(
      <Card
+      raised={true}
       className={"user-profile"}
-      image={user_data[0].profile_picture}
+      image={user_data[0].profile_picture ? user_data[0].profile_picture : defaultPhoto}
       header={user_data[0].username}
-      meta='Friend'
       description={user_data[0].description ? user_data[0].description : 'Place description here'}
-      extra={<p>Rating 8 out of 10</p>}
+      extra={this.renderMessageLink()}
      />
     )
   };
@@ -43,6 +44,7 @@ class UserProfile extends React.Component{
       <Link to={"/Messaging"}>
         Click here to message {user_data[0].username}!
       </Link>
+       <p>{user_data[0].rating ? user_data[0].rating : 'No Current Rating' }</p>
     </div>)
 
   };
@@ -112,8 +114,8 @@ class UserProfile extends React.Component{
       <Heading />
       <div className={'user-profile-container'}>
       { this.renderUserProfile() }
-      { this.renderMessageLink() }
-      { this.renderSkillsTable() }
+    {// { this.renderSkillsTable() } 
+    }
       <UserRecentJobs />
       </div>
     </div>

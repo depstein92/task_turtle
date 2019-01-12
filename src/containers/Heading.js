@@ -25,15 +25,16 @@ class Heading extends React.Component{
 
   render() {
     const { activeItem } = this.state;
-  {  //const { name, picture } = this.props.userData.payload;
-  }
+    const { user_data } = this.props.userData.payload.data;
+    const defaultPhoto = 'https://react.semantic-ui.com/images/avatar/large/patrick.png';
+
     return (
       <div data-test='heading'>
        <Menu pointing secondary className={'heading-menu'}>
           <Menu.Menu position='left' className={"heading-menu-profile-image"}>
               <Header as='h2'>
-              <Image circular src={'https://react.semantic-ui.com/images/avatar/large/patrick.png'} />
-
+              <Image circular src={user_data[0].profile_picture ? user_data[0].profile_picture : defaultPhoto} />
+               { user_data[0].username }
               </Header>
           </Menu.Menu>
           <Menu.Menu position='right'>
@@ -50,6 +51,14 @@ class Heading extends React.Component{
               active={activeItem === 'messages'}
               onClick={this.handleItemClick}
              />
+             <Menu.Item
+               name='feed'
+               link={true}
+               as={Link}
+               to="/Feed"
+               active={activeItem === 'feed'}
+               onClick={this.handleItemClick}
+              />
 
             <Menu.Item
               name='logout'

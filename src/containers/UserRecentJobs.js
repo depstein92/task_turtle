@@ -50,7 +50,8 @@ class UserRecentJobs extends React.Component{
               </Card.Content>
             <Card.Content extra>
               <Icon name='star outline' />
-              Rating: {obj.rating}
+              <p>Rating: {obj.rating}</p>
+              <p>Date: {obj.date}</p>
             </Card.Content>
          </Card>
         </div>
@@ -62,6 +63,9 @@ class UserRecentJobs extends React.Component{
   render(){
     return(
     <div className={"user-recent-job-container"}>
+    <h1 className={"user-recent-job-title"}>
+       Recent Jobs
+    </h1>
       { this.renderJobs() }
     </div>
     )
