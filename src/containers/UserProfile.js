@@ -22,12 +22,12 @@ class UserProfile extends React.Component{
   };
 
   renderUserProfile = () => {
-    const { name, picture } = this.props.userData.payload;
+    console.log('props in renderprofile', this.props);
     return(
      <Card
       className={"user-profile"}
       image={'https://react.semantic-ui.com/images/avatar/large/patrick.png'}
-      header={name.first}
+      header={'I am header'}
       meta='Friend'
       description='Name is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat.'
       extra={<p>Rating 8 out of 10</p>}

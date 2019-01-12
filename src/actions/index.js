@@ -86,20 +86,17 @@ const getUserProfileLoading = () => {
   };
 };
 
-
-const getUserProfileInfo = async (username) => {
+const getUserProfileInfo = async (username) => { //in action sendLoginRequest
     getUserProfileLoading();
-    const fetchData = await axios.get("http://127.0.0.1:5000/user_data", {
-        username
-    });
-    const data = JSON.parse(fetchData.request.response);
 
-    if (!data) {
+    const userData = await axios.get("http://127.0.0.1:5000/user_data/dan")
+                                .catch(error => console.log(error));
+    if (!userData) {
         getUserProfileError();
     } else {
         return {
             type: "GET_USER_DATA_SUCCESS",
-            payload: data
+            payload: userData
         };
     }
 };

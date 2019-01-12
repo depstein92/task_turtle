@@ -28,7 +28,7 @@ jwt = JWT(app, authenticate, identity)
 api.add_resource(UserRegister, '/register')
 api.add_resource(UserLogin, '/login')
 api.add_resource(JobsRegister, '/jobs')
-api.add_resource(UserData, '/user_data')
+api.add_resource(UserData, '/user_data/<string:username>')
 # api.add_resource(JobsList, '/get')
 
 

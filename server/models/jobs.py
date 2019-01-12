@@ -1,5 +1,7 @@
 import sqlite3
+import random
 from db import db
+from random import randint
 
 class JobsModel(db.Model):
 
@@ -32,6 +34,23 @@ class JobsModel(db.Model):
     @classmethod
     def find_job_by_title(cls, title):
         return cls.query.filter_by(title=title)
+
+    @classmethod
+    def seed(cls, fake):
+
+        titles = [ 'Swept Floor', 'Washed Dishes', 'Cleaned Car', 'Painted Hallway']
+        dates = ['02/03/2019', '02/04/2019', '02/05/2018', '02/06/2018']
+
+        jobs = JobsModel(
+            username = fake.name(),
+            client = 'Bill Clinton',
+            title = random.choice(titles),
+            description = faker.text(),
+            dates = random.choice(dates),
+            rating = randint(0, 9)
+        )
+        jobs.save_to_db()
+
 
     def save_to_db(self):
         db.session.add(self)

@@ -19,13 +19,12 @@ class UserData(Resource):
         help="Profile Picture Field cannot be blank"
     )
 
-    def get(self):
-        data = UserData.parser.parse_args()
+    def get(self, username):
         user = UserModel
 
-        if JobsModel.find_job_by_username(data['username']):
-            jobs = [ job.json() for job in JobsModel.query.filter_by(username=data['username'])]
-            user_data = [ user.json() for user in UserModel.query.filter_by(username=data['username']) ]
+        if JobsModel.find_job_by_username(username):
+            jobs = [ job.json() for job in JobsModel.query.filter_by(username=username)]
+            user_data = [ user.json() for user in UserModel.query.filter_by(username=username) ]
             return {
             'jobs' : jobs,
             'user_data': user_data
@@ -46,35 +45,3 @@ class UserData(Resource):
         user.save_to_db()
 
         return user.json()
-
-
-
-# class UserProfile(Resource):
-#
-#     parser = reqparse.RequestParser()
-#
-#     parser.add_argument('username',
-#         type=str,
-#         required=True,
-#         help="Username Field cannot be blank"
-#     )
-#
-#     parser.add_argument('profile_picture',
-#         type=str,
-#         required=False,
-#         help="Username Field cannot be blank"
-#     )
-#
-#     def put(self):
-#         data = Userdata.parser.parse_args()
-#
-#         user = UserModel.find_by_username(data['username'])
-#
-#         if user:
-#             user.profile_picture = data['profile_picture']
-#         else:
-#             return {'message': 'user {} could not be found'.format(username)}
-#
-#         user.save_to_db()
-#
-#         return user.json()

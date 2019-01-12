@@ -1,6 +1,7 @@
 import sqlite3
 from db import db
 from sqlalchemy.orm import relationship
+from random import randint
 
 class UserModel(db.Model):
 
@@ -33,6 +34,17 @@ class UserModel(db.Model):
     @classmethod
     def find_by_id(cls, _id):
         return cls.query.filter_by(id=_id).first()
+
+    @classmethod
+    def seed(cls, fake):
+        user = UserModel(
+            username = fake.name(),
+            password = 'dan',
+            profile_picture = 'https://react.semantic-ui.com/images/avatar/large/matthew.png',
+            rating = randint(0, 9),
+            description = fake.text()
+        )
+        user.save_to_db()
 
     def save_to_db(self):
         db.session.add(self)

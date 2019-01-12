@@ -31,8 +31,8 @@ class Heading extends React.Component{
        <Menu pointing secondary className={'heading-menu'}>
           <Menu.Menu position='left' className={"heading-menu-profile-image"}>
               <Header as='h2'>
-              <Image circular src={picture.thumbnail} />
-              { name.first }
+              <Image circular src={'https://react.semantic-ui.com/images/avatar/large/patrick.png'} />
+          
               </Header>
           </Menu.Menu>
           <Menu.Menu position='right'>
