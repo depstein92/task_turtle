@@ -39,7 +39,7 @@ class JobsRegister(Resource):
     parser.add_argument('rating',
         type=int,
         required=True,
-        help="UserName cannot be blank"
+        help="Rating cannot be blank"
     )
 
     def post(self):

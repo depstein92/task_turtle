@@ -86,7 +86,8 @@ const getUserProfileLoading = () => {
   };
 };
 
-const getUserProfileInfo = async (username) => { //in action sendLoginRequest
+const getUserProfileInfo = async (username) => { //pass username ??
+
     getUserProfileLoading();
 
     const userData = await axios.get("http://127.0.0.1:5000/user_data/dan")
@@ -114,8 +115,6 @@ const logOutUser = () => {
     payload: data
   }
 }
-
-
 
 /**********MESSAGING APP INBOX***********/
 

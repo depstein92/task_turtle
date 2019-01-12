@@ -25,14 +25,15 @@ class Heading extends React.Component{
 
   render() {
     const { activeItem } = this.state;
-    const { name, picture } = this.props.userData.payload;
+  {  //const { name, picture } = this.props.userData.payload;
+  }
     return (
       <div data-test='heading'>
        <Menu pointing secondary className={'heading-menu'}>
           <Menu.Menu position='left' className={"heading-menu-profile-image"}>
               <Header as='h2'>
               <Image circular src={'https://react.semantic-ui.com/images/avatar/large/patrick.png'} />
-          
+
               </Header>
           </Menu.Menu>
           <Menu.Menu position='right'>

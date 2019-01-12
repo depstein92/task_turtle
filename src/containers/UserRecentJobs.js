@@ -15,25 +15,28 @@ class UserRecentJobs extends React.Component{
   };
 
   render(){
-    const { jobs } = this.props.userData.payload;
+    //const { jobs } = this.props.userData.payload;
 
     return(
       <div className={"user-recent-job-container"}>
-     { Object.values(jobs).map((obj, index) => {
-        return(
-       <div className={"jobs-completed-post"} key={index}>
-          <Card>
-            <Card.Content header={`Customer ${obj.customer}`} />
-            <Card.Content description={obj.job_description} />
-            <Card.Content extra>
-              <Icon name='star outline' />
-              Rating: {obj.rating}
-            </Card.Content>
-         </Card>
-        </div>
-          )
-       }) }
+      {
+     // { Object.values(jobs).map((obj, index) => {
+     //    return(
+     //   <div className={"jobs-completed-post"} key={index}>
+     //      <Card>
+     //        <Card.Content header={`Customer ${obj.customer}`} />
+     //        <Card.Content description={obj.job_description} />
+     //        <Card.Content extra>
+     //          <Icon name='star outline' />
+     //          Rating: {obj.rating}
+     //        </Card.Content>
+     //     </Card>
+     //    </div>
+     //      )
+     //   }) }
+   }
     </div>
+
     )
   };
 }

@@ -25,9 +25,11 @@ class UserData(Resource):
         if JobsModel.find_job_by_username(username):
             jobs = [ job.json() for job in JobsModel.query.filter_by(username=username)]
             user_data = [ user.json() for user in UserModel.query.filter_by(username=username) ]
+            skills = [skill.json() for skill in SkillsModel.query.filter_by(username=username)]
             return {
             'jobs' : jobs,
-            'user_data': user_data
+            'user_data': user_data,
+            'skills': skills
             }
         else:
             return {'message': 'no available jobs found'}

@@ -22,53 +22,57 @@ class UserProfile extends React.Component{
   };
 
   renderUserProfile = () => {
-    console.log('props in renderprofile', this.props);
+    const { user_data } = this.props.userData.payload.data;
     return(
      <Card
       className={"user-profile"}
-      image={'https://react.semantic-ui.com/images/avatar/large/patrick.png'}
-      header={'I am header'}
+      image={user_data[0].profile_picture}
+      header={user_data[0].username}
       meta='Friend'
-      description='Name is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat.'
+      description={user_data[0].description ? user_data[0].description : 'Place description here'}
       extra={<p>Rating 8 out of 10</p>}
      />
     )
   };
 
   renderMessageLink = () => {
-    const { name } = this.props.userData.payload;
+    const { user_data } = this.props.userData.payload.data;
     return(
     <div className="user-profile-messaging-link">
       <Link to={"/Messaging"}>
-        Click here to message!
+        Click here to message {user_data[0].username}!
       </Link>
     </div>)
+
   };
 
   renderSkillsTable = () => {
-    const { skills } = this.props.userData.payload;
-    return(
-      <Table collapsing>
-       <Table.Header>
-         <Table.Row>
-         <Table.HeaderCell>
-             Skills
-         </Table.HeaderCell>
-         </Table.Row>
-       </Table.Header>
-       <Table.Body>
-       { skills.map((obj, index) => {
-         return(
-           <Table.Row key={index}>
-             <Table.Cell>
-              { obj }
-             </Table.Cell>
-           </Table.Row>
-         )
-       })}
-       </Table.Body>
-     </Table>
-    )
+    {
+    // const { user_data } = this.props.userData.payload.data;
+    // return(
+    //   <Table collapsing>
+    //    <Table.Header>
+    //      <Table.Row>
+    //      <Table.HeaderCell>
+    //          Skills
+    //      </Table.HeaderCell>
+    //      </Table.Row>
+    //    </Table.Header>
+    //    <Table.Body>
+    //    { skills.map((obj, index) => {
+    //      return(
+    //        <Table.Row key={index}>
+    //          <Table.Cell>
+    //           { obj }
+    //          </Table.Cell>
+    //        </Table.Row>
+    //      )
+    //    })}
+    //    </Table.Body>
+    //  </Table>
+    // )
+  }
+
   };
 
   render(){
