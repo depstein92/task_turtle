@@ -14,32 +14,59 @@ class UserRecentJobs extends React.Component{
     this.state = { data: {} }
   };
 
-  render(){
-    //const { jobs } = this.props.userData.payload;
+  renderJobs = () => {
 
-    return(
-      <div className={"user-recent-job-container"}>
-      {
-     // { Object.values(jobs).map((obj, index) => {
-     //    return(
-     //   <div className={"jobs-completed-post"} key={index}>
-     //      <Card>
-     //        <Card.Content header={`Customer ${obj.customer}`} />
-     //        <Card.Content description={obj.job_description} />
-     //        <Card.Content extra>
-     //          <Icon name='star outline' />
-     //          Rating: {obj.rating}
-     //        </Card.Content>
-     //     </Card>
-     //    </div>
-     //      )
-     //   }) }
+    const { jobs } = this.props.userData.payload.data;
+
+    if(!jobs || !jobs.length){
+      return(
+      <div className={"jobs-completed-post"}>
+        <Card>
+          <Card.Content>
+          No Jobs Available
+          </Card.Content>
+        </Card>
+        <Card>
+          <Card.Content>
+          No Jobs Available
+          </Card.Content>
+        </Card>
+        <Card>
+          <Card.Content>
+          No Jobs Available
+          </Card.Content>
+        </Card>
+      </div>
+      )
+    } else {
+      return jobs.map((obj, index) => {
+        return(
+       <div className={"jobs-completed-post"} key={index}>
+          <Card>
+            <Card.Content header={`Customer ${obj.client}`} />
+            <Card.Content header={`${obj.title}`} />
+              <Card.Content extra>
+              {obj.description}
+              </Card.Content>
+            <Card.Content extra>
+              <Icon name='star outline' />
+              Rating: {obj.rating}
+            </Card.Content>
+         </Card>
+        </div>
+      )
+    })
    }
-    </div>
+ }
 
+  render(){
+    return(
+    <div className={"user-recent-job-container"}>
+      { this.renderJobs() }
+    </div>
     )
   };
-}
+};
 
 const mapStateToProps = state => {
   return {
