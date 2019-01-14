@@ -102,28 +102,28 @@ const getUserProfileInfo = async (username) => { // TODO pass username ??
     };
 };
 
-/************GET JOB FEED**************/
+/************GET JOB POST FEED**************/
 
-const getAllJobsLoading = () => {
+const getAllPostsLoading = () => {
   return {
     type: actionNames['GET_ALL_POSTS_LOADING'],
     payload: { loading: true }
   };
 };
 
-const getAllJobsError = () => {
+const getAllPostsError = () => {
   return {
     type: actionNames['GET_ALL_POSTS_ERROR'],
     payload: { error: true }
   };
 };
 
-const getAllJobsSuccess = async () => {
+const getAllPostsSuccess = async () => {
 
     const postsData = await axios.get("http://127.0.0.1:5000/job_posts")
                                  .catch(error => console.log(error));
     if(!postsData) {
-        getAllJobsError();
+        getAllPostsError();
     }else {
         return {
             type: actionNames['GET_ALL_POSTS_SUCCESS'],
@@ -171,5 +171,5 @@ export default {
   logOutUser,
   getUsersMessages,
   registerUser,
-  getAllJobsSuccess
+  getAllPostsSuccess
 };

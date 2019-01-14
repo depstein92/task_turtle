@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import actions from '../actions/index';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 class Feed extends React.Component{
   constructor(props){
@@ -9,7 +11,8 @@ class Feed extends React.Component{
   }
 
   componentDidMount(){
-
+   const {getAllPosts} = this.props;
+   getAllPosts();
   }
 
   render(){
@@ -19,6 +22,10 @@ class Feed extends React.Component{
       </div>
     )
   }
+}
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({ getAllPosts: actions['getAllPostsSuccess']}, dispatch);
 }
 
 export default Feed;
