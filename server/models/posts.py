@@ -14,10 +14,11 @@ class PostsModel(db.Model):
     location = db.Column(db.String(180), nullable=False)
     date = db.Column(db.String(40), nullable=False)
 
-    def __init__(self, client, title, description, date):
+    def __init__(self, client, title, description,location, date):
         self.client = client
         self.title = title
         self.description = description
+        self.location = location
         self.date = date
 
     def json(self):

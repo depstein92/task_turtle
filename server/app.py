@@ -10,7 +10,7 @@ from resources.user_login import UserLogin
 from resources.jobs_register import JobsRegister
 from resources.user_data import UserData
 from resources.skills_register import SkillsRegister
-# from resources.jobs_register import JobsList
+from resources.posts_register import PostsRegister
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db' #sqllite is exchangeable
@@ -31,8 +31,7 @@ api.add_resource(UserLogin, '/login')
 api.add_resource(JobsRegister, '/jobs')
 api.add_resource(UserData, '/user_data/<string:username>')
 api.add_resource(SkillsRegister, '/skills')
-# api.add_resource(JobsList, '/get')
-
+api.add_resource(PostsRegister, '/job_posts')
 
 # api.add_resource(Item, '/item/<string:name>')
 # api.add_resource(ItemList, '/items')

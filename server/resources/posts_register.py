@@ -19,7 +19,7 @@ class PostsRegister(Resource):
         help="Title cannot be blank"
     )
 
-    parser.add_argument('decription',
+    parser.add_argument('description',
         type=str,
         required=True,
         help="Description Field cannot be blank"
@@ -48,4 +48,4 @@ class PostsRegister(Resource):
         return { "message": "Post added"}
 
     def get(self):
-        return {'posts' : [ post.json() for post in PostsModel.query.all() ]}     
+        return {'posts' : [ post.json() for post in PostsModel.query.all() ]}
