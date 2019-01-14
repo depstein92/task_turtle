@@ -20,7 +20,8 @@ function App() {
         <Route exact path="/Messaging" component={Messaging} />
         <Route exact path="/Messaging_Inbox" component={Messaging_Inbox} />
         <Route exact path="/Feed" component={Feed} />
-        <Footer />
+        { //<Footer /> 
+        }
       </div>
     </Router>
     );

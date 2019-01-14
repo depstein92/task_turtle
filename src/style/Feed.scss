@@ -1,0 +1,22 @@
+.feed-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10vh;
+  height: 100%;
+  width: 100vw;
+
+  &:first-child(){
+    display: flex;
+    flex-direction: column;
+  }
+  .items{
+    .post-item{
+      margin-bottom: 25px;
+      .content{
+        width: 50vw;
+      }
+    }
+  }
+
+}

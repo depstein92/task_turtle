@@ -11,7 +11,7 @@ const rootReducer = combineReducers({
   userData: Landing_Reducer_User_Data,
   messages_inbox: Message_Inbox_Reducer,
   register_message: Landing_Register_User_Reducer,
-  jobs_posts: Feed_Reducer
+  jobPosts: Feed_Reducer
 });
 
 export default rootReducer;

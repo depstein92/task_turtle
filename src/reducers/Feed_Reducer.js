@@ -1,7 +1,9 @@
 import actionNames from '../actions/action_names';
 
 const initialValue = {
-  posts: [
+  payload: {
+      data:{
+        posts: [
     {
       "client": "Loading...",
       "title": "Loading...",
@@ -20,7 +22,9 @@ const initialValue = {
       "description": "Loading...",
       "date": "Loading..."
     }
-  ]
+   ]
+  }
+ }
 }
 
 export default function Feed_Reducer(state=initialValue, data){
