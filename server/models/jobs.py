@@ -69,3 +69,4 @@ class JobsModel(db.Model):
         'date': self.date,
         'rating': self.rating
          }
+    

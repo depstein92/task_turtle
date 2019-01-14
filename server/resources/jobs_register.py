@@ -45,13 +45,7 @@ class JobsRegister(Resource):
     def post(self):
         data = JobsRegister.parser.parse_args() #adds constraints to data
 
-        # if JobsModel.find_job_by_title(data['title']):
-        #    return {'message': 'job exists already'}
-
         job = JobsModel(**data)
-        # for each value on data insert data
-        #this is because of dataparser
-        #Equally we could have put UserModel(data['username'], data['password'])
 
         job.save_to_db()
 
@@ -59,4 +53,4 @@ class JobsRegister(Resource):
 
     class JobsList(Resource):
         def get(self):
-            return {'job' : [ job.json() for job in JobsModel.query.all() ]}
+            return {'jobs' : [ job.json() for job in JobsModel.query.all() ]}

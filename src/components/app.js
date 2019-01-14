@@ -8,19 +8,21 @@ import Authenticated_Routes from '../containers/Authenticated_Routes';
 import Footer from '../components/Footer';
 import Messaging from '../containers/Messaging';
 import Messaging_Inbox from '../containers/Messaging_Inbox';
+import Feed from '../containers/Feed';
 
 function App() {
   return (
-<Router>
-  <div>
-    <Authenticated_Routes />
-    <Route exact path="/UserProfile" component={UserProfile} />
-    <Route exact path="/" component={Landing} />
-    <Route exact path="/Messaging" component={Messaging} />
-    <Route exact path="/Messaging_Inbox" component={Messaging_Inbox} />
-    <Footer />
-  </div>
-</Router>
+    <Router>
+      <div>
+        <Authenticated_Routes />
+        <Route exact path="/UserProfile" component={UserProfile} />
+        <Route exact path="/" component={Landing} />
+        <Route exact path="/Messaging" component={Messaging} />
+        <Route exact path="/Messaging_Inbox" component={Messaging_Inbox} />
+        <Route exact path="/Feed" component={Feed} />
+        <Footer />
+      </div>
+    </Router>
     );
 };
 
