@@ -99,7 +99,37 @@ const getUserProfileInfo = async (username) => { // TODO pass username ??
             type: "GET_USER_DATA_SUCCESS",
             payload: userData
         };
-    }
+    };
+};
+
+/************GET JOB FEED**************/
+
+const getAllJobsLoading = () => {
+  return {
+    type: actionNames['GET_ALL_POSTS_LOADING'],
+    payload: { loading: true }
+  };
+};
+
+const getAllJobsError = () => {
+  return {
+    type: actionNames['GET_ALL_POSTS_ERROR'],
+    payload: { error: true }
+  };
+};
+
+const getAllJobsSuccess = async () => {
+
+    const postsData = await axios.get("http://127.0.0.1:5000/job_posts")
+                                 .catch(error => console.log(error));
+    if(!postsData) {
+        getAllJobsError();
+    }else {
+        return {
+            type: actionNames['GET_ALL_POSTS_SUCCESS'],
+            payload: postsData
+        };
+    };
 };
 
 
@@ -140,5 +170,6 @@ export default {
   getUserProfileInfo,
   logOutUser,
   getUsersMessages,
-  registerUser
+  registerUser,
+  getAllJobsSuccess
 };
