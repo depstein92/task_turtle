@@ -2,9 +2,44 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   margin-top: 10vh;
   height: 100%;
   width: 100vw;
+
+  h1{
+    margin-bottom: 50px;
+    font-weight: lighter;
+    font-size: 10vh;
+    text-decoration: underline;
+  }
+
+  .form-toggle{
+    font-weight: bold;
+    text-decoration: underline;
+    margin-bottom: 35px;
+    &:hover{
+      cursor: pointer;
+    }
+  }
+
+  .form-exit-container{
+    .form-exit-icon{
+      width: 100%;
+      display: flex;
+      align-items: end;
+      justify-content: flex-end;
+      margin-bottom: 10px;
+
+      &:hover{
+        cursor: pointer;
+      }
+    }
+  }
+
+  .posts-form{
+    margin-bottom: 100px;
+  }
 
   &:first-child(){
     display: flex;

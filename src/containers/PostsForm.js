@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {
   Button,
   Checkbox,
@@ -6,11 +6,13 @@ import {
   Input,
   Radio,
   Select,
-  TextArea
+  TextArea,
+  Modal,
+  Header
 } from 'semantic-ui-react';
 
 
-class PostsFrom extends React{
+class PostsForm extends React.Component{
 
   constructor(props){
     super(props);
@@ -33,6 +35,18 @@ class PostsFrom extends React{
   onSubmit = e => {
     e.preventDefault();
   }
+
+  termsAndConditions = () => (
+    <Modal trigger={<Button>Terms and Conditions</Button>}>
+      <Modal.Content image>
+        <Modal.Description>
+          <Header>Terms and Conditions</Header>
+          <p>Lorem Ispum...</p>
+        </Modal.Description>
+      </Modal.Content>
+    </Modal>
+  )
+
 
   render(){
     return(
@@ -70,10 +84,9 @@ class PostsFrom extends React{
              name="description"
              placeholder='Place description here'
              />
-            <Form.Field
-             control={Checkbox}
-             label='I agree to the Terms and Conditions'
-             />
+            <Form.Field>
+              { this.termsAndConditions() }
+            </Form.Field>
             <Form.Field control={Button}>Submit</Form.Field>
        </Form>
       </div>

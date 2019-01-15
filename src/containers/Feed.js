@@ -2,20 +2,21 @@ import React, {Component} from 'react';
 import actions from '../actions/index';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Item, Button, Icon, Label } from 'semantic-ui-react';
+import { Item, Button, Icon, Label, Modal } from 'semantic-ui-react';
+import PostsForm from './PostsForm';
 import '../style/Feed.scss';
 
 class Feed extends React.Component{
-  constructor(props){
-    super(props);
 
-    this.state = { data: 0 }
-  }
+  state = { isClient: false }
 
   componentDidMount(){
    const {getAllPosts} = this.props;
    getAllPosts();
   }
+
+  togglePostsFormTrue = () => this.setState({ isClient: true });
+  togglePostsFormFalse = () => this.setState({ isClient: false });
 
   renderPosts = () => {
     const {posts} = this.props.posts.payload.data
@@ -50,11 +51,30 @@ class Feed extends React.Component{
 
   render(){
     return(
-      <div className="feed-container">
-        <Item.Group divided>
-          { this.renderPosts() }
-        </Item.Group>
-      </div>
+       <div className="feed-container">
+          <h1> Jobs </h1>
+          {
+            this.state.isClient ?
+            <div
+             onClick={this.togglePostsFormFalse}
+             className="form-toggle">
+              Need a Job done? Click here.
+            </div>
+              :
+            <div className="form-exit-container">
+             <div className="form-exit-icon">
+              <Icon
+               onClick={this.togglePostsFormTrue}
+               name="close"
+               />
+              </div>
+              <PostsForm />
+            </div>
+          }
+          <Item.Group divided>
+            { this.renderPosts() }
+          </Item.Group>
+       </div>
     )
   }
 }
