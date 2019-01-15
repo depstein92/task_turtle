@@ -10,6 +10,9 @@ import {
   Modal,
   Header
 } from 'semantic-ui-react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux'
+import actions from '../actions/index';
 
 
 class PostsForm extends React.Component{
@@ -34,6 +37,7 @@ class PostsForm extends React.Component{
 
   onSubmit = e => {
     e.preventDefault();
+
   }
 
   termsAndConditions = () => (
@@ -46,7 +50,6 @@ class PostsForm extends React.Component{
       </Modal.Content>
     </Modal>
   )
-
 
   render(){
     return(
@@ -93,5 +96,9 @@ class PostsForm extends React.Component{
     )
   }
 }
+
+// const mapDispatchToProps = dispatch => { //acttions here
+//   return bindActionCreators({}, dispatch);
+// }
 
 export default PostsForm;

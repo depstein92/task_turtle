@@ -111,25 +111,23 @@ const getAllPostsLoading = () => {
   };
 };
 
-const getAllPostsError = () => {
+const getAllPostsError = error => {
+  console.log(error);
   return {
     type: actionNames['GET_ALL_POSTS_ERROR'],
-    payload: { error: true }
+    payload: error
   };
 };
 
 const getAllPostsSuccess = async () => {
 
-    const postsData = await axios.get("http://127.0.0.1:5000/job_posts")
-                                 .catch(error => console.log(error));
-    if(!postsData) {
-        getAllPostsError();
-    }else {
-        return {
-            type: actionNames['GET_ALL_POSTS_SUCCESS'],
-            payload: postsData
-        };
-    };
+  const postsData = await axios.get("http://127.0.0.1:5000/job_posts")
+                               .catch(error => getAllPostsError(error));
+
+  return {
+      type: actionNames['GET_ALL_POSTS_SUCCESS'],
+      payload: postsData
+  };
 };
 
 
@@ -142,6 +140,44 @@ const logOutUser = () => {
   };
   return{
     type: "SEND_LOGOUT_SUCCESS",
+    payload: data
+  }
+}
+
+/***************POST JOBS***************/
+
+const postJobsToFeedFailure = error => {
+  return {
+    type: actionNames.POST_JOB_TO_FEED_FAILURE,
+    payload: error
+  }
+}
+
+const postJobsToFeedLoading = () => {
+  return{
+    type: actionNames.POST_JOB_TO_FEED_LOADING,
+    payload: { loading: true }
+  }
+}
+
+const postJobsToFeedSuccess = (...params) => {
+
+  postJobsToFeedLoading();
+
+  const data = axios.post('http://127.0.0.1:5000/jobs', {
+    client: params[0],
+    title: params[1],
+    description: params[2],
+    location: params[3],
+    data: params[4]
+  })
+  .catch(error => {
+    console.log(error);
+    postJobsToFeedFailure(error);
+  });
+
+  return{
+    type: actionNames.POST_JOB_TO_FEED_SUCCESS,
     payload: data
   }
 }
@@ -166,10 +202,11 @@ const getUsersMessages = () => {
 }
 
 export default {
-  sendLoginRequest,
   getUserProfileInfo,
-  logOutUser,
+  getAllPostsSuccess,
   getUsersMessages,
+  logOutUser,
+  sendLoginRequest,
   registerUser,
-  getAllPostsSuccess
+  postJobsToFeedSuccess
 };
