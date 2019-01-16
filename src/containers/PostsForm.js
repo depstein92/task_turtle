@@ -8,7 +8,8 @@ import {
   Select,
   TextArea,
   Modal,
-  Header
+  Header,
+  Message
 } from 'semantic-ui-react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux'
@@ -29,7 +30,9 @@ class PostsForm extends React.Component{
       titleError: false,
       locationError: false,
       dateError: false,
-      descriptionError: false
+      descriptionError: false,
+      errorMessage: '',
+      isFormError: false
     }
   }
 
@@ -41,6 +44,7 @@ class PostsForm extends React.Component{
 
   onSubmit = e => {
     const {toggleForm, postJob} = this.props;
+
     const {
       userName,
       title,
@@ -48,7 +52,9 @@ class PostsForm extends React.Component{
       date,
       description
     } = this.state;
+
      const isFormValid = this.validateForm();
+
      if(isFormValid){
        toggleForm();
        postJob(userName, title, description, location, date);
@@ -65,24 +71,39 @@ class PostsForm extends React.Component{
       } = this.state;
 
     if(userName === ''){
-      this.setState({userNameError: true })
-      console.log('userName is empty');
+      this.setState({
+        userNameError: true,
+        isFormError: true,
+        errorMessage: 'User name is a Required Field',
+      })
       return false;
     } else if(title === ''){
-      this.setState({ titleError: true })
-      console.log('title is empty');
+      this.setState({
+        titleError: true,
+        isFormError: true,
+        errorMessage: 'Title is a Required Field'
+      })
       return false;
     } else if(location === ''){
-      this.setState({ locationError: true })
-      console.log('location is empty');
+      this.setState({
+        locationError: true,
+        isFormError: true,
+        errorMessage: 'Location is a Required Field'
+      })
       return false;
     } else if(date === ''){
-      this.setState({ dateError: true})
-      console.log('date is empty');
+      this.setState({
+        dateError: true,
+        isFormError: true,
+        errorMessage: 'Location is a Required Field'
+      })
       return false;
     } else if(description === ''){
-      this.setState({ descriptionError: true});
-      console.log('description is empty');
+      this.setState({
+        descriptionError: true,
+        isFormError: true,
+        errorMessage: 'Description is a Required Field'
+      });
       return false;
     } else {
       this.setState({
@@ -90,7 +111,8 @@ class PostsForm extends React.Component{
         titleError: false,
         locationError: false,
         dateError: false,
-        descriptionError: false
+        descriptionError: false,
+        isFormError: false,
       });
       return true;
     }
@@ -160,6 +182,15 @@ class PostsForm extends React.Component{
               Submit
               </Button>
        </Form>
+       {
+         this.state.isFormError ?
+           <Message negative>
+               <Message.Header>
+                { this.state.errorMessage}
+               </Message.Header>
+             </Message> :
+            <div />
+       }
       </div>
     )
   }
