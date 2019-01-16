@@ -44,16 +44,8 @@ class PostsForm extends React.Component{
 
   onSubmit = e => {
     const {toggleForm, postJob} = this.props;
-
-    const {
-      userName,
-      title,
-      location,
-      date,
-      description
-    } = this.state;
-
-     const isFormValid = this.validateForm();
+    const {userName,title,location,date,description} = this.state;
+    const isFormValid = this.validateForm();
 
      if(isFormValid){
        toggleForm();
@@ -62,13 +54,7 @@ class PostsForm extends React.Component{
   }
 
   validateForm = () => {
-    const {
-        userName,
-        title,
-        location,
-        date,
-        description
-      } = this.state;
+    const {userName,title,location,date,description} = this.state;
 
     if(userName === ''){
       this.setState({
