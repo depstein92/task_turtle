@@ -21,19 +21,30 @@ import action_name from '../actions/action_names';
     }
 
 
-
-export default function Landing_Reducer_User_Data(userData=initialValue, data){
-  switch(data.type){
-    case action_name.GET_USER_DATA_SUCCESS:
-     return { payload: Object.assign({}, data.payload), error: false, loading: false };
-    break;
-    case action_name.GET_USER_DATA_LOADING:
-      return { loading: true, error: false, data: {} };
-    break;
-    case action_name.GET_USER_DATA_ERROR:
-     return { loading: false, error: true, data: {} };
-    break;
-    default:
-     return initialValue;
-  }
+export default function Landing_Reducer_User_Data(userData = initialValue, data) {
+    switch (data.type) {
+        case action_name.GET_USER_DATA_SUCCESS:
+            return {
+                payload: Object.assign({}, data.payload),
+                error: false,
+                loading: false
+            };
+            break;
+        case action_name.GET_USER_DATA_LOADING:
+            return {
+                loading: true,
+                error: false,
+                data: {}
+            };
+            break;
+        case action_name.GET_USER_DATA_ERROR:
+            return {
+                loading: false,
+                error: true,
+                data: {}
+            };
+            break;
+        default:
+            return initialValue;
+    }
 }

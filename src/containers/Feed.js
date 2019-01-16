@@ -5,10 +5,14 @@ import { bindActionCreators } from 'redux';
 import { Item, Button, Icon, Label, Modal } from 'semantic-ui-react';
 import PostsForm from './PostsForm';
 import '../style/Feed.scss';
+import { DotLoader } from 'react-spinners';
 
 class Feed extends React.Component{
 
-  state = { isClient: false }
+  state = {
+    isClient: false,
+    jobsAdded: false
+  }
 
   componentDidMount(){
    const {getAllPosts} = this.props;
@@ -17,10 +21,12 @@ class Feed extends React.Component{
 
   togglePostsFormTrue = () => this.setState({ isClient: true });
   togglePostsFormFalse = () => this.setState({ isClient: false });
+  toggleFeedTrue = () => this.setState({ jobsAdded: true });
+  toggleFeedFalse = () => this.setState({ jobsAdded: false });
 
   renderPosts = () => {
     const {posts} = this.props.posts.payload.data
-
+    
     return posts.map((post, index) => {
       return(
      <Item key={index}>
@@ -50,14 +56,16 @@ class Feed extends React.Component{
   }
 
   render(){
+    console.log(this.state.jobsAdded)
     return(
        <div className="feed-container">
           <h1> Jobs </h1>
           {
             this.state.isClient ?
             <div
+             className="form-toggle"
              onClick={this.togglePostsFormFalse}
-             className="form-toggle">
+             >
               Need a Job done? Click here.
             </div>
               :
@@ -68,11 +76,20 @@ class Feed extends React.Component{
                name="close"
                />
               </div>
-              <PostsForm />
+              <PostsForm toggleForm={this.toggleFeedTrue} />
             </div>
           }
           <Item.Group divided>
-            { this.renderPosts() }
+            {
+              this.state.jobsAdded ?
+               <DotLoader
+                  sizeUnit={"px"}
+                  size={150}
+                  color={'#123abc'}
+                  loading={this.state.jobsAdded}
+                /> :
+              this.renderPosts()
+            }
           </Item.Group>
        </div>
     )

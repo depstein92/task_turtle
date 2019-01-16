@@ -50,7 +50,7 @@ export default function Feed_Reducer(state = initialValue, data) {
                 data: []
             };
             break;
-        case :actionNames.POST_JOB_TO_FEED_SUCCESS:
+        case actionNames.POST_JOB_TO_FEED_SUCCESS:
             return {
                 payload: data.payload,
                 error: false,

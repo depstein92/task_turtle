@@ -37,7 +37,7 @@ class PostsForm extends React.Component{
 
   onSubmit = e => {
     e.preventDefault();
-
+    this.props.toggleForm();
   }
 
   termsAndConditions = () => (
@@ -54,7 +54,7 @@ class PostsForm extends React.Component{
   render(){
     return(
       <div className="posts-form">
-        <Form>
+        <Form onSubmit={this.onSubmit}>
             <Form.Group widths='equal'>
               <Form.Field
                 control={Input}
@@ -90,15 +90,17 @@ class PostsForm extends React.Component{
             <Form.Field>
               { this.termsAndConditions() }
             </Form.Field>
-            <Form.Field control={Button}>Submit</Form.Field>
+             <Button type='submit'>
+              Submit
+              </Button>
        </Form>
       </div>
     )
   }
 }
 
-// const mapDispatchToProps = dispatch => { //acttions here
-//   return bindActionCreators({}, dispatch);
-// }
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({ postJob: actions['postJobsToFeedSuccess'] }, dispatch);
+}
 
-export default PostsForm;
+export default connect(null, mapDispatchToProps)(PostsForm);
