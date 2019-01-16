@@ -164,12 +164,12 @@ const postJobsToFeedSuccess = (...params) => {
 
   postJobsToFeedLoading();
 
-  const data = axios.post('http://127.0.0.1:5000/jobs', {
+  const data = axios.post('http://127.0.0.1:5000/job_posts', {
     client: params[0],
     title: params[1],
     description: params[2],
     location: params[3],
-    data: params[4]
+    date: params[4]
   })
   .catch(error => {
     console.log(error);

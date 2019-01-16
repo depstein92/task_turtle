@@ -14,7 +14,6 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux'
 import actions from '../actions/index';
 
-
 class PostsForm extends React.Component{
 
   constructor(props){
@@ -25,7 +24,12 @@ class PostsForm extends React.Component{
       title: '',
       location: '',
       date: '',
-      description: ''
+      description: '',
+      userNameError: false,
+      titleError: false,
+      locationError: false,
+      dateError: false,
+      descriptionError: false
     }
   }
 
@@ -36,8 +40,60 @@ class PostsForm extends React.Component{
   }
 
   onSubmit = e => {
-    e.preventDefault();
-    this.props.toggleForm();
+    const {toggleForm, postJob} = this.props;
+    const {
+      userName,
+      title,
+      location,
+      date,
+      description
+    } = this.state;
+     const isFormValid = this.validateForm();
+     if(isFormValid){
+       toggleForm();
+       postJob(userName, title, description, location, date);
+     }
+  }
+
+  validateForm = () => {
+    const {
+        userName,
+        title,
+        location,
+        date,
+        description
+      } = this.state;
+
+    if(userName === ''){
+      this.setState({userNameError: true })
+      console.log('userName is empty');
+      return false;
+    } else if(title === ''){
+      this.setState({ titleError: true })
+      console.log('title is empty');
+      return false;
+    } else if(location === ''){
+      this.setState({ locationError: true })
+      console.log('location is empty');
+      return false;
+    } else if(date === ''){
+      this.setState({ dateError: true})
+      console.log('date is empty');
+      return false;
+    } else if(description === ''){
+      this.setState({ descriptionError: true});
+      console.log('description is empty');
+      return false;
+    } else {
+      this.setState({
+        userNameError: false,
+        titleError: false,
+        locationError: false,
+        dateError: false,
+        descriptionError: false
+      });
+      return true;
+    }
   }
 
   termsAndConditions = () => (
@@ -61,24 +117,32 @@ class PostsForm extends React.Component{
                 label='Username'
                 name="userName"
                 placeholder='User Name'
+                onChange={this.handleChange}
+                error={this.state.userNameError}
                 />
               <Form.Field
                 control={Input}
                 label='Title'
                 name="title"
                 placeholder='Title'
+                onChange={this.handleChange}
+                error={this.state.titleError}
                 />
               <Form.Field
                 control={Input}
                 label='Location'
                 name="location"
                 placeholder='Location'
+                onChange={this.handleChange}
+                error={this.state.locationError}
                 />
               <Form.Field
                 control={Input}
                 label='Date'
                 name="date"
                 placeholder='Date'
+                onChange={this.handleChange}
+                error={this.state.dateError}
                 />
             </Form.Group>
             <Form.Field
@@ -86,6 +150,8 @@ class PostsForm extends React.Component{
              label='Description of Job'
              name="description"
              placeholder='Place description here'
+             onChange={this.handleChange}
+             error={this.state.descriptionError}
              />
             <Form.Field>
               { this.termsAndConditions() }

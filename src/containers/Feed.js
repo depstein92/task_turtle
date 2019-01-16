@@ -25,8 +25,12 @@ class Feed extends React.Component{
   toggleFeedFalse = () => this.setState({ jobsAdded: false });
 
   renderPosts = () => {
-    const {posts} = this.props.posts.payload.data
-    
+    const {posts, message} = this.props.posts.payload.data
+
+    if(message === "Post added"){
+      this.toggleFeedFalse();
+    }
+
     return posts.map((post, index) => {
       return(
      <Item key={index}>

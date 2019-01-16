@@ -22,7 +22,8 @@ const initialValue = {
       "description": "Loading...",
       "date": "Loading..."
     }
-   ]
+  ],
+  message: 'Jobs not posted'
   }
  }
 }
