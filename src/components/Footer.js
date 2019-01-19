@@ -1,6 +1,5 @@
 import React from 'react';
 import { Segment, Icon } from 'semantic-ui-react';
-import '../style/Footer.scss';
 
 
 export default () => {

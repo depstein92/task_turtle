@@ -7,7 +7,6 @@ import UserRecentJobs from './UserRecentJobs';
 import Heading from './Heading';
 import { Link } from 'react-router-dom';
 import actions from '../actions/index';
-import '../style/UserProfile.scss';
 
 class UserProfile extends React.Component{
   constructor(props){
@@ -114,7 +113,7 @@ class UserProfile extends React.Component{
       <Heading />
       <div className={'user-profile-container'}>
       { this.renderUserProfile() }
-    {// { this.renderSkillsTable() } 
+    {// { this.renderSkillsTable() }
     }
       <UserRecentJobs />
       </div>

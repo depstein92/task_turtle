@@ -1,10 +1,9 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import actions from '../actions/index';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Item, Button, Icon, Label, Modal } from 'semantic-ui-react';
 import PostsForm from './PostsForm';
-import '../style/Feed.scss';
 import { DotLoader } from 'react-spinners';
 
 class Feed extends React.Component{
@@ -60,21 +59,20 @@ class Feed extends React.Component{
   }
 
   render(){
-    console.log(this.state.jobsAdded)
     return(
-       <div className="feed-container">
+       <div className="feed">
           <h1> Jobs </h1>
           {
             this.state.isClient ?
             <div
-             className="form-toggle"
+             className="feed__form-toggle"
              onClick={this.togglePostsFormFalse}
              >
               Need a Job done? Click here.
             </div>
               :
-            <div className="form-exit-container">
-             <div className="form-exit-icon">
+            <div className="feed__exit-container">
+             <div className="feed__exit-container exit-icon">
               <Icon
                onClick={this.togglePostsFormTrue}
                name="close"

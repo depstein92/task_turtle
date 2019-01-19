@@ -6,7 +6,6 @@ import actions from '../actions/index';
 import SignUp from './SignUp';
 import PopularTasks from '../components/PopularTasks';
 
-import '../style/Landing.scss';
 
 class Landing extends React.Component{
   constructor(props) {
@@ -41,8 +40,8 @@ class Landing extends React.Component{
   renderLoginForm = () => {
     const {userName, password} = this.state;
     return(
-      <div className={"landing-container__login-form"}>
-      <h1 className={'signup-title'}>Log In</h1>
+      <div className={"landing__login-form"}>
+      <h1 className={'landing__login-form--title'}>Log In</h1>
       <form onSubmit={this.onSubmit} >
       <label>
         Name:

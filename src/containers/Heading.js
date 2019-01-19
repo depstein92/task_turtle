@@ -4,7 +4,6 @@ import { Menu, Header, Image } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import '../style/Heading.scss';
 import actions from '../actions/index';
 
 class Heading extends React.Component{

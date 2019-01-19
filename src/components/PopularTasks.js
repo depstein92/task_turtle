@@ -1,6 +1,5 @@
 import React from 'react';
 import { Image, Divider, Icon } from 'semantic-ui-react';
-import '../style/Popular_Tasks.scss';
 
 class PopularTasks extends React.Component{
 

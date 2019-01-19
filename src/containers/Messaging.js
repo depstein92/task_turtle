@@ -3,7 +3,6 @@ import { ChatFeed, Message } from 'react-chat-ui';
 import { Menu, Image, Header } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import '../style/Messaging.scss';
 
 class Messaging extends React.Component{
   constructor(props){

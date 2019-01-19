@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux';
 import { Image, Card, Icon } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import actions from '../actions/index';
-import '../style/UserProfile.scss';
 
 
 class UserRecentJobs extends React.Component{
