@@ -30,20 +30,30 @@ class SignUp extends React.Component{
 
   render(){
     return(
-      <div className={'signup-form-container'}>
-        <h1 className={'signup-title'}>Sign Up</h1>
-        <form onSubmit={this.onSubmit} className={"landing-container__signup-form"}>
-        <label>
-          Name: <input name="userName" onChange={this.onEventChange} />
-        </label>
-        <label>
-         Password: <input name="password" onChange={this.onEventChange} />
-        </label>
-         <input type="submit" value="Submit" />
-        </form>
-        <div className={"LogIn-button"} onClick={() => {this.props.onSelectSignUp()}}>
-          Did you mean to Log In? Click here.
-        </div>
+      <div className={'landing__login-form'}>
+          <h1 className={'landing__login-form--title'}>
+            Sign Up
+           </h1>
+            <form onSubmit={this.onSubmit}>
+              <label>
+              Name:
+              <input
+               name="userName"
+               onChange={this.onEventChange}
+               />
+              </label>
+              <label>
+               Password:
+               <input
+                name="password"
+                onChange={this.onEventChange}
+                />
+              </label>
+               <input type="submit" value="Submit" />
+            </form>
+          <div className={"landing__sign-up-button"} onClick={() => {this.props.onSelectSignUp()}}>
+            Did you mean to Log In? Click here.
+          </div>
       </div>
     )
   }

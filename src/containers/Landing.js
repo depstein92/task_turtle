@@ -6,7 +6,6 @@ import actions from '../actions/index';
 import SignUp from './SignUp';
 import PopularTasks from '../components/PopularTasks';
 
-
 class Landing extends React.Component{
   constructor(props) {
     super(props);
@@ -41,22 +40,29 @@ class Landing extends React.Component{
     const {userName, password} = this.state;
     return(
       <div className={"landing__login-form"}>
-      <h1 className={'landing__login-form--title'}>Log In</h1>
-      <form onSubmit={this.onSubmit} >
-      <label>
-        Name:
-        <input name="userName" value={userName} onChange={this.onEventChange} />
-      </label>
-      <label>
-        Password:
-       <input name="password" value={password} onChange={this.onEventChange} />
-      </label>
-       <input type="submit" value="Submit" />
-      </form>
-      <div className={"SignUp-button"} onClick={() => {this.onSelectLogin()}}>
-        Did you mean to Sign Up? Click here.
+        <h1 className={'landing__login-form--title'}>Log In</h1>
+        <form onSubmit={this.onSubmit} >
+          <label>
+              Name:
+              <input name="userName"
+               value={userName}
+               onChange={this.onEventChange}
+               />
+          </label>
+          <label>
+              Password:
+             <input name="password"
+              value={password}
+              onChange={this.onEventChange}
+              />
+          </label>
+           <input type="submit" value="Submit" />
+        </form>
+        <div className={"landing__sign-up-button"}
+            onClick={() => {this.onSelectLogin()}}>
+          Did you mean to Sign Up? Click here.
+        </div>
       </div>
-    </div>
     )
   }
 
@@ -75,11 +81,14 @@ class Landing extends React.Component{
 
   render() {
     return (
-      <div className="landing-container">
-       <Image src={'https://assets.taskrabbit.com/v3/assets/static/heros/homepage/hero-v2-b4c1033eac5b640d40b824503e42aff0.jpg'}
-              />
-        <div className={"landing-container__Heading"}>
-         Welcome to Task Turtle
+      <div className="landing">
+        <div className={"landing hero-image"}>
+
+          <Image src={'https://assets.taskrabbit.com/v3/assets/static/heros/homepage/hero-v2-b4c1033eac5b640d40b824503e42aff0.jpg'}
+                 />
+          <div className="landing hero-image--title">
+           Welcome to Task Turtle
+          </div>
         </div>
         { this.renderLoginOrSignUp() }
         <PopularTasks />

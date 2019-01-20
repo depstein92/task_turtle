@@ -13,7 +13,7 @@ class PopularTasks extends React.Component{
 
    arrayOfImages = [
     <Image src={'../src/style/images/carpentry.jpeg'} size='medium' />,
-    <Image src={'../src/style/images/fix_light_fixture.jpeg'} size='small' />,
+    <Image src={'../src/style/images/fix_light_fixture.jpeg'} size='medium' />,
     <Image src={'../src/style/images/noodle_fish.jpeg'} size='medium' />,
     <Image src={'../src/style/images/painting_walls.jpg'} size='medium' />,
     <Image src={'../src/style/images/plant_flowers.jpeg'} size='medium' />,
@@ -46,27 +46,34 @@ class PopularTasks extends React.Component{
   render(){
     const {count} = this.state;
     return(
-     <div className={"popular-tasks-container"}>
-       <div onClick={this.decrementCount}>
-         <Icon
-          className={"angle left"}
-          id={"count-button"}
-          size={"large"}>
-         </Icon>
-        </div>
-         {this.arrayOfImages[0 + count]}
-         <Divider hidden />
-         {this.arrayOfImages[1 + count]}
-         <Divider hidden />
-         {this.arrayOfImages[2 + count]}
-         <Divider hidden />
-        <div onClick={this.incrementCount}>
-          <Icon
-           className={"angle right"}
-           id={"count-button"}
-           size={"large"}>
-          </Icon>
-        </div>
+    <div>
+       <h1 className="landing__popular-tasks-title">
+         Task in your area
+       </h1>
+      <div className="landing__popular-tasks">
+         <div className="icon"
+           onClick={this.decrementCount}>
+             <Icon
+              className={"angle left"}
+              id={"count-button"}
+              size={"large"}>
+             </Icon>
+            </div>
+             {this.arrayOfImages[0 + count]}
+             <Divider hidden />
+             {this.arrayOfImages[1 + count]}
+             <Divider hidden />
+             {this.arrayOfImages[2 + count]}
+             <Divider hidden />
+            <div className="icon"
+              onClick={this.incrementCount}>
+              <Icon
+               className={"angle right"}
+               id={"count-button"}
+               size={"large"}>
+              </Icon>
+           </div>
+         </div>
       </div>
     )
   };
