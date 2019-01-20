@@ -5,6 +5,7 @@ import { Image, Message } from 'semantic-ui-react';
 import actions from '../actions/index';
 import SignUp from './SignUp';
 import PopularTasks from '../components/PopularTasks';
+import HowItWorks from '../components/HowItWorks';
 
 class Landing extends React.Component{
   constructor(props) {
@@ -92,6 +93,7 @@ class Landing extends React.Component{
         </div>
         { this.renderLoginOrSignUp() }
         <PopularTasks />
+        <HowItWorks />
      </div>
     )
   }
