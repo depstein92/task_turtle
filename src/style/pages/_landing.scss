@@ -162,4 +162,78 @@ $color-primary-dark: #28b485;
      }
    }
   }
+
+
+  &__real-people-real-tasks{
+    height: 100vh;
+    margin-top: 60px;
+    display: flex;
+    flex-direction: row;
+
+
+    &--testimony-right{
+      height: 100%;
+      width: 100%;
+
+      .testimony{
+        height: 50%;
+        width: 100%;
+
+        img{
+          width: 115px;
+          height: 115px;
+          max-height: 115px;
+          max-width: 115px;
+          border-radius: 50%;
+        }
+
+        &__description{
+          font-size: 2rem;
+          font-family: 'Playfair Display', serif;
+
+          .description{
+            font-size: 2rem;
+            border: .5px solid grey;
+          }
+
+          .name{
+            margin-top: 10px;
+            text-align: center;
+          }
+        }
+      }
+    }
+
+    &--testimony-left{
+      height: 100%;
+      width: 100%;
+
+      .testimony{
+        height: 50%;
+        width: 100%;
+
+        img{
+          width: 115px;
+          height: 115px;
+          max-height: 115px;
+          max-width: 115px;
+          border-radius: 50%;
+        }
+
+        &__description{
+          font-size: 2rem;
+          font-family: 'Playfair Display', serif;
+
+          .description{
+            border: .5px solid grey;
+          }
+
+          .name{
+            margin-top: 10px;
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
 }

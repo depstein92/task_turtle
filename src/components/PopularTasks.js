@@ -48,7 +48,7 @@ class PopularTasks extends React.Component{
     return(
     <div>
        <h1 className="landing__popular-tasks-title">
-         Task in your area
+         Tasks in your area
        </h1>
       <div className="landing__popular-tasks">
          <div className="icon"
@@ -56,7 +56,7 @@ class PopularTasks extends React.Component{
              <Icon
               className={"angle left"}
               id={"count-button"}
-              size={"huge"}>
+              size={"big"}>
              </Icon>
             </div>
              {this.arrayOfImages[0 + count]}
@@ -70,7 +70,7 @@ class PopularTasks extends React.Component{
               <Icon
                className={"angle right"}
                id={"count-button"}
-               size={"huge"}>
+               size={"big"}>
               </Icon>
            </div>
          </div>

@@ -6,6 +6,7 @@ import actions from '../actions/index';
 import SignUp from './SignUp';
 import PopularTasks from '../components/PopularTasks';
 import HowItWorks from '../components/HowItWorks';
+import RealPeopleRealTasks from '../components/RealPeopleRealTasks';
 
 class Landing extends React.Component{
   constructor(props) {
@@ -94,6 +95,7 @@ class Landing extends React.Component{
         { this.renderLoginOrSignUp() }
         <PopularTasks />
         <HowItWorks />
+        <RealPeopleRealTasks />
      </div>
     )
   }
