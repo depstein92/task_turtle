@@ -7,8 +7,10 @@ import ReduxPromise from 'redux-promise';
 import Landing from '../src/containers/Landing';
 import Landing_Reducer from '../src/reducers/Landing_Reducer';
 import actionName from '../src/actions/action_names';
+import actions from '../src/actions/index';
 import axios from 'axios';
-import MockAdapter from 'axios-mock-adapter';
+import moxios from 'moxios';
+
 
 Enzyme.configure({ adapter: new EnzymeAdapter() });
 
@@ -21,10 +23,8 @@ const setup = (initialState={}) => {
 
 /*
 ------------------------------------------------------
- Testing Reducers instead of actions.
- This is because actions can change,
- but the shape of the returned value in out Reducers
- determines what is rendered on the page.
+ In this file there are no need to test components hooked up to store.
+ Only action creators and local state need to be tested
  -----------------------------------------------------
 */
 
@@ -67,11 +67,11 @@ describe('input component renders without error', () => {
 
 /*
 ------------------------------------------------------
-TESTING LOGIN REDUCERS
+TESTING LOGIN ACTIONS
 ------------------------------------------------------
 */
 
-describe('login reducer returns apropriate object shape', () => {
+describe('login action returns expected payload', () => {
 
   const initialValue = {
     loading: false,
@@ -99,7 +99,16 @@ describe('login reducer returns apropriate object shape', () => {
     error: false,
   };
 
-  test('login reducer returns correct initialState', () => {
+  beforeEach(() => {
+    moxios.install();
+  });
+
+  afterEach(() => {
+    moxios.uninstall();
+  });
+
+
+  test('login action does not fail Post request', () => {
 
     const initialState = Landing_Reducer(initialValue, {type: 'None'});
 
@@ -113,15 +122,31 @@ describe('login reducer returns apropriate object shape', () => {
     expect(Object.values(initialState).length).toBe(4);
   });
 
-  test('login reducer success returns mock payload', () => {
+  test('login action success returns mock payload', () => {
 
-    const fetchedData = {
-      type: actionName['SEND_LOGIN_INFORMATION_SUCCESS'],
-      payload: { data: {} }
+    const store = storeFactory();
+
+    const response = {
+      message: "User Logged in successfully",
+      logged_in: true
     }
 
-    const successState = Landing_Reducer(initialValue, fetchedData);
+    //testing action creator
 
+    moxios.wait(() => {
+       const request = moxios.request.mostRecent();
+
+        request.respondWith({
+          status: 200,
+          response
+        });
+
+        return store.dispatch(actions['SEND_LOGIN_INFORMATION_SUCCESS']())
+          .then(() => {
+            const newState = store.getState();
+            expect(newState.message).toEqual(response.message);
+            expect(newState.logged_in).toBe(response.logged_in);
+          });
+    });
   });
-
 });

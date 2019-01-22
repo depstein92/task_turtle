@@ -40,6 +40,7 @@ class SignUp extends React.Component{
               <input
                name="userName"
                onChange={this.onEventChange}
+               data-test="input-username"
                />
               </label>
               <label>
@@ -47,9 +48,10 @@ class SignUp extends React.Component{
                <input
                 name="password"
                 onChange={this.onEventChange}
+                data-test="input-password"
                 />
               </label>
-               <input type="submit" value="Submit" />
+               <input type="submit" data-test="submit-signup" value="Submit" />
             </form>
           <div className={"landing__sign-up-button"} onClick={() => {this.props.onSelectSignUp()}}>
             Did you mean to Log In? Click here.
