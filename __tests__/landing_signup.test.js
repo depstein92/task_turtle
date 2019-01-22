@@ -17,7 +17,6 @@ Enzyme.configure({ adapter: new EnzymeAdapter() });
 const setup = (initialState={}) => {
   const store = storeFactory(initialState); //mimicks redux store
   const wrapper = shallow(<SignUp store={store} />).dive();
-  //console.log(wrapper.debug());
   return wrapper;
 };
 
@@ -96,11 +95,5 @@ TESTING REGISTER ACTIONS
                const newState = store.getState();
                expect(newState.message).toBe(response.message);
              });
-    });
-
-
-
-
-
-
+       });
   });
