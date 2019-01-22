@@ -12,13 +12,15 @@ class PostsModel(db.Model):
     title = db.Column(db.String(40), nullable=False)
     description = db.Column(db.String(180), nullable=False)
     location = db.Column(db.String(180), nullable=False)
+    time = db.Column(db.String(40), nullable=False)
     date = db.Column(db.String(40), nullable=False)
 
-    def __init__(self, client, title, description,location, date):
+    def __init__(self, client, title, description,location,time, date):
         self.client = client
         self.title = title
         self.description = description
         self.location = location
+        self.time = time
         self.date = date
 
     def json(self):
@@ -26,6 +28,8 @@ class PostsModel(db.Model):
         'client': self.client,
         'title': self.title,
         'description': self.description,
+        'location': self.location,
+        'time': self.time,
         'date': self.date,
          }
 

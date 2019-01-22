@@ -50,8 +50,17 @@ def insert_initial_values_user(*args, **kwargs):
        username='dart',
        password='dart',
        profile_picture=None,
-       description='dart',
-       rating=0
+       description='dart is not client',
+       isClient=False,
+       rating=0,
+       ))
+    db.session.add(UserModel(
+       username='bart',
+       password='bart',
+       profile_picture=None,
+       description='bart is client',
+       isClient=True,
+       rating=0,
        ))
     db.session.commit()
 
@@ -83,15 +92,15 @@ def insert_initial_values_jobs(*args, **kwargs):
       rating=5))
     db.session.commit()
 
-
+#############POSTS SEED###############
 @event.listens_for(PostsModel.__table__, 'after_create')
 def insert_initial_values_posts(*args, **kwargs):
-    #############POSTS SEED###############
     db.session.add(PostsModel(
       client='Keith',
       title='Get Sheep',
       description='I lost my Sheep',
       location="Cary, NC",
+      time="6:30",
       date='04/5/2019'
       ))
 
@@ -100,6 +109,7 @@ def insert_initial_values_posts(*args, **kwargs):
       title='Sheer Sheep',
       description='Got to Sheer Sheep',
       location="Cary, NC",
+      time="6:30",
       date='04/5/2019'))
 
     db.session.add(PostsModel(
@@ -107,11 +117,12 @@ def insert_initial_values_posts(*args, **kwargs):
       title='Lay Brick',
       description='Come Lay Brick',
       location="Cary, NC",
+      time="6:30",
       date='04/6/2019'
       ))
     db.session.commit()
 
-    #############SKILLS SEED###############
+#############SKILLS SEED###############
 @event.listens_for(SkillsModel.__table__, 'after_create')
 def insert_initial_values_skills(*args, **kwargs):
 

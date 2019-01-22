@@ -13,11 +13,13 @@ class UserModel(db.Model):
     profile_picture = db.Column(db.String(200))
     rating = db.Column(db.Integer, nullable=True)
     description = db.Column(db.String(200), nullable=True)
+    isClient = db.Column(db.Boolean, nullable=False)
     children = relationship("JobsModel")
 
-    def __init__(self, username, password, profile_picture=None, rating=None, description=None):
+    def __init__(self, username, password, isClient, profile_picture=None, rating=None, description=None):
         self.username = username
         self.password = password
+        self.isClient = isClient
         self.profile_picture = profile_picture
         self.rating = rating
         self.description = description
@@ -35,16 +37,6 @@ class UserModel(db.Model):
     def find_by_id(cls, _id):
         return cls.query.filter_by(id=_id).first()
 
-    @classmethod
-    def seed(cls, fake):
-        user = UserModel(
-            username = fake.name(),
-            password = 'dan',
-            profile_picture = 'https://react.semantic-ui.com/images/avatar/large/matthew.png',
-            rating = randint(0, 9),
-            description = fake.text()
-        )
-        user.save_to_db()
 
     def save_to_db(self):
         db.session.add(self)
@@ -56,4 +48,4 @@ class UserModel(db.Model):
 
 
     def json(self):
-        return {'username': self.username, 'password': self.password, 'profile_picture': self.profile_picture }
+        return {'username': self.username, 'password': self.password, 'profile_picture': self.profile_picture, 'isClient': self.isClient }
