@@ -13,7 +13,7 @@ class UserModel(db.Model):
     profile_picture = db.Column(db.String(200))
     rating = db.Column(db.Integer, nullable=True)
     description = db.Column(db.String(200), nullable=True)
-    isClient = db.Column(db.Boolean, nullable=False)
+    isClient = db.Column(db.Boolean)
     children = relationship("JobsModel")
 
     def __init__(self, username, password, isClient, profile_picture=None, rating=None, description=None):

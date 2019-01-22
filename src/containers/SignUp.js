@@ -19,7 +19,6 @@ class SignUp extends React.Component{
     const { userName, password, isClient } = this.state;
     const { registerUser } = this.props;
     e.preventDefault();
-
     registerUser(userName, password, isClient);
   }
 

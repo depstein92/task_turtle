@@ -31,10 +31,7 @@ class Landing extends React.Component{
     const {reqLoginData} = this.props;
     const {userName, password} = this.state;
     reqLoginData(userName, password);
-    this.setState({
-      userName: '',
-      password: ''
-    });
+
   };
 
   onSelectLogin = () => this.setState({ isLoginOrSignUp: true });

@@ -31,6 +31,8 @@ const registerUser = async (userName, password, isClient) => {
                 payload: err
             }
         });
+
+
     return {
         type: actionNames.REGISTER_USER_SUCCESS,
         payload: response
@@ -87,11 +89,10 @@ const getUserProfileLoading = () => {
   };
 };
 
-const getUserProfileInfo = async (username) => { // TODO pass username ??
+const getUserProfileInfo = async (username="dart") => { // TODO pass username ??
 
     getUserProfileLoading();
-
-    const userData = await axios.get("http://127.0.0.1:5000/user_data/dimpt")
+    const userData = await axios.get(`http://127.0.0.1:5000/user_data/${username}`)
                                 .catch(error => console.log(error));
     if (!userData) {
         getUserProfileError();

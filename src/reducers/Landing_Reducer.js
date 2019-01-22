@@ -5,7 +5,8 @@ const initialValue = {
   isLoggedIn: {
     data:{
       message:' ',
-      logged_in: false
+      logged_in: false,
+      username: 'loading'
     }
   },
   payload: {

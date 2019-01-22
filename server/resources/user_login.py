@@ -24,7 +24,8 @@ class UserLogin(Resource):
         if UserModel.find_by_username_and_password(data['username'], data['password']):
             return {
               'message': 'User Logged in successfully',
-              'logged_in': True
+              'logged_in': True,
+              'username': data['username']
             }
         else:
             return {

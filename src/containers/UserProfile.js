@@ -17,12 +17,14 @@ class UserProfile extends React.Component{
 
   componentDidMount(){
   const { getUserData } = this.props;
-   getUserData();
+  const { username } = this.props.getUserProfile.isLoggedIn;
+  getUserData(username);
   };
 
   renderUserProfile = () => {
     const { user_data } = this.props.userData.payload.data,
           defaultPhoto = 'https://react.semantic-ui.com/images/avatar/large/patrick.png';
+    debugger;
 
     return(
      <Card
@@ -129,7 +131,8 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
   return {
-    userData: state.userData
+    userData: state.userData,
+    getUserProfile: state.isAuthenticated
   };
 };
 
