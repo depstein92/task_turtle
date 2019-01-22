@@ -16,15 +16,14 @@ class UserProfile extends React.Component{
   };
 
   componentDidMount(){
-  const { getUserData } = this.props;
-  const { username } = this.props.getUserProfile.isLoggedIn;
-  getUserData(username);
+    const { getUserData } = this.props;
+    const { username } = this.props.getUserProfile.isLoggedIn;
+    getUserData(username);
   };
 
   renderUserProfile = () => {
     const { user_data } = this.props.userData.payload.data,
           defaultPhoto = 'https://react.semantic-ui.com/images/avatar/large/patrick.png';
-    debugger;
 
     return(
      <Card

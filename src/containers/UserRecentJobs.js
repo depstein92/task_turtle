@@ -19,7 +19,7 @@ class UserRecentJobs extends React.Component{
 
     if(!jobs || !jobs.length){
       return(
-      <div className={"jobs-completed-post"}>
+      <div className={"user-profile-container__user-jobs"}>
         <Card>
           <Card.Content>
           No Jobs Available
@@ -40,14 +40,14 @@ class UserRecentJobs extends React.Component{
     } else {
       return jobs.map((obj, index) => {
         return(
-       <div className={"jobs-completed-post"} key={index}>
+       <div className={"user-profile-container__user-job"} key={index}>
           <Card>
             <Card.Content header={`Customer ${obj.client}`} />
-            <Card.Content header={`${obj.title}`} />
-              <Card.Content extra>
+            <Card.Content id="title">{`${obj.title}`}</Card.Content>
+              <Card.Content extra id="description">
               {obj.description}
               </Card.Content>
-            <Card.Content extra>
+            <Card.Content extra id="extra">
               <Icon name='star outline' />
               <p>Rating: {obj.rating}</p>
               <p>Date: {obj.date}</p>
@@ -61,11 +61,11 @@ class UserRecentJobs extends React.Component{
 
   render(){
     return(
-    <div className={"user-recent-job-container"}>
-    <h1 className={"user-recent-job-title"}>
-       Recent Jobs
-    </h1>
-      { this.renderJobs() }
+    <div className={"user-profile-container__recent-jobs"}>
+      <h1 className={"recent-jobs__recent-jobs-title"}>
+         Recent Jobs
+      </h1>
+        { this.renderJobs() }
     </div>
     )
   };

@@ -1,0 +1,86 @@
+.user-profile-container{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  max-width: 90rem;
+  margin: 0 auto;
+  height: 60rem;
+  background-color: #bcf5e6;
+  border-bottom: 5px solid;
+
+  &__recent-jobs{
+
+    overflow: hidden;
+
+    h1{
+      font-family: 'Playfair Display', serif;
+      font-variant-caps: petite-caps;
+      text-align: center;
+      animation: fadein 1s ease-in;
+      font-size: 2rem;
+      text-decoration: underline;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      letter-spacing: 2px;
+
+      &:hover{
+        cursor: pointer;
+      }
+    }
+
+    .header{
+      font-size: 1.5rem !important;
+      font-variant-caps: all-small-caps;
+      line-height: normal;
+      text-align: left;
+      line-height: normal;
+      word-spacing: 5px;
+      font-size: 1.4rem;
+      font-family: serif;
+      animation: fadein 2s ease-in;
+
+      &:hover{
+        cursor: pointer;
+      }
+    }
+    #title{
+      text-align: center !important;
+      font-size: 1.2rem;
+      text-align: center;
+      font-size: 1.25rem;
+      letter-spacing: 2px;
+      font-family: serif;
+      border-left: 1px solid;
+
+      &:hover{
+        cursor: pointer;
+      }
+    }
+
+    #description{
+      color: black;
+      font-family: serif;
+      letter-spacing: .8px;
+      text-align: justify;
+      overflow-wrap: break-word;
+      border-left: 1px solid;
+
+      &:hover{
+        cursor: pointer;
+      }
+    }
+
+    #extra{
+      color: black;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      font-weight: 600;
+      border-left: 1px solid;
+
+      &:hover{
+        cursor: pointer;
+      }
+    }
+  }
+}
