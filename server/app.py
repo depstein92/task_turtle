@@ -40,79 +40,92 @@ api.add_resource(UserData, '/user_data/<string:username>')
 api.add_resource(SkillsRegister, '/skills')
 api.add_resource(PostsRegister, '/job_posts')
 
-# api.add_resource(Item, '/item/<string:name>')
-# api.add_resource(ItemList, '/items')
-# api.add_resource(UserRegister, '/register')
-
 ###################SEED DATABASE####################
 
+############USER REGISTER SEED################
 @event.listens_for(UserModel.__table__, 'after_create')
-def insert_initial_values(*args, **kwargs):
+def insert_initial_values_user(*args, **kwargs):
 
-    ############USER REGISTER SEED################
-    db.session.add(UserModel(username='dart'))
-    db.session.add(UserModel(password='dart'))
-    db.session.add(UserModel(profile_picture=None))
-    db.session.add(UserModel(rating=0))
-    db.session.add(UserModel(description='dart'))
+    db.session.add(UserModel(
+       username='dart',
+       password='dart',
+       profile_picture=None,
+       description='dart',
+       rating=0
+       ))
     db.session.commit()
 
-    ############USER JOBS SEED################
+############USER JOBS SEED################
 @event.listens_for(JobsModel.__table__, 'after_create')
-def insert_initial_values(*args, **kwargs):
-    db.session.add(JobsModel(username="dart"))
-    db.session.add(JobsModel(client='Keith'))
-    db.session.add(JobsModel(title='Raked Lawn'))
-    db.session.add(JobsModel(date='03/24/2019'))
-    db.session.add(JobsModel(description='I raked the Lawn'))
-    db.session.add(JobsModel(rating=5))
+def insert_initial_values_jobs(*args, **kwargs):
+    db.session.add(JobsModel(
+      username="dart",
+      client='Keith',
+      title='Raked Lawn',
+      date='03/24/2019',
+      description='I raked the Lawn',
+      rating=5))
 
-    db.session.add(JobsModel(username="dart"))
-    db.session.add(JobsModel(client='Keith'))
-    db.session.add(JobsModel(title='Painted Wall'))
-    db.session.add(JobsModel(date='06/28/2019'))
-    db.session.add(JobsModel(description='I painted the Lawn and Wall'))
-    db.session.add(JobsModel(rating=5))
+    db.session.add(JobsModel(
+      username="dart",
+      client='Keith',
+      title='Painted Wall',
+      date='06/28/2019',
+      description='I painted the Lawn and Wall',
+      rating=5))
 
-    db.session.add(JobsModel(username="dart"))
-    db.session.add(JobsModel(client='Keith'))
-    db.session.add(JobsModel(title='Put Sheet Rock'))
-    db.session.add(JobsModel(date='06/29/2019'))
-    db.session.add(JobsModel(description='I put Sheet rock in garage'))
-    db.session.add(JobsModel(rating=5))
+    db.session.add(JobsModel(
+      username='dart',
+      client='Keith',
+      title='Put Sheet Rock',
+      date='06/29/2019',
+      description='I put Sheet rock in garage',
+      rating=5))
     db.session.commit()
 
 
 @event.listens_for(PostsModel.__table__, 'after_create')
-def insert_initial_values(*args, **kwargs):
+def insert_initial_values_posts(*args, **kwargs):
     #############POSTS SEED###############
-    db.session.add(PostsModel(client='Keith'))
-    db.session.add(PostsModel(title='Get Sheep'))
-    db.session.add(PostsModel(description='I lost my Sheep'))
-    db.session.add(PostsModel(location="Cary, NC"))
-    db.session.add(PostsModel(date='04/5/2019'))
+    db.session.add(PostsModel(
+      client='Keith',
+      title='Get Sheep',
+      description='I lost my Sheep',
+      location="Cary, NC",
+      date='04/5/2019'
+      ))
 
-    db.session.add(PostsModel(client='Keith'))
-    db.session.add(PostsModel(title='Sheer Sheep'))
-    db.session.add(PostsModel(description='Got to Sheer Sheep'))
-    db.session.add(PostsModel(location="Cary, NC"))
-    db.session.add(PostsModel(date='04/5/2019'))
+    db.session.add(PostsModel(
+      client='Keith',
+      title='Sheer Sheep',
+      description='Got to Sheer Sheep',
+      location="Cary, NC",
+      date='04/5/2019'))
 
-    db.session.add(PostsModel(client='Kevin'))
-    db.session.add(PostsModel(title='Lay Brick'))
-    db.session.add(PostsModel(description='Come Lay Brick'))
-    db.session.add(PostsModel(location="Cary, NC"))
-    db.session.add(PostsModel(date='04/6/2019'))
+    db.session.add(PostsModel(
+      client='Kevin',
+      title='Lay Brick',
+      description='Come Lay Brick',
+      location="Cary, NC",
+      date='04/6/2019'
+      ))
     db.session.commit()
 
     #############SKILLS SEED###############
 @event.listens_for(SkillsModel.__table__, 'after_create')
-def insert_initial_values(*args, **kwargs):
+def insert_initial_values_skills(*args, **kwargs):
 
-    db.session.add(SkillsModel(username='dart'))
-    db.session.add(PostsModel(description='Mow Lawns'))
-    db.session.add(PostsModel(description='Paint Walls'))
-    db.session.add(PostsModel(description='Sheer Sheap'))
+    db.session.add(SkillsModel(
+      username='dart',
+      description='Mow Lawns'
+      ))
+    db.session.add(SkillsModel(
+      username='dart',
+      description='Paint Walls'
+      ))
+    db.session.add(PostsModel(
+      username='dart',
+      description='Yeet'))
     db.session.commit()
 
 

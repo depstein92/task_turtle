@@ -9,7 +9,7 @@ class SkillsModel(db.Model):
     __tablename__ = 'skills'
 
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String, db.ForeignKey('users.username'), nullable=False)
+    username = db.Column(db.String, db.ForeignKey('users.username'))
     description = db.Column(db.String(40), nullable=False)
 
     def __intit__(self, username, description):
