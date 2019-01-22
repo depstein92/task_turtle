@@ -49,6 +49,7 @@ class Landing extends React.Component{
               <input name="userName"
                value={userName}
                onChange={this.onEventChange}
+               data-test="input-box"
                />
           </label>
           <label>
@@ -56,6 +57,7 @@ class Landing extends React.Component{
              <input name="password"
               value={password}
               onChange={this.onEventChange}
+              data-test="input-box"
               />
           </label>
            <input type="submit" value="Submit" />
@@ -67,6 +69,8 @@ class Landing extends React.Component{
       </div>
     )
   }
+
+
 
   renderLoginOrSignUp = () => {
     const LoginOrSignUp =
