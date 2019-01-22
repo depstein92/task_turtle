@@ -31,6 +31,10 @@ class Landing extends React.Component{
     const {reqLoginData} = this.props;
     const {userName, password} = this.state;
     reqLoginData(userName, password);
+    this.setState({
+      userName: '',
+      password: ''
+    });
   };
 
   onSelectLogin = () => this.setState({ isLoginOrSignUp: true });
@@ -60,7 +64,7 @@ class Landing extends React.Component{
               data-test="input-box"
               />
           </label>
-           <input type="submit" value="Submit" />
+           <input type="submit" data-test="login-submit" value="Submit" />
         </form>
         <div className={"landing__sign-up-button"}
             onClick={() => {this.onSelectLogin()}}>

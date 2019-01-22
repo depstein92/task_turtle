@@ -1,13 +1,13 @@
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import { createStore } from 'redux';
-import rootReducer from '../src/reducers';
+import rootReducer from '../../src/reducers/index';
 import checkPropTypes from 'check-prop-types';
 
 export const storeFactory = (initialState) => {
   return createStore(rootReducer, initialState);
 }
-// 
+//
 // export const setup = (props, state=null) => { //testing local state
 //    const wrapper = shallow(<App {...props} />).dive();
 //    if(state) return wrapper.setState(state);
