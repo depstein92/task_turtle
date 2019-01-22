@@ -12,7 +12,7 @@ const registerUserLoading = () => {
     }
 }
 
-const registerUser = async (userName, password) => {
+const registerUser = async (userName, password, isClient) => {
 
     registerUserLoading();
 
@@ -21,7 +21,8 @@ const registerUser = async (userName, password) => {
                 'Access-Control-Allow-Origin': '*'
             },
             username: userName,
-            password
+            password,
+            isClient
         })
         .catch(function(error) {
             console.log(`Error in Register User ${error}`);

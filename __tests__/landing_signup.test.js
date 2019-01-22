@@ -32,30 +32,40 @@ describe('User Register component renders', () => {
    const wrapper = setup();
    const usernameInput = findByTestAttr(wrapper, "input-username");
    const passwordInput = findByTestAttr(wrapper, "input-password");
+   const isClientButton = findByTestAttr(wrapper, "input-isClient");
 
    expect(usernameInput.length).toBe(1);
    expect(usernameInput).not.toBeUndefined();
 
    expect(passwordInput.length).toBe(1);
    expect(passwordInput).not.toBeUndefined();
+
+   expect(isClientButton.length).toBe(1);
+   expect(isClientButton).not.toBeUndefined();
+
  });
 
  test('input boxes change state', () => {
    const wrapper = setup();
    const usernameInput = findByTestAttr(wrapper, "input-username");
    const passwordInput = findByTestAttr(wrapper, "input-password");
+   const isClientButton = findByTestAttr(wrapper, "input-isClient");
    const submitButton = findByTestAttr(wrapper, "submit-signup");
 
    expect(wrapper.state().userName).toEqual('');
    expect(wrapper.state().password).toEqual('');
+   expect(wrapper.state().isClient).toBe(false);
 
    wrapper.setState({ userName: 'bravo' });
    wrapper.setState({ password: 'bravo' });
+   wrapper.setState({ isClient: true });
 
    submitButton.simulate('click');
 
    expect(wrapper.state().password).not.toEqual('');
    expect(wrapper.state().userName).not.toEqual('');
+   expect(wrapper.state().isClient).not.toEqual(false);
+
  });
 
 });

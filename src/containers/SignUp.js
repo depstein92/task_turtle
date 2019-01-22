@@ -10,16 +10,17 @@ class SignUp extends React.Component{
 
     this.state = {
       userName: '',
-      password: ''
+      password: '',
+      isClient: false
     }
   }
 
   onSubmit = e => {
-    const { userName, password } = this.state;
+    const { userName, password, isClient } = this.state;
     const { registerUser } = this.props;
     e.preventDefault();
 
-    registerUser(userName, password);
+    registerUser(userName, password, isClient);
   }
 
   onEventChange = e => {
@@ -36,22 +37,37 @@ class SignUp extends React.Component{
            </h1>
             <form onSubmit={this.onSubmit}>
               <label>
-              Name:
-              <input
-               name="userName"
-               onChange={this.onEventChange}
-               data-test="input-username"
-               />
+                Name:
+                <input
+                 name="userName"
+                 onChange={this.onEventChange}
+                 data-test="input-username"
+                 />
               </label>
               <label>
-               Password:
-               <input
-                name="password"
-                onChange={this.onEventChange}
-                data-test="input-password"
-                />
+                 Password:
+                 <input
+                  name="password"
+                  onChange={this.onEventChange}
+                  data-test="input-password"
+                  />
               </label>
-               <input type="submit" data-test="submit-signup" value="Submit" />
+              <label>
+                 Looking to give tasks?
+                 <input
+                  type="radio"
+                  name="isClient"
+                  onChange={this.onEventChange}
+                  value={true}
+                  data-test="input-isClient"
+                  defaultChecked={this.state.isClient}
+                  />
+              </label>
+               <input
+                type="submit"
+                data-test="submit-signup"
+                value="Submit"
+                />
             </form>
           <div className={"landing__sign-up-button"} onClick={() => {this.props.onSelectSignUp()}}>
             Did you mean to Log In? Click here.
