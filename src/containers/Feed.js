@@ -61,6 +61,9 @@ class Feed extends React.Component{
   render(){
     return(
        <div className="feed">
+         <div className="feed__draggable-handle">
+          <Icon className={"angle up"} size={"huge"} />
+         </div>
           <h1> Jobs </h1>
           {
             this.state.isClient ?

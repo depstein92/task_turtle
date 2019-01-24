@@ -14,7 +14,7 @@ const initialValue = {
         username: 'Loading...',
         password: null,
         profile_picture: 'https://react.semantic-ui.com/images/avatar/large/patrick.png',
-        isClient: false 
+        isClient: false
       }
     ]
 
@@ -38,7 +38,7 @@ const initialValue = {
 };
 
 export default function Landing_Reducer(userData = initialValue, data) {
-  //debugger;
+
     switch (data.type) {
         case action_name['SEND_LOGIN_INFORMATION_SUCCESS']:
             return {

@@ -3,10 +3,12 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Image, Card, Icon, Table } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import UserRecentJobs from './UserRecentJobs';
 import Heading from './Heading';
-import { Link } from 'react-router-dom';
+import Feed from './Feed';
 import actions from '../actions/index';
+import Draggable from 'react-draggable';
 
 class UserProfile extends React.Component{
   constructor(props){
@@ -111,10 +113,25 @@ class UserProfile extends React.Component{
       <Heading />
       <div className={'user-profile-container'}>
       { this.renderUserProfile() }
-    {// { this.renderSkillsTable() }
-    }
+      {// { this.renderSkillsTable() }
+      }
       <UserRecentJobs />
       </div>
+      <Draggable
+          axis="y"
+          handle=".handle"
+          defaultPosition={{x: 0, y: 0}}
+          position={null}
+          grid={[25, 25]}
+          scale={1}
+          bounds={{top: -965}}
+          onStart={this.handleStart}
+          onDrag={this.handleDrag}
+          onStop={this.handleStop}>
+        <div className="handle">
+         <Feed />
+        </div>
+      </Draggable>
     </div>
     )
   };

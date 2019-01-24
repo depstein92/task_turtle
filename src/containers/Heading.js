@@ -27,7 +27,7 @@ class Heading extends React.Component{
     const { user_data  } = this.props.userData.isLoggedIn;
 
     const defaultPhoto = 'https://react.semantic-ui.com/images/avatar/large/patrick.png';
-    debugger;
+
     return (
       <div data-test='heading'>
        <Menu pointing secondary className={'heading-menu'}>

@@ -82,8 +82,6 @@ const sendLoginRequest = async (username, password) => {
 
     const { jobs, skills, user_data } = userData.data;
 
-    debugger;
-
     return {
         type: actionNames['SEND_LOGIN_INFORMATION_SUCCESS'],
         payload: Object.assign({}, loginData, { jobs, skills, user_data })
