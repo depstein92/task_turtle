@@ -10,8 +10,8 @@ import Landing from './Landing';
 
 const Authenticated_Routes = props => {
 
-  const isAuthorized = props.isAuthenticated.isLoggedIn.data.logged_in
-
+  const isAuthorized = props.isAuthenticated.isLoggedIn.data.logged_in;
+  
   if(isAuthorized){
     return(
       <Redirect to="/UserProfile" />

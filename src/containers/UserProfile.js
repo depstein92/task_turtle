@@ -15,14 +15,10 @@ class UserProfile extends React.Component{
     this.state = { data: {} }
   };
 
-  componentDidMount(){
-    const { getUserData } = this.props;
-    const { username } = this.props.getUserProfile.isLoggedIn;
-    getUserData(username);
-  };
 
   renderUserProfile = () => {
-    const { user_data } = this.props.userData.payload.data,
+
+     const { user_data  } = this.props.userData.isLoggedIn,
           defaultPhoto = 'https://react.semantic-ui.com/images/avatar/large/patrick.png';
 
     return(
@@ -35,23 +31,24 @@ class UserProfile extends React.Component{
       extra={this.renderMessageLink()}
      />
     )
+
   };
 
   renderMessageLink = () => {
-    const {user_data} = this.props.userData.payload.data;
-    return(
-    <div className="user-profile-messaging-link">
-      <Link to={"/Messaging"}>
-        Click here to message {user_data[0].username}!
-      </Link>
-       <p>{user_data[0].rating ? user_data[0].rating : 'No Current Rating' }</p>
-    </div>)
+    const {user_data} = this.props.userData.isLoggedIn;
 
+    return(
+      <div className="user-profile-messaging-link">
+        <Link to={"/Messaging"}>
+          Click here to message {user_data[0].username}!
+        </Link>
+         <p>{user_data[0].rating ? user_data[0].rating : 'No Current Rating' }</p>
+      </div>
+    )
   };
 
   renderSkillsTable = () => {
     const {skills} = this.props.userData.payload.data;
-    console.log(skills);
 
     if(!skills || !skills.length){
       return(
@@ -123,16 +120,11 @@ class UserProfile extends React.Component{
   };
 };
 
-const mapDispatchToProps = dispatch => {
- return bindActionCreators({ getUserData: actions["getUserProfileInfo"] }, dispatch);
-};
-
 
 const mapStateToProps = state => {
   return {
-    userData: state.userData,
-    getUserProfile: state.isAuthenticated
+    userData: state.isAuthenticated
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserProfile);
+export default connect(mapStateToProps)(UserProfile);

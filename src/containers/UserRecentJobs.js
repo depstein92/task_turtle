@@ -15,49 +15,49 @@ class UserRecentJobs extends React.Component{
 
   renderJobs = () => {
 
-    const { jobs } = this.props.userData.payload.data;
+    const { jobs  } = this.props.userData.isLoggedIn;
 
-    if(!jobs || !jobs.length){
-      return(
-      <div className={"user-profile-container__user-jobs"}>
-        <Card>
-          <Card.Content>
-          No Jobs Available
-          </Card.Content>
-        </Card>
-        <Card>
-          <Card.Content>
-          No Jobs Available
-          </Card.Content>
-        </Card>
-        <Card>
-          <Card.Content>
-          No Jobs Available
-          </Card.Content>
-        </Card>
-      </div>
+   if(!jobs || !jobs.length){
+     return(
+       <div className={"user-profile-container__user-jobs"}>
+          <Card>
+            <Card.Content>
+            No Jobs Available
+            </Card.Content>
+          </Card>
+          <Card>
+            <Card.Content>
+            No Jobs Available
+            </Card.Content>
+          </Card>
+          <Card>
+            <Card.Content>
+            No Jobs Available
+            </Card.Content>
+          </Card>
+        </div>
       )
     } else {
       return jobs.map((obj, index) => {
         return(
-       <div className={"user-profile-container__user-job"} key={index}>
-          <Card>
-            <Card.Content header={`Customer ${obj.client}`} />
-            <Card.Content id="title">{`${obj.title}`}</Card.Content>
-              <Card.Content extra id="description">
-              {obj.description}
+         <div className={"user-profile-container__user-job"} key={index}>
+            <Card>
+              <Card.Content header={`Customer ${obj.client}`} />
+              <Card.Content id="title">{`${obj.title}`}</Card.Content>
+                <Card.Content extra id="description">
+                {obj.description}
+                </Card.Content>
+              <Card.Content extra id="extra">
+                <Icon name='star outline' />
+                <p>Rating: {obj.rating}</p>
+                <p>Date: {obj.date}</p>
               </Card.Content>
-            <Card.Content extra id="extra">
-              <Icon name='star outline' />
-              <p>Rating: {obj.rating}</p>
-              <p>Date: {obj.date}</p>
-            </Card.Content>
-         </Card>
-        </div>
-      )
+           </Card>
+         </div>
+       )
     })
-   }
  }
+}
 
   render(){
     return(
@@ -73,7 +73,7 @@ class UserRecentJobs extends React.Component{
 
 const mapStateToProps = state => {
   return {
-    userData: state.userData
+    userData: state.isAuthenticated
   };
 };
 

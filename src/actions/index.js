@@ -51,37 +51,6 @@ const sendLoginRequestLoading = () => {
     }
 }
 
-const sendLoginRequest = async (username, password) => {
-
-    sendLoginRequestLoading();
-
-    const data = await axios.post('http://127.0.0.1:5000/login', {
-        username,
-        password
-    });
-
-    if (!data) {
-        return {
-            type: actionNames['SEND_LOGIN_INFORMATION_ERROR'],
-            payload: error
-        };
-    };
-
-    return {
-        type: actionNames['SEND_LOGIN_INFORMATION_SUCCESS'],
-        payload: data
-    };
-};
-
-/**********GET USER PROFILE***********/
-
-const getUserProfileError = error => {
-  return {
-    type: "GET_USER_DATA_ERROR",
-    payload: error
-  };
-};
-
 const getUserProfileLoading = () => {
   return {
     type: "GET_USER_DATA_LOADING",
@@ -89,20 +58,38 @@ const getUserProfileLoading = () => {
   };
 };
 
-const getUserProfileInfo = async (username="dart") => { // TODO pass username ??
+//get user profile info and send Login Request
 
+const sendLoginRequest = async (username, password) => {
+
+    sendLoginRequestLoading();
     getUserProfileLoading();
-    const userData = await axios.get(`http://127.0.0.1:5000/user_data/${username}`)
+
+    const loginData = await axios.post('http://127.0.0.1:5000/login', {
+        username,
+        password
+    });
+
+    const userData = await axios.get(`http://127.0.0.1:5000/user_data/${loginData.data.username}`)
                                 .catch(error => console.log(error));
-    if (!userData) {
-        getUserProfileError();
-    } else {
+
+    if (!loginData) {
         return {
-            type: "GET_USER_DATA_SUCCESS",
-            payload: userData
+            type: actionNames['SEND_LOGIN_INFORMATION_ERROR'],
+            payload: error
         };
     };
+
+    const { jobs, skills, user_data } = userData.data;
+
+    debugger;
+
+    return {
+        type: actionNames['SEND_LOGIN_INFORMATION_SUCCESS'],
+        payload: Object.assign({}, loginData, { jobs, skills, user_data })
+    };
 };
+
 
 /************GET JOB POST FEED**************/
 
@@ -204,7 +191,6 @@ const getUsersMessages = () => {
 }
 
 export default {
-  getUserProfileInfo,
   getAllPostsSuccess,
   getUsersMessages,
   logOutUser,

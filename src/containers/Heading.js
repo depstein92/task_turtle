@@ -24,9 +24,10 @@ class Heading extends React.Component{
 
   render() {
     const { activeItem } = this.state;
-    const { user_data } = this.props.userData.payload.data;
-    const defaultPhoto = 'https://react.semantic-ui.com/images/avatar/large/patrick.png';
+    const { user_data  } = this.props.userData.isLoggedIn;
 
+    const defaultPhoto = 'https://react.semantic-ui.com/images/avatar/large/patrick.png';
+    debugger;
     return (
       <div data-test='heading'>
        <Menu pointing secondary className={'heading-menu'}>
@@ -66,6 +67,7 @@ class Heading extends React.Component{
              />
           </Menu.Menu>
         </Menu>
+
       </div>
     )
   }
@@ -73,7 +75,7 @@ class Heading extends React.Component{
 
 const mapStateToProps = state => {
   return {
-    userData: state.userData
+    userData: state.isAuthenticated
   };
 };
 

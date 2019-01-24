@@ -14,9 +14,8 @@ $color-primary-dark: #28b485;
 
           &--title{
             position: absolute;
-            top: 0;
+            top: 50%;
             text-align: center;
-            transform: translateY(10rem);
             font-size: 4rem;
             width: 100%;
             font-family: 'Playfair Display', serif;
