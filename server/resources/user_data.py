@@ -35,7 +35,7 @@ class UserData(Resource):
         else:
             return {'message': 'no available jobs found'}
 
-    def put(self):
+    def put(self, username):
         data = UserData.parser.parse_args()
 
         user = UserModel.find_by_username(data['username'])

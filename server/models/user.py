@@ -48,4 +48,10 @@ class UserModel(db.Model):
 
 
     def json(self):
-        return {'username': self.username, 'password': self.password, 'profile_picture': self.profile_picture, 'isClient': self.isClient }
+        return {
+        'username': self.username,
+        'password': self.password,
+        'profile_picture': self.profile_picture,
+        'description': self.description, 
+        'isClient': self.isClient
+        }

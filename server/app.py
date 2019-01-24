@@ -13,6 +13,7 @@ from resources.jobs_register import JobsRegister
 from resources.user_data import UserData
 from resources.skills_register import SkillsRegister
 from resources.posts_register import PostsRegister
+from resources.user_description import UserDescription
 
 from models.user import UserModel
 from models.jobs import JobsModel
@@ -37,6 +38,7 @@ api.add_resource(UserRegister, '/register')
 api.add_resource(UserLogin, '/login')
 api.add_resource(JobsRegister, '/jobs')
 api.add_resource(UserData, '/user_data/<string:username>')
+api.add_resource(UserDescription, '/user_description/<string:username>')
 api.add_resource(SkillsRegister, '/skills')
 api.add_resource(PostsRegister, '/job_posts')
 
