@@ -12,74 +12,60 @@ import {
   Message
 } from 'semantic-ui-react';
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux'
+import {bindActionCreators} from 'redux';
 import actions from '../actions/index';
 
 
 class EditProfile extends React.Component{
-  constructor(props){
+  constructor(props) {
     super(props);
+    this.state = {file: '',imagePreviewUrl: ''};
+  }
 
-    this.state = {
-      profile_picture: '',
-      description: '',
-
-    }
-  };
-
-  onSubmit = e => {
+  handleSubmit(e) {
     e.preventDefault();
-  };
+    console.log('handle uploading-', this.state.file);
+  }
 
-  handleChange = e => {
-  this.setState({
-    [e.target.name] : e.target.value
-  })
-}
+  handleImageChange(e) {
+    e.preventDefault();
 
-  render(){
-    return(
-   <div className="edit-profile">
-      <Form onSubmit={this.onSubmit}>
-        <Form.Group widths='equal'>
-          <Form.Field
-            control={Input}
-            label='Username'
-            name="userName"
-            placeholder='User Name'
-            onChange={this.handleChange}
-            error={this.state.userNameError}
-            />
-          <Form.Field
-            control={Input}
-            label='Title'
-            name="title"
-            placeholder='Title'
-            onChange={this.handleChange}
-            error={this.state.titleError}
-            />
-          <Form.Field
-            control={Input}
-            label='Location'
-            name="location"
-            placeholder='Location'
-            onChange={this.handleChange}
-            error={this.state.locationError}
-            />
-          <Form.Field
-            control={Input}
-            label='Date'
-            name="date"
-            placeholder='Date'
-            onChange={this.handleChange}
-            error={this.state.dateError}
-            />
-        </Form.Group>
-        <Button type='submit'>
-         Submit
-        </Button>
-     </Form>
-  </div>
+    let reader = new FileReader();
+    let file = e.target.files[0];
+
+    reader.onloadend = () => {
+      this.setState({
+        file: file,
+        imagePreviewUrl: reader.result
+      });
+    }
+
+    reader.readAsDataURL(file)
+  }
+
+  render() {
+    let {imagePreviewUrl} = this.state;
+    let $imagePreview = null;
+    if (imagePreviewUrl) {
+        $imagePreview = (<img src={imagePreviewUrl} />);
+    } else {
+        $imagePreview = (<div className="previewText">Please select an Image for Preview</div>);
+    }
+
+    return (
+      <div className="previewComponent">
+        <form onSubmit={(e)=>this.handleSubmit(e)}>
+          <input className="fileInput"
+            type="file"
+            onChange={(e)=>this.handleImageChange(e)} />
+          <button className="submitButton"
+            type="submit"
+            onClick={(e)=>this.handleSubmit(e)}>Upload Image</button>
+        </form>
+        <div className="imgPreview">
+          {$imagePreview}
+        </div>
+      </div>
     )
   }
 }
