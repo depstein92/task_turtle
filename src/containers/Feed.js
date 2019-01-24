@@ -9,22 +9,40 @@ import { DotLoader } from 'react-spinners';
 class Feed extends React.Component{
 
   state = {
-    isClient: false,
-    jobsAdded: false
+    jobsAdded: false,
+    isModalOpen: false
   }
 
   componentDidMount(){
-   const {getAllPosts} = this.props;
+   const { getAllPosts } = this.props;
    getAllPosts();
   }
 
-  togglePostsFormTrue = () => this.setState({ isClient: true });
-  togglePostsFormFalse = () => this.setState({ isClient: false });
   toggleFeedTrue = () => this.setState({ jobsAdded: true });
   toggleFeedFalse = () => this.setState({ jobsAdded: false });
 
+  renderUserModal = () => {
+    return(
+    <Modal trigger={
+      <div className="feed__form-toggle">
+      Are you posting a Job? Click here.
+      </div>
+      }
+      centered={false}
+      id="feed-modal"
+    >
+      <Modal.Header>Note to User</Modal.Header>
+      <Modal.Content>
+        <Modal.Description>
+          <p>If you are not registered as a client you cannot post jobs</p>
+        </Modal.Description>
+      </Modal.Content>
+   </Modal>
+    )
+  }
+
   renderPosts = () => {
-    const {posts, message} = this.props.posts.payload.data
+    const { posts, message } = this.props.posts.payload.data
 
     if(message === "Post added"){
       this.toggleFeedFalse();
@@ -59,6 +77,7 @@ class Feed extends React.Component{
   }
 
   render(){
+    const { isClient } = this.props.userData.isLoggedIn.user_data[0]
     return(
        <div className="feed">
          <div className="feed__draggable-handle">
@@ -66,13 +85,8 @@ class Feed extends React.Component{
          </div>
           <h1> Jobs </h1>
           {
-            this.state.isClient ?
-            <div
-             className="feed__form-toggle"
-             onClick={this.togglePostsFormFalse}
-             >
-              Need a Job done? Click here.
-            </div>
+          !isClient ?
+            this.renderUserModal()
               :
             <div className="feed__exit-container">
              <div className="feed__exit-container exit-icon">
@@ -107,7 +121,8 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
   return {
-    posts: state.jobPosts
+    posts: state.jobPosts,
+    userData: state.isAuthenticated
   }
 }
 

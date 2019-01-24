@@ -23,7 +23,7 @@ class UserDescription(Resource):
     def put(self, username):
         data = UserDescription.parser.parse_args()
 
-        user = UserModel.find_by_username(username)
+        user = UserModel.find_by_username(data['username'])
 
         if user:
             user.description = data['description']

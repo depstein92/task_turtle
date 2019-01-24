@@ -169,14 +169,86 @@ const postJobsToFeedSuccess = (...params) => {
   }
 }
 
-/**********SEND LOGIN REQUEST***********/
+/**********EDIT PROFILE PICTURE***********/
+
+const editProfilePictureError = error => {
+  return {
+    type: actionNames['EDIT_PROFILE_PICTURE_FAILURE'],
+    payload: Object.assign({}, error, { message: 'Error in Editing Profile' })
+  }
+};
+
+const editProfilePictureLoading = () => {
+  return {
+    type: actionNames['EDIT_PROFILE_PICTURE_LOADING'],
+    payload: Object.assign({}, { loading: true },{message: 'Loading...'} )
+  }
+};
+
+const editProfilePictureSuccess = async (username, picture) => {
+
+    editProfilePictureLoading();
+
+    const data = await axios.put('http://127.0.0.1:5000/user_data/${username}',{
+      username,
+      profile_picture: picture
+    })
+    .catch(error => {
+      console.log(error);
+      editProfilePictureError(error);
+    });
+
+    if(!data){
+      return;
+    } else{
+      return {
+        type: actionNames['EDIT_PROFILE_PICTURE_SUCCESS'],
+        payload: Object.assign({}, data, { message: 'Profile edited successfully'})
+      }
+   }
+};
 
 
+/**********EDIT PROFILE DESCRIPTION***********/
 
 
+const editProfileDescriptionError = error => {
+  return {
+    type: actionNames['EDIT_PROFILE_DESCRIPTION_FAILURE'],
+    payload: Object.assign({}, error, { message: 'Profile could not be edited' })
+  }
+};
 
+const editProfileDescriptionLoading = () => {
+  return {
+    type: actionNames['EDIT_PROFILE_DESCRIPTION_LOADING'],
+    payload: Object.assign({}, { loading: true }, { message: 'Loading...' })
+  }
+};
 
+const editProfileDescriptionSuccess = async (username, description) => {
+  editProfileDescriptionLoading();
+  debugger;
+  const data = await axios.put('http://127.0.0.1:5000/user_description/${username}',{
+    username,
+    description
+  })
+  .catch(error => {
+    console.log(error);
+    editProfileDescriptionError(error);
+  });
 
+  debugger;
+
+  if(!data){
+    return;
+  } else{
+    return {
+      type: actionNames['EDIT_PROFILE_DESCRIPTION_SUCCESS'],
+      payload: Object.assign({}, data, { message: 'Profile Edited Successfully' })
+    }
+  }
+};
 
 
 /**********MESSAGING APP INBOX***********/
@@ -204,5 +276,7 @@ export default {
   logOutUser,
   sendLoginRequest,
   registerUser,
-  postJobsToFeedSuccess
+  postJobsToFeedSuccess,
+  editProfilePictureSuccess,
+  editProfileDescriptionSuccess
 };

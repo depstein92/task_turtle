@@ -14,7 +14,7 @@ class UserProfile extends React.Component{
   constructor(props){
     super(props);
 
-    this.state = { data: {} }
+    this.state = { isPopUpVisible: false }
   };
 
   renderUserProfile = () => {
@@ -37,17 +37,39 @@ class UserProfile extends React.Component{
 
   };
 
-  renderMessageLink = () => {
-    const {user_data} = this.props.userData.isLoggedIn;
+  onCardHoverEnter = () => this.setState({ isPopUpVisible: true });
+  onCardHoverLeave = () => this.setState({ isPopUpVisible: false });
 
-    return(
-      <div className="user-profile-messaging-link">
-        <Link to={"/Messaging"}>
-          Click here to message {user_data[0].username}!
-        </Link>
-         <p>{user_data[0].rating ? user_data[0].rating : 'No Current Rating' }</p>
-      </div>
-    )
+  renderMessageLink = () => {
+    const { user_data, jobs } = this.props.userData.isLoggedIn;
+
+    if(!jobs){
+      return(
+        <div className="user-profile-messaging-link">
+          <Link to={"/Messaging"}>
+            Click here to message {user_data[0].username}!
+          </Link>
+           <p>No Current Rating</p>
+        </div>
+      )
+    } else{
+      const sumOfUserRatings = jobs.map( a => a.rating)
+                                   .reduce((a, b) => a + b) / jobs.length;
+      const ratingArray = new Array();
+
+      for(let i = 0; i < sumOfUserRatings; i++){
+        ratingArray.push(<Icon name="star" />);
+      };
+
+      return(
+        <div className="user-profile-messaging-link">
+          <Link to={"/Messaging"}>
+            Click here to message me {user_data[0].username}!
+          </Link>
+           <p>{ratingArray}</p>
+        </div>
+      )
+    };
   };
 
   renderSkillsTable = () => {

@@ -16,8 +16,12 @@ const initialValue = {
         profile_picture: 'https://react.semantic-ui.com/images/avatar/large/patrick.png',
         isClient: false
       }
+    ],
+    jobs: [
+      { rating: 5 },
+      { rating: 5 },
+      { rating: 5 }
     ]
-
   },
   payload: {
     name: {

@@ -21,13 +21,30 @@ class EditProfile extends React.Component{
     this.state = {
       file: '',
       imagePreviewUrl: '',
-      description: ''
+      description: '',
+      isInputEmptyMessage: ''
     };
   }
 
   handleSubmit = e =>  {
     e.preventDefault();
-    console.log('handle uploading-', this.state.file);
+    const { file, description } = this.state;
+    const { editProfilePicture, editProfileDescription } = this.props;
+    const { username } = this.props.userData.isLoggedIn.data;
+    const fileName = file.name;
+
+    if(file === '' && description === ''){
+      this.setState({
+        isInputEmptyMessage: 'Missing input'
+      });
+      return;
+    } else if(description === ''){
+       editProfilePicture(username, file.name);
+       this.setState({ isInputEmptyMessage: ''});
+    } else if(file === ''){
+      editProfileDescription(username, description);
+      this.setState({ isInputEmptyMessage: ''});
+    }
   }
 
   handleImageChange = e =>  {
@@ -45,11 +62,11 @@ class EditProfile extends React.Component{
     reader.readAsDataURL(file)
   }
 
-  onChange = e => {
-    this.setState({
-      [name] : e.target.value
-    });
-  }
+ handleDescription = e => {
+   this.setState({
+     description: e.target.value
+   });
+ }
 
   renderImagePreview = () => {
     let { imagePreviewUrl } = this.state;
@@ -62,7 +79,6 @@ class EditProfile extends React.Component{
   }
 
   render() {
-
     return (
     <div>
       <div className="previewComponent">
@@ -78,7 +94,7 @@ class EditProfile extends React.Component{
             type="input"
             name="description"
             data-test="description-input"
-            onChange={this.onChange} />
+            onChange={this.handleDescription} />
           <button className="submitButton"
             type="submit"
             data-test="submitButton"
@@ -87,10 +103,27 @@ class EditProfile extends React.Component{
         <div className="imgPreview">
           { this.renderImagePreview() }
         </div>
+        <div className="form-message">
+          { this.state.isInputEmptyMessage }
+        </div>
       </div>
     </div>
     )
   }
 }
 
-export default EditProfile;
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({
+    editProfilePicture: actions['editProfilePictureSuccess'],
+    editProfileDescription: actions['editProfileDescriptionSuccess']
+  },dispatch);
+}
+
+const mapStateToProps = state => {
+  return {
+    message: state.editProfileMessage,
+    userData: state.isAuthenticated
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditProfile);

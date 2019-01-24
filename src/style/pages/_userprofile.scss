@@ -97,6 +97,14 @@
     height: 5rem;
   }
 
+  &__form-toggle{
+    text-align: center;
+    &:hover{
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+
   h1{
     font-family: 'Playfair Display', serif;
     font-variant-caps: petite-caps;
@@ -119,3 +127,21 @@
     padding-right: 4rem;
   }
 }
+
+
+  #feed-modal{
+    text-align: center !important;
+    font-family: 'Playfair Display', serif;
+    height: 15rem;
+
+    .header{
+      text-decoration: underline;
+      font-size: 2.5rem;
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+    }
+
+    p{
+     font-size: 1.5rem;
+    }
+  }
