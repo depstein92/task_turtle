@@ -84,7 +84,7 @@ class Feed extends React.Component{
               <PostsForm toggleForm={this.toggleFeedTrue} />
             </div>
           }
-          <Item.Group divided>
+          <Item.Group className="feed__job-posts" divided>
             {
               this.state.jobsAdded ?
                <DotLoader
