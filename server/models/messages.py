@@ -1,0 +1,54 @@
+import sqlite3
+from db import db
+from sqlalchemy.orm import relationship
+from random import randint
+
+
+class MessagesModel(db.Model):
+
+    __tablename__ = 'messages'
+
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(25), nullable=False)
+    username = db.Column(db.String(40), nullable=False)
+    description = db.Column(db.String(40), nullable=False)
+    content = db.Column(db.String(300))
+    location = db.Column(db.String(180), nullable=False)
+    client= db.Column(db.String(30), nullable=False)
+    date = db.Column(db.String(100), nullable=False)
+    time = db.Column(db.String(40), nullable=False)
+
+    def __init__(self, username, title, description, content, date, time, client, location):
+        self.username = username
+        self.title = title
+        self.description = description
+        self.content = content
+        self.client = client
+        self.date = date,
+        self.time = time,
+        self.location = location
+
+
+    @classmethod
+    def find_by_username(cls, username):
+        return cls.query.filter_by(username=username).first()
+
+    @classmethod
+    def find_job_by_title(cls, title):
+        return cls.query.filter_by(title=title)
+
+    def save_to_db(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def delete_from_db(self):
+        db.session.delete(self)
+        db.session.commit()
+
+    def json(self):
+        return {
+        'username': self.username,
+        'title': self.title,
+        'description': self.description,
+        'content': self.content
+        }

@@ -14,11 +14,13 @@ from resources.user_data import UserData
 from resources.skills_register import SkillsRegister
 from resources.posts_register import PostsRegister
 from resources.user_description import UserDescription
+from resources.messages_info import MessagesInfo
 
 from models.user import UserModel
 from models.jobs import JobsModel
 from models.skills import SkillsModel
 from models.posts import PostsModel
+from models.messages import MessagesModel
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db' #sqllite is exchangeable
@@ -41,6 +43,7 @@ api.add_resource(UserData, '/user_data/<string:username>')
 api.add_resource(UserDescription, '/user_description/<string:username>')
 api.add_resource(SkillsRegister, '/skills')
 api.add_resource(PostsRegister, '/job_posts')
+api.add_resource(MessagesInfo, '/messages/<string:username>')
 
 ###################SEED DATABASE####################
 
@@ -140,6 +143,33 @@ def insert_initial_values_skills(*args, **kwargs):
       username='dart',
       description='Yeet'))
     db.session.commit()
+
+#########MESSAGES SEED#################
+@event.listens_for(MessagesModel.__table__, 'after_create')
+def insert_initial_values_messages(*args, **kwargs):
+
+     db.session.add(MessagesModel(
+       username="dart",
+       title='Job: Rake Leaves booked!',
+       description='Rake Leaves',
+       content="Welcome to Task Turtle!",
+       location="Cary,NC",
+       client="Keith",
+       date="02/05/19",
+       time="6:00pm EST"
+       ))
+     db.session.add(MessagesModel(
+        username="dart",
+        title='Job:Help us Paint Walls booked!',
+        description='Rake Leaves',
+        content="Welcome to Task Turtle!",
+        date="02/05/19",
+        location="Cary,NC",
+        client="Keith",
+        time="6:00pm EST"
+       ))
+     db.session.commit()
+
 
 
 if __name__ == "__main__":

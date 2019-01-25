@@ -59,7 +59,8 @@ class UserProfile extends React.Component{
       };
 
       return(
-        <div className="user-profile-messaging-link">
+        <div className="user-profile-messaging-link"
+             id="user-profile-messaging-link">
            <p>Current Rating</p>
            <p>{ratingArray}</p>
         </div>

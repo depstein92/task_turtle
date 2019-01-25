@@ -52,6 +52,6 @@ class UserModel(db.Model):
         'username': self.username,
         'password': self.password,
         'profile_picture': self.profile_picture,
-        'description': self.description, 
+        'description': self.description,
         'isClient': self.isClient
         }

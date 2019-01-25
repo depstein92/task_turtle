@@ -23,6 +23,18 @@ class PostsModel(db.Model):
         self.time = time
         self.date = date
 
+    @classmethod
+    def find_by_username(cls, username):
+        return cls.query.filter_by(username=username).first()
+
+    @classmethod
+    def find_job_by_title(cls, title):
+        return cls.query.filter_by(title=title).first()
+
+    @classmethod
+    def find_by_date_and_time(cls, date, time):
+        return cls.query.filter_by(date=date, time=time).first()
+
     def json(self):
         return {
         'client': self.client,

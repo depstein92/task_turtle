@@ -69,6 +69,14 @@
       }
     }
 
+    .content{
+      #user-profile-messaging-link{
+         display: flex;
+         align-items: center;
+         flex-direction: column;
+      }
+  }
+
     #extra{
       color: black;
       display: flex;
@@ -89,7 +97,7 @@
 
   &__draggable-handle{
     display: flex;
-    background-color: aquamarine;
+    background-color: #bcf5e6;
     border: apx solid;
     justify-content: center;
     border: 4px solid;
