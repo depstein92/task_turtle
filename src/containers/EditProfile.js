@@ -9,10 +9,12 @@ import {
   TextArea,
   Modal,
   Header,
-  Message
+  Message,
+  Icon
 } from 'semantic-ui-react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Link } from 'react-router-dom';
 import actions from '../actions/index';
 
 class EditProfile extends React.Component{
@@ -81,8 +83,19 @@ class EditProfile extends React.Component{
   render() {
     return (
     <div>
+     <div className="back-button">
+      <Link to="/UserProfile">
+       <Icon name="angle left"
+             size={"big"}
+             color={"black"}
+        />
+      </Link>
+     </div>
       <div className="previewComponent">
         <h1>Edit Profile</h1>
+        <div className="form-message">
+          { this.state.isInputEmptyMessage }
+        </div>
         <form onSubmit={(e)=>this.handleSubmit(e)}>
           <label>Edit Profile Picture</label>
           <input className="fileInput"
@@ -98,13 +111,10 @@ class EditProfile extends React.Component{
           <button className="submitButton"
             type="submit"
             data-test="submitButton"
-            onClick={(e)=>this.handleSubmit(e)}>Upload Image</button>
+            onClick={(e)=>this.handleSubmit(e)}>Upload</button>
         </form>
         <div className="imgPreview">
-          { this.renderImagePreview() }
-        </div>
-        <div className="form-message">
-          { this.state.isInputEmptyMessage }
+        { this.renderImagePreview() }
         </div>
       </div>
     </div>

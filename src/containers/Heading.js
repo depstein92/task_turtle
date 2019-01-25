@@ -51,15 +51,6 @@ class Heading extends React.Component{
               active={activeItem === 'messages'}
               onClick={this.handleItemClick}
              />
-             <Menu.Item
-               name='feed'
-               link={true}
-               as={Link}
-               to="/Feed"
-               active={activeItem === 'feed'}
-               onClick={this.handleItemClick}
-              />
-
             <Menu.Item
               name='logout'
               active={activeItem === 'logout'}

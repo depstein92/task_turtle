@@ -31,7 +31,7 @@ class UserProfile extends React.Component{
         image={user_data[0].profile_picture ? user_data[0].profile_picture : defaultPhoto}
         header={user_data[0].username}
         description={user_data[0].description ? user_data[0].description : 'Place description here'}
-        extra={this.renderMessageLink()}
+        extra={this.renderUserRating()}
        />
     )
 
@@ -40,15 +40,12 @@ class UserProfile extends React.Component{
   onCardHoverEnter = () => this.setState({ isPopUpVisible: true });
   onCardHoverLeave = () => this.setState({ isPopUpVisible: false });
 
-  renderMessageLink = () => {
-    const { user_data, jobs } = this.props.userData.isLoggedIn;
+  renderUserRating = () => {
+    const { jobs } = this.props.userData.isLoggedIn;
 
     if(!jobs){
       return(
         <div className="user-profile-messaging-link">
-          <Link to={"/Messaging"}>
-            Click here to message {user_data[0].username}!
-          </Link>
            <p>No Current Rating</p>
         </div>
       )
@@ -58,14 +55,12 @@ class UserProfile extends React.Component{
       const ratingArray = new Array();
 
       for(let i = 0; i < sumOfUserRatings; i++){
-        ratingArray.push(<Icon name="star" />);
+        ratingArray.push(<Icon name="star" color="yellow" />);
       };
 
       return(
         <div className="user-profile-messaging-link">
-          <Link to={"/Messaging"}>
-            Click here to message me {user_data[0].username}!
-          </Link>
+           <p>Current Rating</p>
            <p>{ratingArray}</p>
         </div>
       )
