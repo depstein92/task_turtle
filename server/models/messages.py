@@ -18,15 +18,15 @@ class MessagesModel(db.Model):
     date = db.Column(db.String(100), nullable=False)
     time = db.Column(db.String(40), nullable=False)
 
-    def __init__(self, username, title, description, content, date, time, client, location):
-        self.username = username
+    def __init__(self, title, username, description, content, client, date, time, location):
         self.title = title
+        self.username = username
         self.description = description
         self.content = content
-        self.client = client
-        self.date = date,
-        self.time = time,
         self.location = location
+        self.client = client
+        self.date = date
+        self.time = time
 
 
     @classmethod
@@ -47,8 +47,12 @@ class MessagesModel(db.Model):
 
     def json(self):
         return {
-        'username': self.username,
         'title': self.title,
+        'username': self.username,
         'description': self.description,
-        'content': self.content
+        'content': self.content,
+        'location': self.location,
+        'client': self.client,
+        'date': self.date,
+        'time': self.time
         }

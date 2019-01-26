@@ -34,8 +34,9 @@ $color-primary-dark: #28b485;
          display: flex;
          flex-direction: column;
          font-family: 'Playfair Display', serif;
-         border-top: 1.5px solid;
          margin-bottom: 5px;
+         border-bottom-right-radius: 10px;
+         border-bottom-left-radius: 10px;
 
          &--title{
           font-size: 1.3rem;
@@ -66,10 +67,18 @@ $color-primary-dark: #28b485;
         background-color: $color-primary-dark;
         align-items: center;
         border-top: 1px solid;
+        padding: 10px;
+        border-radius: 10px;
+        width: 90%;
+        margin: 0 auto;
+
         img{
           max-height: 200px;
           max-width: 200px;
+          min-height: 200px;
+          max-height: 200px;
           object-fit: cover;
+          border-radius: 10px;
         }
 
         &--title{
@@ -99,7 +108,11 @@ $color-primary-dark: #28b485;
 
      &__how-it-works{
 
-       height: 100vh;
+       margin-top: 60px;
+       display: flex;
+       background-color: white;
+       padding: 50px;
+       height: 110vh;
        margin-top: 60px;
        display: flex;
 
@@ -121,6 +134,7 @@ $color-primary-dark: #28b485;
                 font-size: 2rem;
                 background-color: #7ed56f;
                 color: white;
+                padding: 5px;
              }
            }
               //Numbers by tag attribute
@@ -169,14 +183,16 @@ $color-primary-dark: #28b485;
 
   &__real-people-real-tasks{
     height: 100vh;
-    margin-top: 60px;
+    margin-top: 150px;
     display: flex;
     flex-direction: row;
+    justify-content: space-evenly;
 
 
     &--testimony-right{
       height: 100%;
       width: 100%;
+      max-width: 40vw;
 
       .testimony{
         height: 50%;
@@ -188,6 +204,7 @@ $color-primary-dark: #28b485;
           max-height: 115px;
           max-width: 115px;
           border-radius: 50%;
+          border: .5px solid;
         }
 
         &__description{
@@ -195,8 +212,15 @@ $color-primary-dark: #28b485;
           font-family: 'Playfair Display', serif;
 
           .description{
-            font-size: 2rem;
+            font-size: 1.5rem;
             border: .5px solid grey;
+            background-color: white;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            height: 22vh;
+            line-height: 35px
+
           }
 
           .name{
@@ -210,6 +234,7 @@ $color-primary-dark: #28b485;
     &--testimony-left{
       height: 100%;
       width: 100%;
+      max-width: 40vw;
 
       .testimony{
         height: 50%;
@@ -221,6 +246,7 @@ $color-primary-dark: #28b485;
           max-height: 115px;
           max-width: 115px;
           border-radius: 50%;
+          border: .5px solid;
         }
 
         &__description{
@@ -228,7 +254,14 @@ $color-primary-dark: #28b485;
           font-family: 'Playfair Display', serif;
 
           .description{
+            font-size: 1.5rem;
             border: .5px solid grey;
+            background-color: white;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            height: 22vh;
+            line-height: 35px
           }
 
           .name{

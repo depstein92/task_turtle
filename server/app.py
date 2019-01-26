@@ -128,29 +128,29 @@ def insert_initial_values_posts(*args, **kwargs):
     db.session.commit()
 
 #############SKILLS SEED###############
-@event.listens_for(SkillsModel.__table__, 'after_create')
-def insert_initial_values_skills(*args, **kwargs):
-
-    db.session.add(SkillsModel(
-      username='dart',
-      description='Mow Lawns'
-      ))
-    db.session.add(SkillsModel(
-      username='dart',
-      description='Paint Walls'
-      ))
-    db.session.add(PostsModel(
-      username='dart',
-      description='Yeet'))
-    db.session.commit()
+# @event.listens_for(SkillsModel.__table__, 'after_create')
+# def insert_initial_values_skills(*args, **kwargs):
+#
+#     db.session.add(SkillsModel(
+#       username='dart',
+#       description='Mow Lawns'
+#       ))
+#     db.session.add(SkillsModel(
+#       username='dart',
+#       description='Paint Walls'
+#       ))
+#     db.session.add(PostsModel(
+#       username='dart',
+#       description='Yeet'))
+#     db.session.commit()
 
 #########MESSAGES SEED#################
 @event.listens_for(MessagesModel.__table__, 'after_create')
 def insert_initial_values_messages(*args, **kwargs):
 
      db.session.add(MessagesModel(
-       username="dart",
        title='Job: Rake Leaves booked!',
+       username="dart",
        description='Rake Leaves',
        content="Welcome to Task Turtle!",
        location="Cary,NC",
@@ -159,14 +159,14 @@ def insert_initial_values_messages(*args, **kwargs):
        time="6:00pm EST"
        ))
      db.session.add(MessagesModel(
-        username="dart",
-        title='Job:Help us Paint Walls booked!',
-        description='Rake Leaves',
-        content="Welcome to Task Turtle!",
-        date="02/05/19",
-        location="Cary,NC",
-        client="Keith",
-        time="6:00pm EST"
+       title='Job: Ate Cows!',
+       username="dart",
+       description='Ate Cows',
+       content="Welcome to Task Turtle!",
+       location="Cary,NC",
+       client="Keith",
+       date="02/05/19",
+       time="7:00pm EST"
        ))
      db.session.commit()
 

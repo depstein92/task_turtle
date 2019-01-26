@@ -56,7 +56,7 @@ class PopularTasks extends React.Component{
              <Icon
               className={"angle left"}
               id={"count-button"}
-              size={"big"}>
+              size={"huge"}>
              </Icon>
             </div>
              {this.arrayOfImages[0 + count]}
@@ -70,7 +70,7 @@ class PopularTasks extends React.Component{
               <Icon
                className={"angle right"}
                id={"count-button"}
-               size={"big"}>
+               size={"huge"}>
               </Icon>
            </div>
          </div>
