@@ -32,8 +32,8 @@ class PostsModel(db.Model):
         return cls.query.filter_by(title=title).first()
 
     @classmethod
-    def find_by_date_and_time(cls, date, time):
-        return cls.query.filter_by(date=date, time=time).first()
+    def find_by_date_time_title_and_client(cls, date, time, client, title):
+        return cls.query.filter_by(date=date, time=time, client=client, title=title).all()
 
     def json(self):
         return {

@@ -258,22 +258,18 @@ const editProfileDescriptionSuccess = async (username, description) => {
 
 /**********MESSAGING APP INBOX***********/
 
-const getUsersMessages = () => {
+//date, time, client, title
+const sendUsersJobRequestSuccess = () => {
+};
 
-   const messagesInfoTitle = [
-     "Hey I was just hopeing to talk to you...",
-     "Hey I was hopeing to get to know you...",
-     "Dear yee king of yeee, all that is yee to me"
-   ];
+const sendUsersJobRequestFailure = () => {
 
-   const messages = () => setTimeout(messagesInfoTitle, 1000);
+};
 
-  return {
-    type: "GET_USER_MESSAGES_SUCCESS",
-    payload: messagesInfoTitle
-  }
+const sendUsersJobRequestLoading = () => {
 
-}
+};
+
 
 export default {
   getAllPostsSuccess,
@@ -283,5 +279,6 @@ export default {
   registerUser,
   postJobsToFeedSuccess,
   editProfilePictureSuccess,
-  editProfileDescriptionSuccess
+  editProfileDescriptionSuccess,
+  sendUsersJobRequestSuccess
 };

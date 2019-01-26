@@ -15,6 +15,7 @@ from resources.skills_register import SkillsRegister
 from resources.posts_register import PostsRegister
 from resources.user_description import UserDescription
 from resources.messages_info import MessagesInfo
+from resources.posts_resources import PostsResources
 
 from models.user import UserModel
 from models.jobs import JobsModel
@@ -44,6 +45,7 @@ api.add_resource(UserDescription, '/user_description/<string:username>')
 api.add_resource(SkillsRegister, '/skills')
 api.add_resource(PostsRegister, '/job_posts')
 api.add_resource(MessagesInfo, '/messages/<string:username>')
+api.add_resource(PostsResources, '/post_resource/')
 
 ###################SEED DATABASE####################
 

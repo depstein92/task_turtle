@@ -15,5 +15,10 @@ body{
    line-height: 1.7;
    box-sizing: border-box;
    padding: 15px !important;
-   background-image: url('https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX17927574.jpg');
+   background-image: url('./images/new_city.jpg');
+   background-repeat: no-repeat;
+   background-position: center;
+   background-size: cover;
+   background-attachment: fixed;
+
 }
