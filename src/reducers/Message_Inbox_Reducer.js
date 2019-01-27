@@ -1,25 +1,18 @@
-import action_name from '../actions/action_names'
+import actionName from '../actions/action_names';
 
+ const messages = {
 
-const messages = {
-  payload : [
-    "Loading",
-    "Loading",
-    "Loading"
-  ]
 }
-
-
 
 export default function Message_Inbox_Reducer(state=messages, data){
   switch(data.type){
-    case action_name.GET_USER_MESSAGES_SUCCESS:
+    case actionName['REQUEST_JOB_USER_MESSAGES_SUCCESS']:
      return {  payload: data.payload, error: false, loading: false };
     break;
-    case action_name.GET_USER_MESSAGES_LOADING:
+    case actionName['REQUEST_JOB_USER_MESSAGES_LOADING']:
       return { loading: true, error: false, data: {} };
     break;
-    case action_name.GET_USER_MESSAGES_ERROR:
+    case actionName['REQUEST_JOB_USER_MESSAGES_ERROR']:
      return { loading: false, error: true, data: {} };
     default:
      return state;

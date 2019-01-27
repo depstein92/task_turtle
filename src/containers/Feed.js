@@ -53,17 +53,21 @@ class Feed extends React.Component{
      <Item key={index}>
         <Item.Image src='../src/style/images/wireframe.png' />
         <Item.Content>
-          <Item.Header as='a'>{post.title}</Item.Header>
+          <Item.Header as='a'>{ post.title }</Item.Header>
           <Item.Meta>
             <span>{post.client}</span>
           </Item.Meta>
           <Item.Description>
-            {post.description}
-            {post.location}
-            {post.date}
+            { post.description }
+            { post.location }
+            { post.date }
           </Item.Description>
            <Item.Extra>
-            <Button primary floated='right'>
+            <Button
+             onClick={
+               () => this.requestJobForPost(post.client, post.date, post.time, post.location, post.title)
+             }
+             primary floated='right'>
               Request Job
               <Icon name='right chevron' />
             </Button>
@@ -74,6 +78,19 @@ class Feed extends React.Component{
      </Item>
       )
     })
+  }
+
+  requestJobForPost = (client, date, time, location, title) => {
+    const { requestJob } = this.props;
+    const { user_data } = this.props.userData.isLoggedIn;
+
+    requestJob(
+      user_data[0].username,
+      date,
+      time,
+      client,
+      title
+    );
   }
 
   render(){
@@ -116,7 +133,10 @@ class Feed extends React.Component{
 }
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ getAllPosts: actions['getAllPostsSuccess']}, dispatch);
+  return bindActionCreators({
+    getAllPosts: actions['getAllPostsSuccess'],
+    requestJob: actions['sendUsersJobRequestSuccess']
+  }, dispatch);
 }
 
 const mapStateToProps = state => {

@@ -25,11 +25,14 @@ from models.messages import MessagesModel
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db' #sqllite is exchangeable
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False #turns off extensions
 app.config['SQLALCHEMY_ECHO'] = True
-api = Api(app)
-CORS(app)
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config["CORS_SUPPORTS_CREDENTIALS"] = True
+app.config["CORS_EXPOSE_HEADERS"] = True
+app.config['CORS_HEADERS'] = 'Content-Type'
 
+api = Api(app)
+CORS(app, headers='Content-Type', resources={r'/*/' : {"origins": "*"}})
 
 @app.before_first_request
 def create_tables():
@@ -37,15 +40,15 @@ def create_tables():
 
 jwt = JWT(app, authenticate, identity)
 
-api.add_resource(UserRegister, '/register')
-api.add_resource(UserLogin, '/login')
-api.add_resource(JobsRegister, '/jobs')
-api.add_resource(UserData, '/user_data/<string:username>')
-api.add_resource(UserDescription, '/user_description/<string:username>')
-api.add_resource(SkillsRegister, '/skills')
-api.add_resource(PostsRegister, '/job_posts')
-api.add_resource(MessagesInfo, '/messages/<string:username>')
-api.add_resource(PostsResources, '/post_resource/')
+api.add_resource(UserRegister, '/api/register')
+api.add_resource(UserLogin, '/api/login')
+api.add_resource(JobsRegister, '/api/jobs')
+api.add_resource(UserData, '/api/user_data/<string:username>')
+api.add_resource(UserDescription, '/api/user_description/<string:username>')
+api.add_resource(SkillsRegister, '/api/skills')
+api.add_resource(PostsRegister, '/api/job_posts')
+api.add_resource(MessagesInfo, '/api/messages/<string:username>')
+api.add_resource(PostsResources, '/api/post_resource/')
 
 ###################SEED DATABASE####################
 

@@ -28,7 +28,6 @@ class MessagesModel(db.Model):
         self.date = date
         self.time = time
 
-
     @classmethod
     def find_by_username(cls, username):
         return cls.query.filter_by(username=username).first()

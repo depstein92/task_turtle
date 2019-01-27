@@ -31,7 +31,6 @@ class PostsResources(Resource):
         help="Date cannot be blank"
     )
 
-
     def get(self):
 
         data = PostsResources.parser.parse_args()

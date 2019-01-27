@@ -16,7 +16,7 @@ const registerUser = async (userName, password, isClient) => {
 
     registerUserLoading();
 
-    const response = await axios.post('http://127.0.0.1:5000/register', {
+    const response = await axios.post('http://127.0.0.1:5000/api/register', {
             headers: {
                 'Access-Control-Allow-Origin': '*'
             },
@@ -65,12 +65,12 @@ const sendLoginRequest = async (username, password) => {
     sendLoginRequestLoading();
     getUserProfileLoading();
 
-    const loginData = await axios.post('http://127.0.0.1:5000/login', {
+    const loginData = await axios.post('http://127.0.0.1:5000/api/login', {
         username,
         password
     });
 
-    const userData = await axios.get(`http://127.0.0.1:5000/user_data/${loginData.data.username}`)
+    const userData = await axios.get(`http://127.0.0.1:5000/api/user_data/${loginData.data.username}`)
                                 .catch(error => console.log(error));
 
     if (!loginData) {
@@ -108,7 +108,7 @@ const getAllPostsError = error => {
 
 const getAllPostsSuccess = async () => {
 
-  const postsData = await axios.get("http://127.0.0.1:5000/job_posts")
+  const postsData = await axios.get("http://127.0.0.1:5000/api/job_posts")
                                .catch(error => getAllPostsError(error));
 
   return {
@@ -151,7 +151,7 @@ const postJobsToFeedSuccess = (...params) => {
 
   postJobsToFeedLoading();
 
-  const data = axios.post('http://127.0.0.1:5000/job_posts', {
+  const data = axios.post('http://127.0.0.1:5000/api/job_posts', {
     client: params[0],
     title: params[1],
     description: params[2],
@@ -189,7 +189,7 @@ const editProfilePictureSuccess = async (username, picture) => {
 
     editProfilePictureLoading();
 
-    const data = await axios.put('http://127.0.0.1:5000/user_data/${username}',{
+    const data = await axios.put('http://127.0.0.1:5000/api/user_data/${username}',{
       username,
       profile_picture: picture
     })
@@ -229,7 +229,7 @@ const editProfileDescriptionLoading = () => {
 const editProfileDescriptionSuccess = async (username, description) => {
   editProfileDescriptionLoading();
   debugger;
-  const data = await axios.put('http://127.0.0.1:5000/user_description/${username}',{
+  const data = await axios.put('http://127.0.0.1:5000/api/user_description/${username}',{
     username,
     description
   })
@@ -251,29 +251,74 @@ const editProfileDescriptionSuccess = async (username, description) => {
 };
 
 
-/*************REQUEST JOB*****************/
+/**********MESSAGING APP INBOX / REQUEST JOB***********/
 
+const sendUserJobRequestLoading = () => {
+  return {
+    type: actionNames['REQUEST_JOB_USER_MESSAGES_LOADING'],
+    payload: { loading: true }
+  }
+}
 
+const sendUserJobRequestError = error => {
+  return {
+    type: actionNames['REQUEST_JOB_USER_MESSAGES_ERROR'],
+    payload: error
+  }
+}
 
+//GET POST by date, time, client, title
+const sendUsersJobRequestSuccess = async (username, date, time, client, title) => {
 
-/**********MESSAGING APP INBOX***********/
+    //get post
+    const postsData = await axios.get('http://127.0.0.1:5000/api/post_resource?date=04/5/2019&time=6:30&client=Keith&title=Get Sheep', {
+      date,
+      time,
+      client,
+      title
+    }).catch(err => {
+      console.log(`Error in postsData ${err}`);
+      sendUsersJobRequestError(err);
+    });
 
-//date, time, client, title
-const sendUsersJobRequestSuccess = () => {
-};
+    const userData = postsData.data.posts[0];
 
-const sendUsersJobRequestFailure = () => {
+     debugger;
+    //save postsData to MESSAGES
+    const postDataToMessages = await axios.post(`http://127.0.0.1:5000/api/messages/${username}`, {
+      headers: {
+        "Access-Control-Allow-Origin": '*'
+      },
+      username,
+      title: 'Can You do the Following job? ${userData.title}',
+      description: userData.description,
+      content: '',
+      location: userData.location,
+      client: userData.client,
+      date: userData.date,
+      time: userData.time
+    }).catch(err => {
+      console.log(`Error in postsDataToMessages ${err}`)
+      sendUserJobRequestError(err);
+    });
 
-};
+    debugger;
 
-const sendUsersJobRequestLoading = () => {
-
+    //message data
+    const messageData = axios.get(`http://127.0.0.1:5000/api/messages/`)
+                        .catch(err => {
+                          console.log(`Error in getData ${err}`)
+                          sendUsersJobRequestError(err);
+                        });
+    return{
+      type: actionNames['REQUEST_JOB_USER_MESSAGES_SUCCESS'],
+      payload: Object.assign({}, messageData, { message: 'Post Successfully Added' })
+    }
 };
 
 
 export default {
   getAllPostsSuccess,
-  getUsersMessages,
   logOutUser,
   sendLoginRequest,
   registerUser,

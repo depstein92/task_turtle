@@ -30,7 +30,6 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({ getMessages: actions['getUsersMessages'] }, dispatch);
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Messaging_Inbox);
+export default connect(mapStateToProps)(Messaging_Inbox);

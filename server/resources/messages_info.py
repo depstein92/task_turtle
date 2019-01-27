@@ -32,6 +32,12 @@ class MessagesInfo(Resource):
             help="Content Field cannot be blank"
         )
 
+        parser.add_argument('location',
+            type=str,
+            required=True,
+            help="Content Field cannot be blank"
+        )
+
         parser.add_argument('client',
             type=str,
             required=True,
@@ -50,11 +56,13 @@ class MessagesInfo(Resource):
             help="Time Field cannot be blank"
         )
 
-        def post(self):
+        def post(self, username):
 
             data = MessagesInfo.parser.parse_args()
 
-            message = MessagesModel.save_to_db()
+            message = MessagesModel(**data)
+
+            MessagesModel.save_to_db(message)
 
             message.save_to_db()
 
