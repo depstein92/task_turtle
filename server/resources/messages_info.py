@@ -22,13 +22,13 @@ class MessagesInfo(Resource):
 
         parser.add_argument('description',
             type=str,
-            required=True,
+            required=False,
             help="Description Field cannot be blank"
         )
 
         parser.add_argument('content',
             type=str,
-            required=True,
+            required=False,
             help="Content Field cannot be blank"
         )
 
@@ -71,7 +71,7 @@ class MessagesInfo(Resource):
 
             if MessagesModel.find_by_username(username):
 
-                messages = [ message.json() for message in MessagesModel.query.filter_by(username=username)]
+                messages = [ message.json() for message in MessagesModel.query.filter_by(username=username) ]
 
                 return {
                  'message': 'Messages loaded successfully',
@@ -79,8 +79,24 @@ class MessagesInfo(Resource):
                 }
 
             else:
-
                 return {
                  'message': 'There are no user messages',
                  'messages': ['Messages shown here...']
                 }
+
+
+        def delete(self, username):
+
+            data = MessagesInfo.parser.parse_args()
+
+            if MessagesModel.find_by_client_title_date_time(data['client'], data['title'], data['date'], data['time']):
+
+               message = MessagesModel.find_by_client_title_date_time(data['client'], data['title'], data['date'], data['time'])
+               
+               MessagesModel.delete_from_db(message)
+
+               return { 'message': 'Message Deleted' }
+
+            else:
+
+                return { 'message': 'Could not find Message to delete' }

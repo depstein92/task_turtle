@@ -1,5 +1,4 @@
 
-
 .messaging-inbox{
   max-width: 70%;
   margin: 0 auto;
@@ -23,5 +22,9 @@
   #messages{
     margin-bottom: 40px;
     padding: 10px;
+
+    &--delete{
+
+    }
   }
 }

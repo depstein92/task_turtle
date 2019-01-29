@@ -36,6 +36,10 @@ class MessagesModel(db.Model):
     def find_job_by_title(cls, title):
         return cls.query.filter_by(title=title)
 
+    @classmethod
+    def find_by_client_title_date_time(cls, client, title, date, time):
+        return cls.query.filter_by(client=client, title=title, date=date, time=time).first()     
+
     def save_to_db(self):
         db.session.add(self)
         db.session.commit()

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Menu, Radio } from 'semantic-ui-react';
+import { Menu, Radio, Icon } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import actions from '../actions/index';
@@ -21,11 +21,12 @@ class Messaging_Inbox extends React.Component{
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   renderMessagingInbox = () => {
-    const { messages } = this.props;
+    const { messages, deleteUserMessage } = this.props;
     const { activeItem } = this.state;
 
     return messages.payload.data.messages.map(obj => {
      return(
+       <div>
          <Menu id="messages">
           <Menu.Item
             name='client'
@@ -72,12 +73,24 @@ class Messaging_Inbox extends React.Component{
             <span>Confirm Job:</span>
           </Menu.Item>
       </Menu>
+      <Icon
+       className="messsages--delete"
+       size={"large"}
+       name="close"
+       onClick={
+        deleteUserMessage({
+           client: obj.client,
+           title: obj.title,
+           date: obj.date,
+           time: obj.time
+        })
+       }/>
+     </div>
      )
     });
   }
 
   render(){
-    console.log(this.props);
     return(
     <div className={"messaging-container"}>
       <div className={"messaging-inbox"}>
@@ -100,7 +113,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators({
-    getUserMessages: actions['getUsersMessagesSuccess']
+    getUserMessages: actions['getUsersMessagesSuccess'],
+    deleteUserMessage: actions['deleteMessageSuccess']
   }, dispatch)
 };
 

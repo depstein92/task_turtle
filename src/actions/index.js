@@ -210,7 +210,6 @@ const editProfilePictureSuccess = async (username, picture) => {
 
 /**********EDIT PROFILE DESCRIPTION***********/
 
-
 const editProfileDescriptionError = error => {
   return {
     type: actionNames['EDIT_PROFILE_DESCRIPTION_FAILURE'],
@@ -310,7 +309,6 @@ const sendUsersJobRequestSuccess = async (username, date, time, client, title) =
 
 /**********GET ALL MESSAGES***********/
 
-
 const getUserMessagesLoading = () => {
   return {
     type: actionNames['GET_USER_MESSAGES_LOADING'],
@@ -338,6 +336,48 @@ const getUsersMessagesSuccess = async (username) => {
   }
 };
 
+/**********DELETE MESSAGES***********/
+
+const deleteMessageLoading = () => {
+  return {
+    type: actionNames['DELETE_USER_MESSAGE_LOADING'],
+    payload: { loading: 'User message deleted' }
+  }
+};
+
+const deleteMessageFailure = err => {
+  return {
+    type: actionNames['DELETE_USER_MESSAGE_FAILURE'],
+    payload: {
+      loading: 'User message Error',
+      error: err
+    }
+  };
+};
+
+const deleteMessageSuccess = async (userData) => {
+
+  const deleteMessage = await axios.delete(`http://127.0.0.1:5000/api/messages`,
+                             {
+                                data: {
+                                  client: userData.client,
+                                  title: userData.title,
+                                  date: userData.date,
+                                  time: userData.time
+                                }
+                              })
+                              .catch(err => {
+                                console.log(err);
+                                deleteMessageFailure(err);
+                              });
+
+  debugger;
+  return {
+    type: actionNames['DELETE_USER_MESSAGE_SUCCESS'],
+    payload: { message: 'Message Deleted' }
+  };
+};
+
 export default {
   getAllPostsSuccess,
   logOutUser,
@@ -347,5 +387,6 @@ export default {
   editProfilePictureSuccess,
   editProfileDescriptionSuccess,
   sendUsersJobRequestSuccess,
-  getUsersMessagesSuccess
+  getUsersMessagesSuccess,
+  deleteMessageSuccess
 };
