@@ -55,7 +55,7 @@ class UserProfile extends React.Component{
       const ratingArray = new Array();
 
       for(let i = 0; i < sumOfUserRatings; i++){
-        ratingArray.push(<Icon name="star" color="yellow" />);
+        ratingArray.push(<Icon name="star" color="yellow" key={i} />);
       };
 
       return(

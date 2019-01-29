@@ -29,7 +29,7 @@ class Heading extends React.Component{
     const defaultPhoto = 'https://react.semantic-ui.com/images/avatar/large/patrick.png';
 
     return (
-      <div data-test='heading' class='heading'>
+      <div data-test='heading' className='heading'>
        <Menu pointing secondary className={'heading-menu'}>
           <Menu.Menu position='left' className={"heading-menu-profile-image"}>
               <Header as='h2'>
