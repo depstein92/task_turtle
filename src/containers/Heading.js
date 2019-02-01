@@ -11,7 +11,9 @@ class Heading extends React.Component{
   constructor(props){
     super(props);
 
-    this.state = { activeItem: 'home' };
+    this.state = {
+      activeItem: 'home',
+    };
   }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
@@ -25,12 +27,13 @@ class Heading extends React.Component{
   render() {
     const { activeItem } = this.state;
     const { user_data  } = this.props.userData.isLoggedIn;
+    const { newMessage } = this.props;
 
     const defaultPhoto = 'https://react.semantic-ui.com/images/avatar/large/patrick.png';
 
     return (
       <div data-test='heading' className='heading'>
-       <Menu pointing secondary className={'heading-menu'}>
+       <Menu pointing secondary id={'heading-menu'} style={{ "height": "100px"}}>
           <Menu.Menu position='left' className={"heading-menu-profile-image"}>
               <Header as='h2'>
               <Image circular src={user_data[0].profile_picture ? user_data[0].profile_picture : defaultPhoto} />
@@ -51,6 +54,14 @@ class Heading extends React.Component{
               active={activeItem === 'messages'}
               onClick={this.handleItemClick}
              />
+             <Menu.Item>
+             { newMessage === 0 ?
+              <div id="heading-menu__no-new-messages" /> :
+               <div id="heading-menu__new-messages">
+                 { newMessage }
+                </div>
+             }
+             </Menu.Item>
             <Menu.Item
               name='logout'
               active={activeItem === 'logout'}

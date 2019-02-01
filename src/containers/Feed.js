@@ -10,7 +10,8 @@ class Feed extends React.Component{
 
   state = {
     jobsAdded: false,
-    isModalOpen: false
+    isModalOpen: false,
+    newMessage: 0
   }
 
   componentDidMount(){
@@ -20,6 +21,12 @@ class Feed extends React.Component{
 
   toggleFeedTrue = () => this.setState({ jobsAdded: true });
   toggleFeedFalse = () => this.setState({ jobsAdded: false });
+
+  addNewMessage = () => {
+    this.setState({
+      newMessage: this.state.newMessage++
+    });
+  }
 
   renderUserModal = () => {
     return(
@@ -43,6 +50,7 @@ class Feed extends React.Component{
 
   renderPosts = () => {
     const { posts, message } = this.props.posts.payload.data
+    const { renderNewMessage } = this.props;
 
     if(message === "Post added"){
       this.toggleFeedFalse();
@@ -65,7 +73,11 @@ class Feed extends React.Component{
            <Item.Extra>
             <Button
              onClick={
-               () => this.requestJobForPost(post.client, post.date, post.time, post.location, post.title)
+               () => {
+                 this.requestJobForPost(post.client, post.date, post.time, post.location, post.title)
+                 this.addNewMessage()
+                 renderNewMessage(this.state.newMessage)
+               }
              }
              primary floated='right'>
               Request Job

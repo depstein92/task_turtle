@@ -86,23 +86,26 @@ class Messaging_Inbox extends React.Component{
               <Radio toggle />
               <span>Confirm Job:</span>
             </Menu.Item>
+            <Menu.Item>
+              <Icon
+               className="delete-icon"
+               size={"large"}
+               name="close"
+               onClick={
+                  () => {
+                  this.renderNotVisible(index)
+                  // deleteUserMessage({
+                  //          userName: username,
+                  //          client: obj.client,
+                  //          title: obj.title,
+                  //          date: obj.date,
+                  //          time: obj.time
+                  //       })
+                 }
+               }/>
+            </Menu.Item>
         </Menu>
-        <Icon
-         className="delete-icon"
-         size={"large"}
-         name="close"
-         onClick={
-            () => {
-            this.renderNotVisible(index)
-            // deleteUserMessage({
-            //          userName: username,
-            //          client: obj.client,
-            //          title: obj.title,
-            //          date: obj.date,
-            //          time: obj.time
-            //       })
-           }
-         }/>
+
        </div>
        )
       }

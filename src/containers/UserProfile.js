@@ -14,7 +14,10 @@ class UserProfile extends React.Component{
   constructor(props){
     super(props);
 
-    this.state = { isPopUpVisible: false }
+    this.state = {
+      isPopUpVisible: false,
+      newMessage: 0
+    }
   };
 
   renderUserProfile = () => {
@@ -126,10 +129,16 @@ class UserProfile extends React.Component{
     };
   };
 
+  renderNewMessage = number => {
+    this.setState({
+      newMessage: number
+    })
+  }
+
   render(){
     return(
     <div>
-      <Heading />
+      <Heading newMessage={ this.state.newMessage } />
       <div className={'user-profile-container'}>
         { this.renderUserProfile() }
         <UserRecentJobs />
@@ -146,7 +155,7 @@ class UserProfile extends React.Component{
             onDrag={this.handleDrag}
             onStop={this.handleStop}>
           <div className="handle">
-           <Feed />
+           <Feed renderNewMessage={ this.renderNewMessage } />
           </div>
         </Draggable>
     </div>

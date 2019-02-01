@@ -1,0 +1,23 @@
+
+.heading{
+
+  #heading-menu__new-messages{
+        display: block;
+        position: absolute;
+        background-color: #cfecf4;
+        border-radius: 98%;
+        text-align: center;
+        padding: 11px;
+        padding-bottom: 1px;
+        padding-top: 6px;
+        padding-bottom: 7px;
+        transform: translateX(-40px);
+        border: .5px solid;
+        bottom: 30px;
+  }
+
+  #heading-menu__no-new-messages{
+    display: none;
+  }
+
+}
