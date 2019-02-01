@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Menu, Radio, Icon } from 'semantic-ui-react';
+import { Menu, Radio, Icon, Message } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import actions from '../actions/index';
@@ -11,21 +11,43 @@ class Messaging_Inbox extends React.Component{
 
     this.state = {
       activeItem: '',
-      visibleIndex: -1
+      visibleIndex: [],
+      renderMessageDeleted: false
     }
   }
 
   componentDidMount(){
    const { getUserMessages } = this.props;
    const { username } = this.props.userData.isLoggedIn.data;
-   debugger;
    getUserMessages(username);
   }
 
   renderNotVisible = index => {
+   const { visibleIndex } = this.state;
    this.setState({
-     visibleIndex: index
+     visibleIndex: [...visibleIndex, index]
    });
+  }
+
+  renderMessageDeleted = () => {
+   const { renderMessageDeleted } = this.state;
+
+   if(renderMessageDeleted === true ){
+
+     setTimeout(() => this.setState({
+       renderMessageDeleted: false
+     }), 500);
+
+     return(
+        <Message positive>
+         <Message.Header>
+           Message Deleted
+          </Message.Header>
+        </Message>
+     )
+   } else{
+     return <div />;
+   }
   }
 
 
@@ -35,8 +57,9 @@ class Messaging_Inbox extends React.Component{
     const { messages, deleteUserMessage } = this.props;
     const { username } = this.props.userData.isLoggedIn.data;
     const { activeItem, visibleIndex } = this.state;
+
     return messages.payload.data.messages.map((obj, index) => {
-      if(visibleIndex === index){
+      if(visibleIndex.includes(index)){
         return <div />
       } else{
        return(
@@ -94,6 +117,7 @@ class Messaging_Inbox extends React.Component{
                onClick={
                   () => {
                   this.renderNotVisible(index)
+                  this.setState({ renderMessageDeleted: true });
                   // deleteUserMessage({
                   //          userName: username,
                   //          client: obj.client,
@@ -115,10 +139,13 @@ class Messaging_Inbox extends React.Component{
   render(){
     return(
     <div className={"messaging-container"}>
+      <h1 className="messaging-container__title">
+         Messaging
+      </h1>
+      <div className="messaging-container--message-deleted">
+      { this.renderMessageDeleted() }
+      </div>
       <div className={"messaging-inbox"}>
-       <h1 className="messaging-inbox__title">
-          Messaging
-       </h1>
        { this.renderMessagingInbox() }
       </div>
     </div>
