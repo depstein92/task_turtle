@@ -50,6 +50,7 @@ export default function Messaging_Inbox_Reducer(state=initialValue, data){
     break;
     case actionName['GET_USER_MESSAGES_ERROR']:
      return { loading: false, error: true, data: {} };
+    break;
     default:
      return state;
   }

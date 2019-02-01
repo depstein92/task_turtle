@@ -32,7 +32,9 @@ app.config["CORS_EXPOSE_HEADERS"] = True
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 api = Api(app)
-CORS(app, headers='Content-Type', resources={r'/*/' : {"origins": "*"}})
+# CORS(app, support_credentials=True, resources={r"/*": {"origins": "*"}})
+CORS(app, allow_headers='*', resources={r"/*": {"origins": "*"}},
+     origins='*',  expose_headers='Authorization')
 
 @app.before_first_request
 def create_tables():

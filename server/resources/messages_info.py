@@ -3,6 +3,7 @@ from flask_restful import Resource, reqparse
 from models.messages import MessagesModel
 from models.posts import PostsModel
 from db import db
+from flask_cors import CORS, cross_origin
 
 class MessagesInfo(Resource):
 
@@ -66,7 +67,6 @@ class MessagesInfo(Resource):
 
             message.save_to_db()
 
-
         def get(self, username):
 
             if MessagesModel.find_by_username(username):
@@ -83,16 +83,15 @@ class MessagesInfo(Resource):
                  'message': 'There are no user messages',
                  'messages': ['Messages shown here...']
                 }
-
-
-        def delete(self, username):
+        @cross_origin(support_credentials=True)
+        def delete(self, username, client, title, date, time):
 
             data = MessagesInfo.parser.parse_args()
 
-            if MessagesModel.find_by_client_title_date_time(data['client'], data['title'], data['date'], data['time']):
+            if MessagesModel.find_by_client_title_date_time(client,title,date,time):
 
-               message = MessagesModel.find_by_client_title_date_time(data['client'], data['title'], data['date'], data['time'])
-               
+               message = MessagesModel.find_by_client_title_date_time(client, title, date, time)
+
                MessagesModel.delete_from_db(message)
 
                return { 'message': 'Message Deleted' }

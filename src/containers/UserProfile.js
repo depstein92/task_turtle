@@ -154,11 +154,12 @@ class UserProfile extends React.Component{
   };
 };
 
-
 const mapStateToProps = state => {
   return {
-    userData: state.isAuthenticated
+    userData: state.isAuthenticated,
+    getUserMessages: state.messages_inbox
   };
 };
+
 
 export default connect(mapStateToProps)(UserProfile);

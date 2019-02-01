@@ -85,9 +85,10 @@ class EditProfile extends React.Component{
     <div>
      <div className="back-button">
       <Link to="/UserProfile">
-       <Icon name="angle left"
-             size={"big"}
-             color={"black"}
+       <Icon
+        name="angle left"
+        size={"big"}
+        color={"black"}
         />
       </Link>
      </div>

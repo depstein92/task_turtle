@@ -9,84 +9,103 @@ class Messaging_Inbox extends React.Component{
   constructor(props){
     super(props);
 
-    this.state = { activeItem: '' }
+    this.state = {
+      activeItem: '',
+      visibleIndex: -1
+    }
   }
 
   componentDidMount(){
    const { getUserMessages } = this.props;
    const { username } = this.props.userData.isLoggedIn.data;
+   debugger;
    getUserMessages(username);
   }
+
+  renderNotVisible = index => {
+   this.setState({
+     visibleIndex: index
+   });
+  }
+
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   renderMessagingInbox = () => {
     const { messages, deleteUserMessage } = this.props;
-    const { activeItem } = this.state;
-
-    return messages.payload.data.messages.map(obj => {
-     return(
-       <div>
-         <Menu id="messages">
-          <Menu.Item
-            name='client'
-            active={activeItem === 'client'}
-            onClick={this.handleItemClick}
-            >
-          <span>From:</span>
-            {obj.client}
-          </Menu.Item>
-          <Menu.Item
-            name='title'
-            active={activeItem === 'title'}
-            onClick={this.handleItemClick}
-            >
-          <span>Title:</span>
-           { obj.title }
-          </Menu.Item>
-          <Menu.Item
-            name='reviews'
-            active={activeItem === 'date'}
-            onClick={this.handleItemClick}
-            >
-          <span>Date:</span>
-            {obj.date}
-          </Menu.Item>
-          <Menu.Item
-            name='location'
-            active={activeItem === 'location'}
-            onClick={this.handleItemClick}
-            >
-          <span>Location:</span>
-           { obj.location }
-          </Menu.Item>
-          <Menu.Item
-            name='time'
-            active={activeItem === 'time'}
-            onClick={this.handleItemClick}
-            >
-            <span>Time:</span>
-             { obj.time }
-          </Menu.Item>
-          <Menu.Item>
-            <Radio toggle />
-            <span>Confirm Job:</span>
-          </Menu.Item>
-      </Menu>
-      <Icon
-       className="messsages--delete"
-       size={"large"}
-       name="close"
-       onClick={
-        deleteUserMessage({
-           client: obj.client,
-           title: obj.title,
-           date: obj.date,
-           time: obj.time
-        })
-       }/>
-     </div>
-     )
+    const { username } = this.props.userData.isLoggedIn.data;
+    const { activeItem, visibleIndex } = this.state;
+    return messages.payload.data.messages.map((obj, index) => {
+      if(visibleIndex === index){
+        return <div />
+      } else{
+       return(
+         <div key={index}>
+           <Menu id="messages">
+            <Menu.Item
+              name='client'
+              active={activeItem === 'client'}
+              onClick={this.handleItemClick}
+              >
+            <span>From:</span>
+              {obj.client}
+            </Menu.Item>
+            <Menu.Item
+              name='title'
+              active={activeItem === 'title'}
+              onClick={this.handleItemClick}
+              >
+            <span>Title:</span>
+             { obj.title }
+            </Menu.Item>
+            <Menu.Item
+              name='reviews'
+              active={activeItem === 'date'}
+              onClick={this.handleItemClick}
+              >
+            <span>Date:</span>
+              { obj.date }
+            </Menu.Item>
+            <Menu.Item
+              name='location'
+              active={activeItem === 'location'}
+              onClick={this.handleItemClick}
+              >
+            <span>Location:</span>
+             { obj.location }
+            </Menu.Item>
+            <Menu.Item
+              name='time'
+              active={activeItem === 'time'}
+              onClick={this.handleItemClick}
+              >
+              <span>Time:</span>
+               { obj.time }
+            </Menu.Item>
+            <Menu.Item>
+              <Radio toggle />
+              <span>Confirm Job:</span>
+            </Menu.Item>
+        </Menu>
+        <Icon
+         className="delete-icon"
+         size={"large"}
+         name="close"
+         onClick={
+            () => {
+            this.renderNotVisible(index)
+            // deleteUserMessage({
+            //          userName: username,
+            //          client: obj.client,
+            //          title: obj.title,
+            //          date: obj.date,
+            //          time: obj.time
+            //       })
+           }
+         }/>
+       </div>
+       )
+      }
     });
   }
 

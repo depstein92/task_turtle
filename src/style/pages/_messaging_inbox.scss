@@ -1,6 +1,7 @@
 
 .messaging-inbox{
   max-width: 70%;
+  min-width: 70%;
   margin: 0 auto;
   top: 400px;
   margin-top: 300px;
@@ -22,9 +23,14 @@
   #messages{
     margin-bottom: 40px;
     padding: 10px;
+  }
 
-    &--delete{
+  div{
+    .delete-icon{
 
+      &:hover{
+        cursor: pointer;
+      }
     }
   }
 }

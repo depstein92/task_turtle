@@ -66,6 +66,10 @@ const sendLoginRequest = async (username, password) => {
     getUserProfileLoading();
 
     const loginData = await axios.post('http://127.0.0.1:5000/api/login', {
+        headers: {
+         "Access-Control-Allow-Origin": "http://localhost:8080",
+         "Access-Control-Allow-Headers": "*",
+        },
         username,
         password
     });
@@ -330,6 +334,7 @@ const getUsersMessagesSuccess = async (username) => {
                                 console.log(`Error in getData ${err}`)
                                 getUserMessagesError(err);
                               });
+  debugger;
   return{
     type: actionNames['GET_USER_MESSAGES_SUCCESS'],
     payload: messageData
@@ -356,22 +361,24 @@ const deleteMessageFailure = err => {
 };
 
 const deleteMessageSuccess = async (userData) => {
+  const deleteMessage =
+         await axios.delete(`http://127.0.0.1:5000/api/messages/${userData.userName}`, {
+                     headers: {
+                       "Access-Control-Allow-Origin": "http://localhost:8080",
+                       "Access-Control-Allow-Headers": "*",
+                     },
+                    params: {
+                      client: userData.client,
+                      title: userData.title,
+                      date: userData.date,
+                      time: userData.time
+                     }
+                    })
+                    .catch(err => {
+                      console.log(err);
+                      deleteMessageFailure(err);
+                    });
 
-  const deleteMessage = await axios.delete(`http://127.0.0.1:5000/api/messages`,
-                             {
-                                data: {
-                                  client: userData.client,
-                                  title: userData.title,
-                                  date: userData.date,
-                                  time: userData.time
-                                }
-                              })
-                              .catch(err => {
-                                console.log(err);
-                                deleteMessageFailure(err);
-                              });
-
-  debugger;
   return {
     type: actionNames['DELETE_USER_MESSAGE_SUCCESS'],
     payload: { message: 'Message Deleted' }
