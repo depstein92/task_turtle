@@ -50,8 +50,7 @@ class Heading extends React.Component{
            <Menu.Item
              name='user-statisics'
              active={activeItem === 'user-statisics'}
-             onClick={this.handleItemClick}
-             >
+             onClick={this.handleItemClick}>
                <Scroll.Link
                 style={{ color: 'black' }}
                 to="user-statistics"

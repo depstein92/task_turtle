@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import actions from '../actions/index';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Item, Button, Icon, Label, Modal, Popup } from 'semantic-ui-react';
+import { Item, Button, Icon, Label, Modal, Popup, List } from 'semantic-ui-react';
 import PostsForm from './PostsForm';
 import { DotLoader } from 'react-spinners';
 import UserStatistics from './UserStatistics';
@@ -89,8 +89,20 @@ class Feed extends React.Component{
               Request Job
               <Icon name='right chevron' />
             </Button>
-            <Label>Quick Job</Label>
-            <Label>Prime Hours</Label>
+            <List divided selection>
+               <Label
+                as='a'
+                color='teal'
+                tag>
+                Quick Job
+               </Label>
+               <Label
+                as='a'
+                color='teal'
+                tag>
+                Prime Hours
+                </Label>
+            </List>
         </Item.Extra>
         </Item.Content>
      </Item>
@@ -156,7 +168,7 @@ class Feed extends React.Component{
             }
           </Item.Group>
         <div className="feed__more-jobs">
-          <a href="#" className="see-more-jobs-link">
+          <a href="/#/UserProfile" className="see-more-jobs-link">
             Click here to see more jobs...
           </a>
         </div>
