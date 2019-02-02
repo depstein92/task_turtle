@@ -53,8 +53,10 @@ class UserProfile extends React.Component{
         </div>
       )
     } else{
+      
       const sumOfUserRatings = jobs.map( a => a.rating)
                                    .reduce((a, b) => a + b) / jobs.length;
+
       const ratingArray = new Array();
 
       for(let i = 0; i < sumOfUserRatings; i++){

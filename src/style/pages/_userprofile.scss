@@ -115,11 +115,15 @@
   }
 }
 
+
+/*=========FEED=========*/
+
 .feed{
   background-color: white;
-  height: 150vh;
+  height: 450vh;
   max-width: 90rem;
   margin: 0 auto;
+
 
   &__draggable-handle{
     display: flex;
@@ -160,6 +164,13 @@
     padding-left: 4rem;
     padding-right: 4rem;
   }
+
+  &__more-jobs{
+    text-align: center;
+    text-decoration: underline;
+    font-size: 1.7rem;
+    padding-top: 30px;
+  }
 }
 
 
@@ -178,4 +189,20 @@
     p{
      font-size: 1.5rem;
     }
+
   }
+
+  /*===============User Statistics============*/
+.feed{
+
+  .user-statistics{
+
+    h1{
+      margin-bottom: 70px;
+    }
+
+    &__charts * {
+     height: 100vh;
+    }
+  }
+}

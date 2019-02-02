@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import actions from '../actions/index';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Item, Button, Icon, Label, Modal } from 'semantic-ui-react';
+import { Item, Button, Icon, Label, Modal, Popup } from 'semantic-ui-react';
 import PostsForm from './PostsForm';
 import { DotLoader } from 'react-spinners';
+import UserStatistics from './UserStatistics';
 
 class Feed extends React.Component{
 
@@ -23,8 +24,9 @@ class Feed extends React.Component{
   toggleFeedFalse = () => this.setState({ jobsAdded: false });
 
   addNewMessage = () => {
+    const { newMessage } = this.state;
     this.setState({
-      newMessage: this.state.newMessage++
+      newMessage: newMessage++
     });
   }
 
@@ -37,11 +39,14 @@ class Feed extends React.Component{
       }
       centered={false}
       id="feed-modal"
-    >
+     >
       <Modal.Header>Note to User</Modal.Header>
       <Modal.Content>
         <Modal.Description>
-          <p>If you are not registered as a client you cannot post jobs</p>
+          <p>
+          If you are not registered as a
+          client you cannot post jobs
+          </p>
         </Modal.Description>
       </Modal.Content>
    </Modal>
@@ -51,6 +56,7 @@ class Feed extends React.Component{
   renderPosts = () => {
     const { posts, message } = this.props.posts.payload.data
     const { renderNewMessage } = this.props;
+    const { newMessage } = this.state;
 
     if(message === "Post added"){
       this.toggleFeedFalse();
@@ -76,7 +82,7 @@ class Feed extends React.Component{
                () => {
                  this.requestJobForPost(post.client, post.date, post.time, post.location, post.title)
                  this.addNewMessage()
-                 renderNewMessage(this.state.newMessage)
+                 renderNewMessage(newMessage)
                }
              }
              primary floated='right'>
@@ -105,12 +111,22 @@ class Feed extends React.Component{
     );
   }
 
+
+
   render(){
     const { isClient } = this.props.userData.isLoggedIn.user_data[0]
     return(
        <div className="feed">
          <div className="feed__draggable-handle">
-          <Icon className={"angle up"} size={"huge"} />
+         <Popup
+          trigger={
+            <Icon
+             className={"angle up"}
+             size={"huge"}
+             />
+           }
+          content='Pull up to see jobs and statisics'
+          />
          </div>
           <h1> Jobs </h1>
           {
@@ -139,6 +155,12 @@ class Feed extends React.Component{
               this.renderPosts()
             }
           </Item.Group>
+        <div className="feed__more-jobs">
+          <a href="#" className="see-more-jobs-link">
+            Click here to see more jobs...
+          </a>
+        </div>
+        <UserStatistics />
        </div>
     )
   }
