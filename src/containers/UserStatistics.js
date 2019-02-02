@@ -28,8 +28,8 @@ class UserStatistics extends React.Component {
          labels: ["January", "February", "March", "April", "May", "June", "July"],
          datasets: [{
           label: "Jobs Completed",
-          backgroundColor: 'rgb(255, 99, 132)',
-          borderColor: 'rgb(255, 99, 132)',
+          backgroundColor: '#cff5e8',
+          borderColor: '#cff5e8',
           data: [jobs.length, 10],
 
        }],
@@ -46,8 +46,8 @@ class UserStatistics extends React.Component {
        labels: ["January", "February", "March", "April", "May", "June", "July"],
        datasets: [{
         label: "Job Ratings",
-        backgroundColor: 'rgb(255, 99, 132)',
-        borderColor: 'rgb(255, 99, 132)',
+        backgroundColor: '#cff5e8',
+        borderColor: 'black',
         data: [sumOfUserRatings, 5],
      }],
      maintainAspectRatio: false
@@ -63,22 +63,29 @@ class UserStatistics extends React.Component {
         labels: ["January", "February", "March", "April", "May", "June", "July"],
         datasets: [{
          label: "Jobs Requested/Jobs Granted",
-         backgroundColor: 'rgb(255, 99, 132)',
-         borderColor: 'rgb(255, 99, 132)',
+         backgroundColor: '#cff5e8',
+         borderColor: '#cff5e8',
          data: [jobsGranted, 9],
       }],
       maintainAspectRatio: false
     }
   }
 
+  renderUserStatisticsTitle = () => {
+    const { user_data  } = this.props.userData.isLoggedIn;
+    return(
+    <h1 className="user-statistics__title">
+       Statistics for {user_data[0].username}
+    </h1>
+    )
+  }
+
   render(){
 
     return(
       <section className="user-statistics">
-       <h1 className="user-statistics__title">
-          User Statistics
-       </h1>
-       <div className="user-statistics__charts">
+         { this.renderUserStatisticsTitle() }
+        <div className="user-statistics__charts">
           <div className="user-statistics__charts--line-chart">
             <Line data={() => this.returnLineChartData()} />
           </div>

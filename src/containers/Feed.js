@@ -65,7 +65,7 @@ class Feed extends React.Component{
     return posts.map((post, index) => {
       return(
      <Item key={index}>
-        <Item.Image src='../src/style/images/wireframe.png' />
+        <Item.Image src={ post.profile_picture ? '../src/style/images/matthew.png' : '../src/style/images/matthew.png'} />
         <Item.Content>
           <Item.Header as='a'>{ post.title }</Item.Header>
           <Item.Meta>
@@ -85,7 +85,7 @@ class Feed extends React.Component{
                  renderNewMessage(newMessage)
                }
              }
-             primary floated='right'>
+             primary floated='right' basic color='violet' content='Violet'>
               Request Job
               <Icon name='right chevron' />
             </Button>

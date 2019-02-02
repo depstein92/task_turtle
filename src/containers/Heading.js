@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, Header, Image } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
+import * as Scroll from 'react-scroll';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import actions from '../actions/index';
@@ -46,6 +47,20 @@ class Heading extends React.Component{
              active={activeItem === 'home'}
              onClick={this.handleItemClick}
              />
+           <Menu.Item
+             name='user-statisics'
+             active={activeItem === 'user-statisics'}
+             onClick={this.handleItemClick}
+             >
+               <Scroll.Link
+                style={{ color: 'black' }}
+                to="user-statistics"
+                spy={true}
+                smooth={true}
+                duration={650}>
+                   User Statistics
+               </Scroll.Link>
+            </Menu.Item>
             <Menu.Item
               name='messages'
               link={true}

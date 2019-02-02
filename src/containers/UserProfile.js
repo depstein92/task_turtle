@@ -26,22 +26,28 @@ class UserProfile extends React.Component{
         defaultPhoto = 'https://react.semantic-ui.com/images/avatar/large/patrick.png';
 
     return(
-       <Card
-        raised={true}
-        className={"user-profile"}
-        link={true}
-        href={"/#/Edit-Profile"}
-        image={user_data[0].profile_picture ? user_data[0].profile_picture : defaultPhoto}
-        header={user_data[0].username}
-        description={user_data[0].description ? user_data[0].description : 'Place description here'}
-        extra={this.renderUserRating()}
-       />
+      <Popup trigger={
+         <Card
+          raised={true}
+          className={"user-profile"}
+          link={true}
+          href={"/#/Edit-Profile"}
+          image={user_data[0].profile_picture ? user_data[0].profile_picture : defaultPhoto}
+          header={user_data[0].username}
+          description={user_data[0].description ? user_data[0].description : 'Place description here'}
+          extra={this.renderUserRating()}
+         />}
+      content='click to edit profile' />
     )
 
   };
 
   onCardHoverEnter = () => this.setState({ isPopUpVisible: true });
   onCardHoverLeave = () => this.setState({ isPopUpVisible: false });
+
+  scrollToUserStatiticsContainer = () => {
+
+  }
 
   renderUserRating = () => {
     const { jobs } = this.props.userData.isLoggedIn;
@@ -53,7 +59,7 @@ class UserProfile extends React.Component{
         </div>
       )
     } else{
-      
+
       const sumOfUserRatings = jobs.map( a => a.rating)
                                    .reduce((a, b) => a + b) / jobs.length;
 
