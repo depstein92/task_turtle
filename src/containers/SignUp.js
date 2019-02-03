@@ -2,7 +2,15 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Modal, Button, Header, Image, Popup } from 'semantic-ui-react';
+import {
+  Modal,
+  Button,
+  Header,
+  Image,
+  Popup,
+  Radio,
+  Message
+} from 'semantic-ui-react';
 import actions from '../actions/index';
 
 class SignUp extends React.Component{
@@ -13,15 +21,21 @@ class SignUp extends React.Component{
       userName: '',
       password: '',
       isClient: false,
-      open: false
+      open: false,
+      userRegMessage: false
     }
   }
 
   onSubmit = e => {
-    const { userName, password, isClient } = this.state;
+    const { userName, password, isClient, userRegMessge } = this.state;
     const { registerUser } = this.props;
+
     e.preventDefault();
+    this.setState({ userRegMessage: true });
     registerUser(userName, password, isClient);
+    setTimeout(() => {
+      this.setState({ userRegMessage: false });
+    }, 1000)
   }
 
   onEventChange = e => {
@@ -30,13 +44,28 @@ class SignUp extends React.Component{
     });
   }
 
+  isClientState = () => {
+    const {isClient} = this.state;
+    this.setState({
+      isClient: isClient ? false : true
+    });
+  }
+
   show = dimmer => () => this.setState({ dimmer, open: true })
   close = () => this.setState({ open: false })
 
   render(){
-    const { open, dimmer } = this.state
+    const { open, dimmer, userRegMessage } = this.state;
     return(
       <div className={'landing__login-form'}>
+       { userRegMessage ?
+         <Message
+            success
+            header='Your user registration was successful'
+            content='You may now log-in with the username you have chosen'
+          /> :
+          <div />
+        }
           <h1 className={'landing__login-form--title'}>
             Sign Up
            </h1>
@@ -57,23 +86,21 @@ class SignUp extends React.Component{
                   data-test="input-password"
                   />
               </label>
-              <label>
+              <label className="landing__login-form--modal-radio">
                <Popup trigger={
                  <span
-                  className="landing__login-form--modal"
                   size={'mini'}
                   onClick={this.show('inverted')}
                   >
                    Looking to give tasks?
                  </span>
                } content='What does this mean?' />
-                 <input
+                 <Radio toggle
                   type="radio"
                   name="isClient"
-                  onChange={this.onEventChange}
-                  value={true}
+                  onChange={this.isClientState}
+                  value={this.state.isClient}
                   data-test="input-isClient"
-                  defaultChecked={this.state.isClient}
                   />
                 <Modal dimmer={dimmer} open={open} onClose={this.close}>
                  <Modal.Header>On being a client</Modal.Header>
@@ -99,6 +126,7 @@ class SignUp extends React.Component{
               </label>
                <input
                 type="submit"
+                id="submit-signup-button"
                 data-test="submit-signup"
                 value="Submit"
                 />

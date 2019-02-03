@@ -12,7 +12,8 @@ class Messaging_Inbox extends React.Component{
     this.state = {
       activeItem: '',
       visibleIndex: [],
-      renderMessageDeleted: false
+      renderMessageDeleted: false,
+      jobConfirmed: false
     }
   }
 
@@ -49,6 +50,28 @@ class Messaging_Inbox extends React.Component{
      return <div />;
    }
   }
+
+  renderJobConfirmed = () => {
+    const { jobConfirmed } = this.state;
+    console.log(jobConfirmed)
+    if(jobConfirmed === true ){
+
+      setTimeout(() => this.setState({
+        jobConfirmed: false
+      }), 500);
+
+      return(
+         <Message positive>
+          <Message.Header>
+            Job Confirmed
+           </Message.Header>
+         </Message>
+      )
+    } else{
+      return <div />;
+    }
+   }
+
 
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
@@ -106,7 +129,14 @@ class Messaging_Inbox extends React.Component{
                { obj.time }
             </Menu.Item>
             <Menu.Item>
-              <Radio toggle />
+              <Radio
+              toggle
+              onChange={
+                () => this.setState({
+                  jobConfirmed: this.state.jobConfirmed ? false : true
+                })
+              }
+               />
               <span>Confirm Job:</span>
             </Menu.Item>
             <Menu.Item>
@@ -144,6 +174,7 @@ class Messaging_Inbox extends React.Component{
       </h1>
       <div className="messaging-container--message-deleted">
       { this.renderMessageDeleted() }
+      { this.renderJobConfirmed() }
       </div>
       <div className={"messaging-inbox"}>
        { this.renderMessagingInbox() }
