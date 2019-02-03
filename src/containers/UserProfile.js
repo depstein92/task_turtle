@@ -10,6 +10,7 @@ import Feed from './Feed';
 import actions from '../actions/index';
 import Draggable from 'react-draggable';
 
+
 class UserProfile extends React.Component{
   constructor(props){
     super(props);
@@ -32,7 +33,7 @@ class UserProfile extends React.Component{
           className={"user-profile"}
           link={true}
           href={"/#/Edit-Profile"}
-          image={user_data[0].profile_picture ? user_data[0].profile_picture : defaultPhoto}
+          image={user_data[0].profile_picture ? /*user_data[0].profile_picture*/ defaultPhoto : defaultPhoto}
           header={user_data[0].username}
           description={user_data[0].description ? user_data[0].description : 'Place description here'}
           extra={this.renderUserRating()}
@@ -146,26 +147,33 @@ class UserProfile extends React.Component{
   render(){
     return(
     <div>
-      <Heading newMessage={ this.state.newMessage } />
-      <div className={'user-profile-container'}>
-        { this.renderUserProfile() }
-        <UserRecentJobs />
-        </div>
-        <Draggable
-            axis="y"
-            handle=".handle"
-            defaultPosition={{x: 0, y: 0}}
-            position={null}
-            grid={[25, 25]}
-            scale={1}
-            bounds={{top: -965, bottom: 0}}
-            onStart={this.handleStart}
-            onDrag={this.handleDrag}
-            onStop={this.handleStop}>
-          <div className="handle">
-           <Feed renderNewMessage={ this.renderNewMessage } />
-          </div>
-        </Draggable>
+    <Heading newMessage={ this.state.newMessage } />
+    <div className={'user-profile-container'}
+          data-aos="zoom-in"
+          data-aos-offset="100"
+          data-aos-duration="1000"
+          data-aos-easing="ease-in-out"
+          data-aos-mirror="true"
+          data-aos-once="true"
+          data-aos-anchor-placement="top-center">
+    { this.renderUserProfile() }
+    <UserRecentJobs />
+    </div>
+    <Draggable
+        axis="y"
+        handle=".handle"
+        defaultPosition={{x: 0, y: 0}}
+        position={null}
+        grid={[25, 25]}
+        scale={1}
+        bounds={{top: -965, bottom: 0}}
+        onStart={this.handleStart}
+        onDrag={this.handleDrag}
+        onStop={this.handleStop}>
+      <div className="handle">
+       <Feed renderNewMessage={ this.renderNewMessage } />
+      </div>
+    </Draggable>
     </div>
     )
   };

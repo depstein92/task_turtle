@@ -40,7 +40,9 @@ class UserRecentJobs extends React.Component{
     } else {
       return jobs.map((obj, index) => {
         return(
-         <div className={"user-profile-container__user-job"} key={index}>
+         <div
+          className={"user-profile-container__user-job"}
+          key={index}>
             <Card>
               <Card.Content header={`Customer ${obj.client}`} />
               <Card.Content id="title">{`${obj.title}`}</Card.Content>

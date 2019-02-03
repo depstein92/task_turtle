@@ -53,7 +53,7 @@ class Heading extends React.Component{
              onClick={this.handleItemClick}>
                <Scroll.Link
                 style={{ color: 'black' }}
-                to="user-statistics"
+                to="feed__more-jobs"
                 spy={true}
                 smooth={true}
                 duration={650}>

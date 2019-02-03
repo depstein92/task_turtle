@@ -82,7 +82,15 @@ class EditProfile extends React.Component{
 
   render() {
     return (
-    <div>
+    <div
+     data-aos="zoom-in"
+     data-aos-offset="100"
+     data-aos-duration="200"
+     data-aos-easing="ease-in-out"
+     data-aos-mirror="true"
+     data-aos-once="true"
+     data-aos-anchor-placement="top-center"
+     >
      <div className="back-button">
       <Link to="/UserProfile">
        <Icon

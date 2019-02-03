@@ -55,6 +55,7 @@
   "dependencies": {
     "@emotion/core": "^10.0.4",
     "ajv": "^6.5.5",
+    "aos": "^2.3.4",
     "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",
     "babel-preset-stage-1": "^6.1.18",

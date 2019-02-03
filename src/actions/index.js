@@ -334,7 +334,6 @@ const getUsersMessagesSuccess = async (username) => {
                                 console.log(`Error in getData ${err}`)
                                 getUserMessagesError(err);
                               });
-  debugger;
   return{
     type: actionNames['GET_USER_MESSAGES_SUCCESS'],
     payload: messageData

@@ -43,6 +43,13 @@ $color-primary-dark: #28b485;
           text-decoration: underline;
          }
 
+         &--modal{
+           &:hover{
+             cursor: pointer;
+             text-decoration: underline;
+           }
+         }
+
          form{
            width: 100%;
            display: flex;

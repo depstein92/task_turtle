@@ -2,7 +2,16 @@ import React, { Component } from 'react';
 import actions from '../actions/index';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Item, Button, Icon, Label, Modal, Popup, List } from 'semantic-ui-react';
+import {
+  Item,
+  Button,
+  Icon,
+  Label,
+  Modal,
+  Popup,
+  List,
+  Message
+} from 'semantic-ui-react';
 import PostsForm from './PostsForm';
 import { DotLoader } from 'react-spinners';
 import UserStatistics from './UserStatistics';
@@ -12,7 +21,9 @@ class Feed extends React.Component{
   state = {
     jobsAdded: false,
     isModalOpen: false,
-    newMessage: 0
+    newMessage: 0,
+    requestedJobButton: false,
+    messageIndex: []
   }
 
   componentDidMount(){
@@ -23,10 +34,26 @@ class Feed extends React.Component{
   toggleFeedTrue = () => this.setState({ jobsAdded: true });
   toggleFeedFalse = () => this.setState({ jobsAdded: false });
 
+  requestedJobMessage = index => {
+    const { requestedJobButton, messageIndex } = this.state;
+
+    this.setState({
+       messageIndex: [...messageIndex, index],
+       requestedJobButton: true,
+    });
+
+    setTimeout(() => {
+      const { requestedJobButton } = this.state;
+      this.setState({
+         requestedJobButton: false
+      });
+    }, 500);
+  }
+
   addNewMessage = () => {
     const { newMessage } = this.state;
     this.setState({
-      newMessage: newMessage++
+      newMessage: newMessage + 1
     });
   }
 
@@ -56,7 +83,7 @@ class Feed extends React.Component{
   renderPosts = () => {
     const { posts, message } = this.props.posts.payload.data
     const { renderNewMessage } = this.props;
-    const { newMessage } = this.state;
+    const { requestedJobButton, messageIndex } = this.state;
 
     if(message === "Post added"){
       this.toggleFeedFalse();
@@ -77,12 +104,19 @@ class Feed extends React.Component{
             { post.date }
           </Item.Description>
            <Item.Extra>
+           <div>{
+             requestedJobButton && messageIndex.includes(index) ?
+             <Message success header='Job SuccessFully Requested'/> :
+              <div />
+           }</div>
             <Button
              onClick={
                () => {
                  this.requestJobForPost(post.client, post.date, post.time, post.location, post.title)
                  this.addNewMessage()
-                 renderNewMessage(newMessage)
+                 this.requestedJobMessage(index)
+                 {//renderNewMessage(newMessage)
+                 }
                }
              }
              primary floated='right' basic color='violet' content='Violet'>
@@ -123,9 +157,8 @@ class Feed extends React.Component{
     );
   }
 
-
-
   render(){
+    console.log(this.state.requestedJobButton)
     const { isClient } = this.props.userData.isLoggedIn.user_data[0]
     return(
        <div className="feed">

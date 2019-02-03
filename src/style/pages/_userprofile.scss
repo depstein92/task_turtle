@@ -146,6 +146,15 @@
     }
   }
 
+  .message{
+    width: 25%;
+    position: absolute;
+    font-size: 12px;
+    right: 0;
+    top: -50px;
+    text-align: center;
+  }
+
   h1{
     font-family: 'Playfair Display', serif;
     font-variant-caps: petite-caps;
@@ -201,6 +210,7 @@
 .feed{
 
   .user-statistics{
+    background-color: white;
 
     h1{
       margin-bottom: 70px;
