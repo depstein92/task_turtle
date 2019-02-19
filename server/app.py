@@ -31,6 +31,11 @@ app.config["CORS_SUPPORTS_CREDENTIALS"] = True
 app.config["CORS_EXPOSE_HEADERS"] = True
 app.config['CORS_HEADERS'] = 'Content-Type'
 
+UPLOAD_FOLDER = '/src/uploads'
+ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
 api = Api(app)
 # CORS(app, support_credentials=True, resources={r"/*": {"origins": "*"}})
 CORS(app, allow_headers='*', resources={r"/*": {"origins": "*"}},
